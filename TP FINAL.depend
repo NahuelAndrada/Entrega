@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1748213331 source:c:\users\nahue\desktop\c++\tp final\entregaarchivo.cpp
+	"EntregaArchivo.h"
+
+1748213359 source:c:\users\nahue\desktop\c++\tp final\entregamanager.cpp
+	<iostream>
+	"EntregaManager.h"
+	"EntregaArchivo.h"
+
+1749505910 source:c:\users\nahue\desktop\c++\tp final\main.cpp
+
+1748122904 source:c:\users\nahue\desktop\c++\tp final\entrega.cpp
+	"Entrega.h"
+	<iostream>
+	<cstring>
+
+1748121912 c:\users\nahue\desktop\c++\tp final\entrega.h
+	"Fecha.h"
+	<string>
+
+1748115976 c:\users\nahue\desktop\c++\tp final\fecha.h
+	<string>
+
+1748115976 source:c:\users\nahue\desktop\c++\tp final\fecha.cpp
+	"Fecha.h"
+
+1748563449 c:\users\nahue\desktop\c++\tp final\entregaarchivo.h
+	<string>
+	"Entrega.h"
+
+1749505876 c:\users\nahue\desktop\c++\tp final\entregamanager.h
+	"Entrega.h"
+	<string>
+

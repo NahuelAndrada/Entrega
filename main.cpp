@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <iostream>
 #include "AutopartesManager.h"
 
@@ -9,3 +10,6 @@ int main() {
 
     return 0;
 }
+=======
+
+>>>>>>> 42fe185 (se agrega todo)
