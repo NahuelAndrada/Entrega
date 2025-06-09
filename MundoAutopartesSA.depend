@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1749316119 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\main.cpp
+	<iostream>
+	"AutopartesManager.h"
+
+1749346731 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.h
+
+1749341292 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautoparte.cpp
+	"TipoAutoparte.h"
+	<cstring>
+
+1749341614 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautoparte.h
+
+1749341800 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoautopartes.cpp
+	"ArchivoAutopartes.h"
+	<fstream>
+
+1749341973 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoautopartes.h
+	"Autoparte.h"
+	<cstring>
+	<cstdio>
+
+1749337339 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autoparte.h
+	"TipoAutoparte.h"
+
+1749344180 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autoparte.cpp
+	"Autoparte.h"
+	<cstring>
+	<sstream>
+	<ioStream>
+
+1749346816 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.cpp
+	"AutopartesManager.h"
+	"ArchivoAutopartes.h"
+	"TipoAutoparte.h"
+	"Autoparte.h"
+	<iostream>
+	<cstring>
+
