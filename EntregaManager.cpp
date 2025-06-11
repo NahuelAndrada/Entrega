@@ -1,6 +1,9 @@
 #include <iostream>
 #include "EntregaManager.h"
+
 #include "EntregaArchivo.h"
+#include "ArchivoAutopartes.h"
+#include "EmpresaManager.h"
 
 using namespace std;
 
@@ -31,8 +34,8 @@ void EntregasManager::cargar() {
 
     cout << "Numero de autoparte: ";
     cin >> numeroAutoparte;
-    AutoparteArchivo archivoAutoparte;
-    int posAutoparte = archivoAutoparte.buscar(numeroAutoparte);
+    ArchivoAutopartes archivoAutoparte;
+    int posAutoparte = archivoAutoparte.BuscarPosicion(numeroAutoparte);
 
     if (posAutoparte < 0) {
     cout << "Error: la autoparte no existe." << endl;
@@ -44,8 +47,8 @@ void EntregasManager::cargar() {
 
     cout << "CUIT de la empresa: ";
     cin >> cuit;
-    EmpresaArchivo archivoEmpresas;
-    if (archivoEmpresas.buscar(cuit) < 0) {
+    EmpresaManager archivoEmpresas;
+    if (archivoEmpresas.buscarEmpresaPorCUIT(cuit) < 0) {
     cout << "Error: la empresa no está registrada." << endl;
     return;
 }
@@ -64,7 +67,7 @@ void EntregasManager::cargar() {
 
     cout << "Cantidad de unidades: ";
     cin >> cantidad;
-    Autoparte autoParte = archivoAutoparte.leer(posAutoparte);
+    Autoparte autoParte = archivoAutoparte.LeerUna(posAutoparte);
 
 	if (cantidad <= 0) {
        cout << "Error: la cantidad debe ser mayor a 0." << endl;
@@ -79,7 +82,7 @@ void EntregasManager::cargar() {
 
 	int nuevoStock = autoParte.getStock() - cantidad;
 	autoParte.setStock(nuevoStock);
-	if (!archivoAutoparte.guardar(autoParte, posAutoparte)) {
+	if (!archivoAutoparte.Modificar(autoParte, posAutoparte)) {
     cout << "Error al actualizar el stock de la autoparte." << endl;
     return;
 }
@@ -98,7 +101,6 @@ void EntregasManager::cargar() {
         cout << "Error al guardar la entrega." << endl;
     }
 }
-
 void EntregasManager::listar() {
     EntregaArchivo archivo;
     int total = archivo.getCantidadRegistros();
@@ -130,9 +132,6 @@ void EntregasManager::listar() {
         cout << "No hay entregas activas registradas." << endl;
     }
 }
-
-
-
 void EntregasManager::buscarPorId(int id) {
     EntregaArchivo archivo;
     int pos = archivo.buscar(id);
@@ -160,8 +159,6 @@ void EntregasManager::buscarPorId(int id) {
     cout << "Cantidad de unidades: " << reg.getCantidadUnidades() << endl;
     cout << "Importe: $" << reg.getImporte() << endl;
 }
-
-
 void EntregasManager::entregasPorEmpresa(std::string cuit) {
     EntregaArchivo archivo;
     int total = archivo.getCantidadRegistros();
@@ -197,7 +194,6 @@ void EntregasManager::entregasPorEmpresa(std::string cuit) {
         cout<<"El CUIT: "<<cuit<< " se le facturo por un total de: $ "<<TotalEmpresa<<endl;
     }
 }
-
 void EntregasManager::entregasPorFecha(Fecha desde, Fecha hasta) {
     EntregaArchivo archivo;
     int total = archivo.getCantidadRegistros();
@@ -239,10 +235,7 @@ void EntregasManager::entregasPorFecha(Fecha desde, Fecha hasta) {
         cout << "TOTAL FACTURADO EN EL RANGO: $" << sumaImporte << endl;
     }
 }
-
-
-
-    void EntregasManager::eliminarPorId(int id) {
+void EntregasManager::eliminarPorId(int id) {
     EntregaArchivo archivo;
     int pos = archivo.buscar(id);
 
@@ -266,9 +259,7 @@ void EntregasManager::entregasPorFecha(Fecha desde, Fecha hasta) {
         cout << "Error al intentar eliminar la entrega." << endl;
     }
 }
-
-
-    void EntregasManager::MenuEntrega(){
+void EntregasManager::MenuEntrega(){
     EntregasManager manager;
     int opcion;
 
@@ -342,8 +333,6 @@ void EntregasManager::entregasPorFecha(Fecha desde, Fecha hasta) {
         }
 
     } while (opcion != 0);
-
-    return 0;
 }
 
 
