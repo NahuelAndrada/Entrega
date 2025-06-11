@@ -5,6 +5,7 @@
 
     class Entrega {
     private:
+
         int _identrega;
         int _NumeroAutoparte;
         char _cuitEmpresa[15];
@@ -12,6 +13,7 @@
         int _CantidadUnidades;
         float _importe;
         bool _activo;
+
     public:
         Entrega();
         Entrega(int IdEntrega, int numeroAutoparte, std::string cuitEmpresa,
