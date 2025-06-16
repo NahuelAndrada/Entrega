@@ -1,15 +1,15 @@
 #ifndef ARCHIVOTIPOAUTOPARTE_H
 #define ARCHIVOTIPOAUTOPARTE_H
-
+#include "TipoAutoparteManager.h"
 #include "TipoAutoparte.h"
-
+#include <string>
 class ArchivoTipoAutoparte {
 private:
-    char nombreArchivo[30];
+    std::string _nombreArchivo;
 
 public:
     ArchivoTipoAutoparte();
-    ArchivoTipoAutoparte(const char* nombre);
+    ArchivoTipoAutoparte(std::string nombre);
 
     TipoAutoparte leerUno(int pos);
     bool guardar(TipoAutoparte reg);

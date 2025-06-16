@@ -6,7 +6,6 @@ using namespace std;
 
 void TipoAutoparteManager::Cargar() {
     TipoAutoparte reg;
-    reg.cargar();
     ArchivoTipoAutoparte archivo;
     archivo.guardar(reg);
     cout << "Tipo de autoparte guardado correctamente." << endl;
@@ -17,7 +16,7 @@ void TipoAutoparteManager::Eliminar(int numero) {
     int total = archivo.cantidad();
     for (int i = 0; i < total; i++) {
         TipoAutoparte reg = archivo.leerUno(i);
-        if (reg.getNumeroTipo() == numero && reg.getActivo()) {
+        if (reg.getIdTipo() == numero && reg.getActivo()) {
             archivo.eliminar(i);
             cout << "Tipo de autoparte eliminado." << endl;
             return;
@@ -26,28 +25,14 @@ void TipoAutoparteManager::Eliminar(int numero) {
     cout << "Tipo de autoparte no encontrado o ya eliminado." << endl;
 }
 
-void TipoAutoparteManager::Modificar(int numero) {
-    ArchivoTipoAutoparte archivo;
-    int total = archivo.cantidad();
-    for (int i = 0; i < total; i++) {
-        TipoAutoparte reg = archivo.leerUno(i);
-        if (reg.getNumeroTipo() == numero && reg.getActivo()) {
-            cout << "Ingrese los nuevos datos:" << endl;
-            reg.cargar();
-            archivo.modificar(reg, i);
-            cout << "Tipo de autoparte modificado." << endl;
-            return;
-        }
-    }
-    cout << "Tipo de autoparte no encontrado o inactivo." << endl;
-}
+
 
 int TipoAutoparteManager::BuscarPorNumero(int numero) {
     ArchivoTipoAutoparte archivo;
     int total = archivo.cantidad();
     for (int i = 0; i < total; i++) {
         TipoAutoparte reg = archivo.leerUno(i);
-        if (reg.getNumeroTipo() == numero && reg.getActivo()) {
+        if (reg.getIdTipo() == numero && reg.getActivo()) {
             return i;
         }
     }
@@ -84,9 +69,6 @@ void TipoAutoparteManager::Menu() {
                 Eliminar(numero);
                 break;
             case 3:
-                cout << "Ingrese el número del tipo a modificar: ";
-                cin >> numero;
-                Modificar(numero);
                 break;
             case 4:
                 cout << "Ingrese el número del tipo a buscar: ";

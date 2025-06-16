@@ -2,40 +2,44 @@
 #include <cstdio>
 
 ArchivoTipoAutoparte::ArchivoTipoAutoparte() {
-    strcpy(nombreArchivo, "tipo_autopartes.dat");
+    _nombreArchivo= "tipo_autopartes.dat";
 }
 
-ArchivoTipoAutoparte::ArchivoTipoAutoparte(const char* nombre) {
-    strcpy(nombreArchivo, nombre);
+ArchivoTipoAutoparte::ArchivoTipoAutoparte(std::string nombreArchivo){
+  _nombreArchivo = nombreArchivo;
 }
 
 TipoAutoparte ArchivoTipoAutoparte::leerUno(int pos) {
     TipoAutoparte reg;
-    FILE* p = fopen(nombreArchivo, "rb");
-    if (p == nullptr) return reg;
+    FILE *pFile;
+    pFile = fopen(_nombreArchivo.c_str(), "rb");
+    if (pFile == nullptr) return reg;
 
-    fseek(p, pos * sizeof(TipoAutoparte), SEEK_SET);
-    fread(&reg, sizeof(TipoAutoparte), 1, p);
-    fclose(p);
+    fseek(pFile, pos * sizeof(TipoAutoparte), SEEK_SET);
+    fread(&reg, sizeof(TipoAutoparte), 1, pFile);
+    fclose(pFile);
     return reg;
 }
 
 bool ArchivoTipoAutoparte::guardar(TipoAutoparte reg) {
-    FILE* p = fopen(nombreArchivo, "ab");
-    if (p == nullptr) return false;
+    FILE *pFile;
+    pFile = fopen(_nombreArchivo.c_str(), "rb");
+    if (pFile == nullptr) return false;
 
-    bool ok = fwrite(&reg, sizeof(TipoAutoparte), 1, p);
-    fclose(p);
+    bool ok = fwrite(&reg, sizeof(TipoAutoparte), 1, pFile);
+    fclose(pFile);
     return ok;
 }
 
 bool ArchivoTipoAutoparte::modificar(TipoAutoparte reg, int pos) {
-    FILE* p = fopen(nombreArchivo, "rb+");
-    if (p == nullptr) return false;
+    FILE *pFile;
+    pFile = fopen(_nombreArchivo.c_str(), "rb+");
+    if (pFile == nullptr) return false;
 
-    fseek(p, pos * sizeof(TipoAutoparte), SEEK_SET);
-    bool ok = fwrite(&reg, sizeof(TipoAutoparte), 1, p);
-    fclose(p);
+
+    fseek(pFile, pos * sizeof(TipoAutoparte), SEEK_SET);
+    bool ok = fwrite(&reg, sizeof(TipoAutoparte), 1, pFile);
+    fclose(pFile);
     return ok;
 }
 
@@ -46,28 +50,31 @@ bool ArchivoTipoAutoparte::eliminar(int pos) {
 }
 
 int ArchivoTipoAutoparte::cantidad() {
-    FILE* p = fopen(nombreArchivo, "rb");
-    if (p == nullptr) return 0;
+    FILE *pFile;
+    pFile = fopen(_nombreArchivo.c_str(), "rb");
+    if (pFile == nullptr) return 0;
 
-    fseek(p, 0, SEEK_END);
-    int tam = ftell(p);
-    fclose(p);
+    fseek(pFile, 0, SEEK_END);
+    int tam = ftell(pFile);
+    fclose(pFile);
 
     return tam / sizeof(TipoAutoparte);
 }
 
 void ArchivoTipoAutoparte::listarActivos() {
-    FILE* p = fopen(nombreArchivo, "rb");
-    if (p == nullptr) {
+    FILE *pFile;
+    pFile = fopen(_nombreArchivo.c_str(), "rb");
+    if (pFile == nullptr) {
         printf("No se pudo abrir el archivo.\n");
         return;
     }
 
     TipoAutoparte reg;
-    while (fread(&reg, sizeof(TipoAutoparte), 1, p)) {
+    TipoAutoparteManager prueba;
+    while (fread(&reg, sizeof(TipoAutoparte), 1, pFile)) {
         if (reg.getActivo()) {
-            reg.mostrar();
+            prueba.Listar();
         }
     }
-    fclose(p);
+    fclose(pFile);
 }

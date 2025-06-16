@@ -7,7 +7,7 @@ using namespace std;
     Autoparte::Autoparte(){
         _numeroAutoparte = 0;
         strcpy(_nombre, "");
-        _tipo = 0;
+        TipoAutoparte _Tipo;
         _stock = 0;
         _activo = true;
     }

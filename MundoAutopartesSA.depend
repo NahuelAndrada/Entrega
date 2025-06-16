@@ -37,3 +37,121 @@
 	<iostream>
 	<cstring>
 
+1750103366 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\archivoautopartes.cpp
+	"ArchivoAutopartes.h"
+	<fstream>
+
+1750103366 c:\users\nahue\downloads\entrega-main (1)\entrega-main\archivoautopartes.h
+	"Autoparte.h"
+	<cstring>
+	<cstdio>
+
+1750103366 c:\users\nahue\downloads\entrega-main (1)\entrega-main\autoparte.h
+	"TipoAutoparte.h"
+
+1750109079 c:\users\nahue\downloads\entrega-main (1)\entrega-main\tipoautoparte.h
+	<string>
+
+1750106363 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\autoparte.cpp
+	"Autoparte.h"
+	<cstring>
+	<sstream>
+	<ioStream>
+
+1750109297 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\autopartesmanager.cpp
+	"AutopartesManager.h"
+	"ArchivoAutopartes.h"
+	"TipoAutoparte.h"
+	"Autoparte.h"
+	<iostream>
+	<cstring>
+
+1750103366 c:\users\nahue\downloads\entrega-main (1)\entrega-main\autopartesmanager.h
+
+1750109658 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\tipoautoparte.cpp
+	"TipoAutoparte.h"
+	<iostream>
+	<cstring>
+
+1750103366 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\archivoempresa.cpp
+	"ArchivoEmpresa.h"
+
+1750103366 c:\users\nahue\downloads\entrega-main (1)\entrega-main\archivoempresa.h
+	<string>
+	"Empresa.h"
+
+1750103366 c:\users\nahue\downloads\entrega-main (1)\entrega-main\empresa.h
+	<string>
+
+1750103366 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\empresa.cpp
+	"Empresa.h"
+	"string"
+	"cstring"
+
+1750103366 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\empresamanager.cpp
+	<iostream>
+	<string>
+	"Empresa.h"
+	"ArchivoEmpresa.h"
+	"EmpresaManager.h"
+
+1750103366 c:\users\nahue\downloads\entrega-main (1)\entrega-main\empresamanager.h
+	<string>
+
+1750103366 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\entrega.cpp
+	"Entrega.h"
+	<iostream>
+	<cstring>
+
+1750103366 c:\users\nahue\downloads\entrega-main (1)\entrega-main\entrega.h
+	"Fecha.h"
+	<string>
+
+1750103366 c:\users\nahue\downloads\entrega-main (1)\entrega-main\fecha.h
+	<string>
+
+1750103366 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\entregaarchivo.cpp
+	"EntregaArchivo.h"
+
+1750103366 c:\users\nahue\downloads\entrega-main (1)\entrega-main\entregaarchivo.h
+	<string>
+	"Entrega.h"
+
+1750103366 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\entregamanager.cpp
+	<iostream>
+	"EntregaManager.h"
+	"EntregaArchivo.h"
+	"ArchivoAutopartes.h"
+	"EmpresaManager.h"
+
+1750103366 c:\users\nahue\downloads\entrega-main (1)\entrega-main\entregamanager.h
+	"Entrega.h"
+	<string>
+
+1750103366 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\fecha.cpp
+	"Fecha.h"
+
+1750105964 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\archivotipoautoparte.cpp
+	"ArchivoTipoAutoparte.h"
+	<cstdio>
+
+1750106009 c:\users\nahue\downloads\entrega-main (1)\entrega-main\archivotipoautoparte.h
+	"TipoAutoparteManager.h"
+	"TipoAutoparte.h"
+	<string>
+
+1750103367 c:\users\nahue\downloads\entrega-main (1)\entrega-main\tipoautopartemanager.h
+
+1750109463 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\main.cpp
+	<iostream>
+	"TipoAutoparte.h"
+	"EmpresaManager.h"
+	"AutopartesManager.h"
+	"EntregaManager.h"
+
+1750110517 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\tipoautopartemanager.cpp
+	"TipoAutoparteManager.h"
+	"ArchivoTipoAutoparte.h"
+	"TipoAutoparte.h"
+	<iostream>
+

@@ -207,12 +207,12 @@ void AutopartesManager::ModificarAutoparte(int numero){
     cout << "Ingrese nuevo stock: ";
     cin >> nuevoStock;
 
-    cout << "Tipo actual: " << reg.getTipo().getNumero() << endl;
+    cout << "Tipo actual: " << reg.getTipo().getIdTipo() << endl;
     cout << "Ingrese nuevo tipo (1-Motor, 2-Carroceria, 3-Chasis, 4-Interior): ";
     cin >> nuevoTipo;
 
     TipoAutoparte tipo;
-    tipo.setNumero(nuevoTipo);
+    tipo.setIdTipo(nuevoTipo);
 
     reg.setNombre(nuevoNombre);
     reg.setStock(nuevoStock);
@@ -246,7 +246,7 @@ int AutopartesManager::BuscarAutopartePorNumero(int numero){
     cout << "\n=== Datos de la Autoparte ===" << endl;
     cout << "Numero: " << reg.getNumeroAutoparte() << endl;
     cout << "Nombre: " << reg.getNombreAutoparte() << endl;
-    cout << "Tipo: " << reg.getTipo().getNumero() << " - " << reg.getTipo().getNombre() << endl;
+    cout << "Tipo: " << reg.getTipo().getIdTipo()<<" - " << reg.getTipo().getNombre()<<endl;
     cout << "Stock: " << reg.getStock() << endl;
     cout << "Estado: Activa" << endl;
 
@@ -265,7 +265,7 @@ int AutopartesManager::BuscarAutopartePorNombre(const char* nombre){
             cout << "\n=== Datos de la Autoparte ===" << endl;
             cout << "Numero: " << reg.getNumeroAutoparte() << endl;
             cout << "Nombre: " << reg.getNombreAutoparte() << endl;
-            cout << "Tipo: " << reg.getTipo().getNumero() << " - " << reg.getTipo().getNombre() << endl;
+            cout << "Tipo: " << reg.getTipo().getIdTipo() << " - " << reg.getTipo().getNombre() << endl;
             cout << "Stock: " << reg.getStock() << endl;
             cout << "Estado: Activa" << endl;
             return i;
@@ -286,7 +286,7 @@ void AutopartesManager::ListarAutopartes(){
 
         cout << "\nNumero: " << reg.getNumeroAutoparte() << endl;
         cout << "Nombre: " << reg.getNombreAutoparte() << endl;
-        cout << "Tipo: " << reg.getTipo().getNumero() << " - " << reg.getTipo().getNombre() << endl;
+        cout << "Tipo: " << reg.getTipo().getIdTipo()<<" - " << reg.getTipo().getNombre() << endl;
         cout << "Stock: " << reg.getStock() << endl;
         cout << "Estado: " << (reg.getActivo() ? "Activa" : "Inactiva") << endl;
     }
@@ -304,7 +304,7 @@ ArchivoAutopartes archivo("autopartes.dat");
         if (reg.getActivo()) {
             cout << "\nNumero: " << reg.getNumeroAutoparte() << endl;
             cout << "Nombre: " << reg.getNombreAutoparte() << endl;
-            cout << "Tipo: " << reg.getTipo().getNumero() << " - " << reg.getTipo().getNombre() << endl;
+            cout << "Tipo: " << reg.getTipo().getIdTipo() << " - " << reg.getTipo().getNombre() << endl;
             cout << "Stock: " << reg.getStock() << endl;
         }
     }
@@ -322,7 +322,7 @@ void AutopartesManager::ListarAutopartesInactivas(){
         if (!reg.getActivo()) {
             cout << "\nNumero: " << reg.getNumeroAutoparte() << endl;
             cout << "Nombre: " << reg.getNombreAutoparte() << endl;
-            cout << "Tipo: " << reg.getTipo().getNumero() << " - " << reg.getTipo().getNombre() << endl;
+            cout << "Tipo: " << reg.getTipo().getIdTipo() << " - " << reg.getTipo().getNombre() << endl;
             cout << "Stock: " << reg.getStock() << endl;
         }
     }
