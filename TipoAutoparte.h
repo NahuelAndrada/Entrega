@@ -1,24 +1,39 @@
-#ifndef TIPOAUTOPARTE_H_INCLUDED
-#define TIPOAUTOPARTE_H_INCLUDED
+#include "TipoAutoparte.h"
+#include <iostream>
+#include <cstring>
+using namespace std;
 
-class TipoAutoparte {
-private:
-    int _numero;
-    char _nombre[50];
+TipoAutoparte::TipoAutoparte() {
+    numeroTipo = 0;
+    strcpy(nombre, "");
+    activo = true;
+}
 
-public:
-    TipoAutoparte();
-    TipoAutoparte(int numero);
-    TipoAutoparte(int numero, const char* nombre);
+void TipoAutoparte::cargar() {
+    cout << "Ingrese número de tipo de autoparte: ";
+    cin >> numeroTipo;
+    cin.ignore();
+    cout << "Ingrese nombre del tipo: ";
+    cin.getline(nombre, 50);
+    activo = true;
+}
 
-    void setTipo(int numero, const char* nombre);
+void TipoAutoparte::mostrar() const {
+    cout << "Número de Tipo: " << numeroTipo << endl;
+    cout << "Nombre: " << nombre << endl;
+    cout << "Estado: " << (activo ? "Activo" : "Inactivo") << endl;
+    cout << "-----------------------------" << endl;
+}
 
-    void setNumero(int numero);
-    void setNombre(const char* nombre);
-    void setNombre(int numero, const char* nombre);
+int TipoAutoparte::getNumeroTipo() const { return numeroTipo; }
+const char* TipoAutoparte::getNombre() const { return nombre; }
+bool TipoAutoparte::getActivo() const { return activo; }
 
-    int getNumero() const;
-    const char* getNombre() const;
-};
+void TipoAutoparte::setNumeroTipo(int n) { numeroTipo = n; }
 
-#endif
+void TipoAutoparte::setNombre(const char* n) {
+    strncpy(nombre, n, sizeof(nombre));
+    nombre[sizeof(nombre) - 1] = '\0';
+}
+
+void TipoAutoparte::setActivo(bool a) { activo = a; }

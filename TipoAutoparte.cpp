@@ -1,38 +1,39 @@
 #include "TipoAutoparte.h"
+#include <iostream>
 #include <cstring>
+using namespace std;
 
-TipoAutoparte::TipoAutoparte(){
-    _numero = 0;
-    strcpy(_nombre, "");
+TipoAutoparte::TipoAutoparte() {
+    numeroTipo = 0;
+    strcpy(nombre, "");
+    activo = true;
 }
 
-TipoAutoparte::TipoAutoparte(int numero) {
-    _numero = numero;
-    strcpy(_nombre, "");
+void TipoAutoparte::cargar() {
+    cout << "Ingrese número de tipo de autoparte: ";
+    cin >> numeroTipo;
+    cin.ignore();
+    cout << "Ingrese nombre del tipo: ";
+    cin.getline(nombre, 50);
+    activo = true;
 }
 
-TipoAutoparte::TipoAutoparte(int numero, const char* nombre){
-    _numero = numero;
-    strcpy(_nombre, nombre);
+void TipoAutoparte::mostrar() const {
+    cout << "Número de Tipo: " << numeroTipo << endl;
+    cout << "Nombre: " << nombre << endl;
+    cout << "Estado: " << (activo ? "Activo" : "Inactivo") << endl;
+    cout << "-----------------------------" << endl;
 }
 
-void TipoAutoparte::setNumero(int numero){
-    _numero = numero;
+int TipoAutoparte::getNumeroTipo() const { return numeroTipo; }
+const char* TipoAutoparte::getNombre() const { return nombre; }
+bool TipoAutoparte::getActivo() const { return activo; }
+
+void TipoAutoparte::setNumeroTipo(int n) { numeroTipo = n; }
+
+void TipoAutoparte::setNombre(const char* n) {
+    strncpy(nombre, n, sizeof(nombre));
+    nombre[sizeof(nombre) - 1] = '\0';
 }
 
-void TipoAutoparte::setNombre(const char* nombre){
-    strcpy(_nombre, nombre);
-}
-
-void TipoAutoparte::setTipo(int numero, const char* nombre) {
-    _numero = numero;
-    strcpy(_nombre, nombre);
-}
-
-int TipoAutoparte::getNumero() const{
-    return _numero;
-}
-
-const char* TipoAutoparte::getNombre() const{
-    return _nombre;
-}
+void TipoAutoparte::setActivo(bool a) { activo = a; }
