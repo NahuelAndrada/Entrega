@@ -1,26 +1,22 @@
-
 #ifndef ARCHIVOAUTOPARTES_H_INCLUDED
 #define ARCHIVOAUTOPARTES_H_INCLUDED
 
 #include "Autoparte.h"
-#include <cstring>
-#include <cstdio>
 
 class ArchivoAutopartes {
 private:
-    char nombreArchivo[30];
+    char _nombreArchivo[100];
 
 public:
-    ArchivoAutopartes();
-    ArchivoAutopartes(const char* nombre);
+    ArchivoAutopartes(const char* nombre = "autopartes.dat");
 
-    Autoparte LeerUna(int pos);
-    bool Guardar(Autoparte reg);
-    bool Modificar(Autoparte reg, int pos);
-    bool Eliminar(int pos);
-    int CantidadAutopartes();
-    bool Existe(int numero);
-    int BuscarPosicion(int numero);
+    Autoparte leer(int pos);
+    bool guardar(Autoparte reg);
+    bool modificar(int pos, Autoparte reg);
+    int contar();
+
+    int buscarPorNumero(int numero);
+    int buscarPorNombre(const char* nombre);
 };
 
 #endif

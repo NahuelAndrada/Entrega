@@ -1,35 +1,31 @@
 #ifndef AUTOPARTE_H_INCLUDED
 #define AUTOPARTE_H_INCLUDED
 
-#include "TipoAutoparte.h"
-using namespace std;
-
-class Autoparte{
-    private:
-    int _numeroAutoparte;
+class Autoparte {
+private:
+    int _numero;
     char _nombre[50];
-    TipoAutoparte _tipo;
+    int _tipo;
     int _stock;
     bool _activo;
 
-    public:
+public:
     Autoparte();
-    Autoparte(int numeroAutoparte,const char* nombre,TipoAutoparte tipo,int stock, bool activo);
+    Autoparte(int numero, const char* nombre, int tipo, int stock, bool activo);
 
-    int getNumeroAutoparte();
-    const char* getNombreAutoparte();
-    TipoAutoparte getTipo();
-    int getStock();
-    bool getActivo();
-
-    void setNumeroAutoparte(int numero);
+    void setNumero(int numero);
     void setNombre(const char* nombre);
-    void setTipo(TipoAutoparte tipo);
+    void setTipo(int tipo);
     void setStock(int stock);
     void setActivo(bool activo);
 
-    void mostrar();
+    int getNumero();
+    const char* getNombre();
+    int getTipo();
+    int getStock();
+    bool getActivo();
 
+    void mostrar();
 };
 
-#endif // AUTOPARTE_H_INCLUDED
+#endif

@@ -1,87 +1,75 @@
 #include "ArchivoAutopartes.h"
-#include <fstream>
-
-ArchivoAutopartes::ArchivoAutopartes() {
-    strcpy(nombreArchivo,"autopartes.dat");
-}
+#include <cstdio>
+#include <cstring>
 
 ArchivoAutopartes::ArchivoAutopartes(const char* nombre) {
-    strcpy(nombreArchivo, nombre);
+    strcpy(_nombreArchivo, nombre);
 }
 
-Autoparte ArchivoAutopartes::LeerUna(int pos) {
+Autoparte ArchivoAutopartes::leer(int pos) {
     Autoparte reg;
-    FILE *p = fopen(nombreArchivo, "rb");
+    FILE* p = fopen(_nombreArchivo, "rb");
     if (p == nullptr) return reg;
-
     fseek(p, pos * sizeof(Autoparte), SEEK_SET);
     fread(&reg, sizeof(Autoparte), 1, p);
     fclose(p);
     return reg;
 }
 
-/*int ArchivoAutopartes::LeerMuchas(Autoparte* vec, int cantidad) {
-    FILE *p = fopen(nombreArchivo, "rb");
-    if (p == nullptr) return 0;
-
-    int leidos = fread(vec, sizeof(Autoparte), cantidad, p);
-    fclose(p);
-    return leidos;
-}*/
-
-bool ArchivoAutopartes::Guardar(Autoparte reg) {
-    FILE *p = fopen(nombreArchivo, "ab");
+bool ArchivoAutopartes::guardar(Autoparte reg) {
+    FILE* p = fopen(_nombreArchivo, "ab");
     if (p == nullptr) return false;
-
     bool ok = fwrite(&reg, sizeof(Autoparte), 1, p);
     fclose(p);
     return ok;
 }
 
-bool ArchivoAutopartes::Modificar(Autoparte reg, int pos) {
-    FILE *p = fopen(nombreArchivo, "rb+");
+bool ArchivoAutopartes::modificar(int pos, Autoparte reg) {
+    FILE* p = fopen(_nombreArchivo, "rb+");
     if (p == nullptr) return false;
-
     fseek(p, pos * sizeof(Autoparte), SEEK_SET);
     bool ok = fwrite(&reg, sizeof(Autoparte), 1, p);
     fclose(p);
     return ok;
 }
 
-bool ArchivoAutopartes::Eliminar(int pos) {
-    Autoparte reg = LeerUna(pos);
-    reg.setActivo(false);
-    return Modificar(reg, pos);
-}
-
-int ArchivoAutopartes::CantidadAutopartes() {
-    FILE *p = fopen(nombreArchivo, "rb");
+int ArchivoAutopartes::contar() {
+    FILE* p = fopen(_nombreArchivo, "rb");
     if (p == nullptr) return 0;
-
     fseek(p, 0, SEEK_END);
-    int tam = ftell(p);
+    int bytes = ftell(p);
     fclose(p);
-
-    return tam / sizeof(Autoparte);
+    return bytes / sizeof(Autoparte);
 }
 
-int ArchivoAutopartes::BuscarPosicion(int numero) {
-    int cantidad = CantidadAutopartes();
-    for (int i = 0; i < cantidad; i++) {
-        Autoparte reg = LeerUna(i);
-        if (reg.getNumeroAutoparte() == numero) {
-            return i;
+int ArchivoAutopartes::buscarPorNumero(int numero) {
+    Autoparte reg;
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr) return -1;
+    int pos = 0;
+    while (fread(&reg, sizeof(Autoparte), 1, p)) {
+        if (reg.getNumero() == numero) {
+            fclose(p);
+            return pos;
         }
+        pos++;
     }
+    fclose(p);
     return -1;
 }
 
-bool ArchivoAutopartes::Existe(int numero) {
-    int pos = BuscarPosicion(numero);
-    if(pos==-1){
-        return false;
+int ArchivoAutopartes::buscarPorNombre(const char* nombre) {
+    Autoparte reg;
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr) return -1;
+    int pos = 0;
+    while (fread(&reg, sizeof(Autoparte), 1, p)) {
+        if (strcmp(reg.getNombre(), nombre) == 0) {
+            fclose(p);
+            return pos;
+        }
+        pos++;
     }
-
-    Autoparte reg = LeerUna(pos);
-    return reg.getActivo();
+    fclose(p);
+    return -1;
 }
