@@ -36,13 +36,13 @@ class Empresa{
         bool get_Activo();
 
         //Setters
-        bool set_CUIT(std::string CUIT);
-        bool set_Nombre(std::string Nombre);
-        bool set_Responsable(std::string Responsable);
-        bool set_Telefono(std::string Telefono);
-        bool set_Email(std::string Email);
-        bool set_Direccion(std::string Direccion);
-        bool set_Activo(bool Activo);
+        void set_CUIT(std::string CUIT);
+        void set_Nombre(std::string Nombre);
+        void set_Responsable(std::string Responsable);
+        void set_Telefono(std::string Telefono);
+        void set_Email(std::string Email);
+        void set_Direccion(std::string Direccion);
+        void set_Activo(bool Activo);
 
         //Otros
         std::string toCSV();

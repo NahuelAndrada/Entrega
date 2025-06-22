@@ -28,67 +28,93 @@ void EmpresaManager::cargarEmpresa(){
     std::string in_CUIT, in_Nombre, in_Responsable, in_Telefono, in_Email, in_Direccion;
     bool status;
 
-
     status = false;
 
     while(!status){
         std::cout << "Ingrese CUIT (max 14 car.): ";
         getline(std::cin, in_CUIT);
 
+        if(in_CUIT.length() >= 15){
+            std::cout << "Error: el CUIT es demasiado largo, recuerde que puede tener hasta 14 caracteres.";
+            return;
+        }
+
         std::cout << "Ingrese nombre (max 49 car.): ";
         getline(std::cin, in_Nombre);
+
+        if(in_Nombre.length() >= 50){
+            std::cout << "Error: el nombre es demasiado largo, recuerde que puede tener hasta 49 caracteres.";
+            return;
+        }
 
         std::cout << "Ingrese responsable (max 49 car.): ";
         getline(std::cin, in_Responsable);
 
+        if(in_Responsable.length() >= 50){
+            std::cout << "Error: el responsable es demasiado largo, recuerde que puede tener hasta 49 caracteres.";
+            return;
+        }
+
         std::cout << "Ingrese telefono (max 19 car.): ";
         getline(std::cin, in_Telefono);
+
+        if(in_Telefono.length() >= 20){
+            std::cout << "Error: el telefono es demasiado largo, recuerde que puede tener hasta 19 caracteres.";
+            return;
+        }
 
         std::cout << "Ingrese email (max 49 car.): ";
         getline(std::cin, in_Email);
 
+        if(in_Email.length() >= 50){
+            std::cout << "Error: el email es demasiado largo, recuerde que puede tener hasta 49 caracteres.";
+            return;
+        }
+
         std::cout << "Ingrese direccion (max 99 car.): ";
         getline(std::cin, in_Direccion);
 
-        if(datosEmpresa.set_CUIT(in_CUIT) &&
-           datosEmpresa.set_Nombre(in_Nombre) &&
-           datosEmpresa.set_Responsable(in_Responsable) &&
-           datosEmpresa.set_Telefono(in_Telefono) &&
-           datosEmpresa.set_Email(in_Email) &&
-           datosEmpresa.set_Direccion(in_Direccion) &&
-           datosEmpresa.set_Activo(true)
-        ){
-            pos = buscarEmpresaPorCUIT(datosEmpresa.get_CUIT());
-            if(pos>=0){
-                registro = archEmpresa.leerEmpresa(pos);
-                if(registro.get_Activo()){
-                    system("cls");
-                    std::cout << std::endl;
-                    std::cout << ">> No se pudo cargar la empresa porque ya existe un registro con este CUIT." << std::endl;
-                    std::cout << std::endl;
-                }else{
-                    system("cls");
-                    std::cout << std::endl;
-                    std::cout << ">> La empresa que intentaste cargar se encuentra actualmente inactiva, te gustaria reactivarla? (S/N): ";
-                    std::cout << std::endl;
-                    getline(std::cin,opcion);
-                    while(opcion != "S" && opcion != "N"){
-                        std::cout << ">> Opcion equivocada, escriba S para SI o N para NO." << std::endl;
-                        std::cout << ">> Te gustaria reactivar la empresa " << in_CUIT << "? (S/N): ";
-                        getline(std::cin,opcion);
-                    }
-                    if(opcion == "S"){
-                        dardealtaEmpresa(in_CUIT);
-                    }
-                }
-                status = true;
+        if(in_Direccion.length() >= 100){
+            std::cout << "Error: la direccion es demasiado larga, recuerde que puede tener hasta 99 caracteres.";
+            return;
+        }
+
+        datosEmpresa.set_CUIT(in_CUIT);
+        datosEmpresa.set_Nombre(in_Nombre);
+        datosEmpresa.set_Responsable(in_Responsable);
+        datosEmpresa.set_Telefono(in_Telefono);
+        datosEmpresa.set_Email(in_Email);
+        datosEmpresa.set_Direccion(in_Direccion);
+        datosEmpresa.set_Activo(true);
+
+        pos = buscarEmpresaPorCUIT(datosEmpresa.get_CUIT());
+        if(pos>=0){
+            registro = archEmpresa.leerEmpresa(pos);
+            if(registro.get_Activo()){
+                system("cls");
+                std::cout << std::endl;
+                std::cout << ">> No se pudo cargar la empresa porque ya existe un registro con este CUIT.";
+                std::cout << std::endl;
             }else{
-                status = true;
-                archEmpresa.guardarEmpresa(datosEmpresa);
-                std::cout << "Registro cargado con exito." << std::endl;
+                system("cls");
+                std::cout << std::endl;
+                std::cout << ">> La empresa que intentaste cargar se encuentra actualmente inactiva, te gustaria reactivarla? (S/N): ";
+                std::cout << std::endl;
+                getline(std::cin,opcion);
+                while(opcion != "S" && opcion != "N"){
+                    std::cout << ">> Opcion equivocada, escriba S para SI o N para NO." << std::endl;
+                    std::cout << ">> Te gustaria reactivar la empresa " << in_CUIT << "? (S/N): ";
+                    getline(std::cin,opcion);
+                }
+                if(opcion == "S"){
+                    dardealtaEmpresa(in_CUIT);
+                }
             }
+            status = true;
         }else{
-            std::cout << "No se pudo cargar la informacion de la empresa, revise los inputs." << std::endl;
+            status = true;
+            archEmpresa.guardarEmpresa(datosEmpresa);
+            std::cout << "Registro cargado con exito." << std::endl;
         }
     }
 }
@@ -99,7 +125,7 @@ void EmpresaManager::mostrarCantidadEmpresas(){
     ArchivoEmpresa archEmpresa;
 
     int cantidadRegistros = archEmpresa.get_CantidadRegistros();
-    std::cout << ">> Cantidad de registros (activos e inactivos): " << cantidadRegistros << "." << std::endl;
+    std::cout << ">> Cantidad de empresas (activas e inactivas): " << cantidadRegistros << "." << std::endl;
 }
 void EmpresaManager::listarEmpresasActivas(){
 
@@ -114,7 +140,7 @@ void EmpresaManager::listarEmpresasActivas(){
     std::cout << "Registro de empresas activas: " << std::endl;
 
     if(cantidadRegistros == 0){
-        std::cout << "No se encontraron empresas en los registros." << std::endl;
+        std::cout << ">> No se encontraron empresas en los registros." << std::endl;
     }else{
         for(int i=0;i<cantidadRegistros; i++){
             registro = archEmpresa.leerEmpresa(i);
@@ -125,7 +151,7 @@ void EmpresaManager::listarEmpresasActivas(){
         }
     }
     if(contador==0 && cantidadRegistros != 0){
-        std::cout << "No se encontraron empresas activas para mostrar." << std::endl;
+        std::cout << ">> No se encontraron empresas activas para mostrar." << std::endl;
     }
 }
 void EmpresaManager::listarEmpresasInactivas(){
@@ -141,7 +167,7 @@ void EmpresaManager::listarEmpresasInactivas(){
     std::cout << "Registro de empresas inactivas: " << std::endl;
 
     if(cantidadRegistros == 0){
-        std::cout << ">> No se encontraron empresas en los registros" << std::endl;
+        std::cout << ">> No se encontraron empresas en los registros." << std::endl;
     }else{
         for(int i=0;i<cantidadRegistros; i++){
             registro = archEmpresa.leerEmpresa(i);
@@ -214,6 +240,8 @@ void EmpresaManager::buscarPorParametroEspecifico(){
             break;
         case 6:
             std::cout << "Ingrese la direccion a buscar: ";
+            break;
+        case 0:
             break;
         default:
             std::cout << "Opcion equivocada, debe ser un numero entre 1 y 6.";
@@ -321,7 +349,7 @@ void EmpresaManager::modificarEmpresaPorCUIT(){
     }else{
         Empresa registro = archEmpresa.leerEmpresa(posicionEmpresa);
         std::cout << std::endl;
-        //std::cout << registro.toCSV() << std::endl;
+        std::cout << ">> Empresa encontrada (" << posicionEmpresa << "): " << registro.toCSV() << std::endl;
         std::cout << "Que dato te gustaria modificar?" << std::endl;
         std::cout << std::endl;
         std::cout << "1) Nombre" << std::endl;
@@ -343,33 +371,43 @@ void EmpresaManager::modificarEmpresaPorCUIT(){
 
             switch(in_opcion){
                 case 1:
-                    if(!registro.set_Nombre(in_Dato)){
-                        std::cout << "Error al cambiar el nombre." << std::endl;
+                    if(in_Dato.length() > 50 || in_Dato.length() <= 0){
+                        std::cout << "Error al cambiar el nombre (caracteres maximos aceptados: 49)." << std::endl;
                         error = true;
+                    }else{
+                        registro.set_Nombre(in_Dato);
                     }
                     break;
                 case 2:
-                    if(!registro.set_Responsable(in_Dato)){
-                        std::cout << "Error al cambiar el responsable." << std::endl;
+                    if(in_Dato.length() > 50 || in_Dato.length() <= 0){
+                        std::cout << "Error al cambiar el responsable (caracteres maximos aceptados: 49).." << std::endl;
                         error = true;
+                    }else{
+                        registro.set_Responsable(in_Dato);
                     }
                     break;
                 case 3:
-                    if(!registro.set_Telefono(in_Dato)){
-                        std::cout << "Error al cambiar el telefono." << std::endl;
+                    if(in_Dato.length() > 20 || in_Dato.length() <= 0){
+                        std::cout << "Error al cambiar el telefono (caracteres maximos aceptados: 19).." << std::endl;
                         error = true;
+                    }else{
+                        registro.set_Telefono(in_Dato);
                     }
                     break;
                 case 4:
-                    if(!registro.set_Email(in_Dato)){
-                        std::cout << "Error al cambiar el email." << std::endl;
+                    if(in_Dato.length() > 50 || in_Dato.length() <= 0){
+                        std::cout << "Error al cambiar el email (caracteres maximos aceptados: 49).." << std::endl;
                         error = true;
+                    }else{
+                        registro.set_Email(in_Dato);
                     }
                     break;
                 case 5:
-                    if(!registro.set_Direccion(in_Dato)){
-                        std::cout << "Error al cambiar la direccion." << std::endl;
+                    if(in_Dato.length() > 100 || in_Dato.length() <= 0){
+                        std::cout << "Error al cambiar la direccion (caracteres maximos aceptados: 99).." << std::endl;
                         error = true;
+                    }else{
+                        registro.set_Direccion(in_Dato);
                     }
                     break;
                 default:

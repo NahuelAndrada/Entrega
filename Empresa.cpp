@@ -13,104 +13,71 @@ Empresa::Empresa(){
     strcpy(_Direccion, "");
     _Activo = true;
 }
-
 Empresa::Empresa(std::string CUIT, std::string Nombre, std::string Responsable, std::string Telefono, std::string Email, std::string Direccion, bool Activo){
-    strcpy(_CUIT, CUIT.c_str());
-    strcpy(_Nombre, Nombre.c_str());
-    strcpy(_Responsable, Responsable.c_str());
-    strcpy(_Telefono, Telefono.c_str());
-    strcpy(_Email, Email.c_str());
-    strcpy(_Direccion, Direccion.c_str());
-    _Activo = Activo;
+
+    set_CUIT(CUIT);
+    set_Nombre(Nombre);
+    set_Responsable(Responsable);
+    set_Telefono(Telefono);
+    set_Email(Email);
+    set_Direccion(Direccion);
+    set_Activo(Activo);
+
+    /*
+        strcpy(_CUIT, CUIT.c_str());
+        strcpy(_Nombre, Nombre.c_str());
+        strcpy(_Responsable, Responsable.c_str());
+        strcpy(_Telefono, Telefono.c_str());
+        strcpy(_Email, Email.c_str());
+        strcpy(_Direccion, Direccion.c_str());
+        _Activo = Activo;
+    */
 }
 
 //Getters
 std::string Empresa::get_CUIT(){
     return _CUIT;
 }
-
 std::string Empresa::get_Nombre(){
     return _Nombre;
 }
-
 std::string Empresa::get_Responsable(){
     return _Responsable;
 }
-
 std::string Empresa::get_Telefono(){
     return _Telefono;
 }
-
 std::string Empresa::get_Email(){
     return _Email;
 }
-
 std::string Empresa::get_Direccion(){
     return _Direccion;
 }
-
 bool Empresa::get_Activo(){
     return _Activo;
 }
 
 //Setters
-bool Empresa::set_CUIT(std::string CUIT){
-    //Control de longitud para el vector:
-    if(CUIT.length() >= sizeof _CUIT){
-        return false;
-    }
+void Empresa::set_CUIT(std::string CUIT){
     strcpy(_CUIT, CUIT.c_str());
-    return true;
 }
-
-bool Empresa::set_Nombre(std::string Nombre){
-    //Control de longitud para el vector:
-    if(Nombre.length() >= sizeof _Nombre){
-        return false;
-    }
+void Empresa::set_Nombre(std::string Nombre){
     strcpy(_Nombre, Nombre.c_str());
-    return true;
 }
-
-bool Empresa::set_Responsable(std::string Responsable){
-    //Control de longitud para el vector:
-    if(Responsable.length() >= sizeof _Responsable){
-        return false;
-    }
+void Empresa::set_Responsable(std::string Responsable){
     strcpy(_Responsable, Responsable.c_str());
-    return true;
 }
-
-bool Empresa::set_Telefono(std::string Telefono){
-    //Control de longitud para el vector:
-    if(Telefono.length() >= sizeof _Telefono){
-        return false;
-    }
+void Empresa::set_Telefono(std::string Telefono){
     strcpy(_Telefono, Telefono.c_str());
-    return true;
 }
-
-bool Empresa::set_Email(std::string Email){
-    //Control de longitud para el vector:
-    if(Email.length() >= sizeof _Email){
-        return false;
-    }
+void Empresa::set_Email(std::string Email){
     strcpy(_Email, Email.c_str());
-    return true;
 }
-
-bool Empresa::set_Direccion(std::string Direccion){
-    //Control de longitud para el vector:
-    if(Direccion.length() >= sizeof _Direccion){
-        return false;
-    }
+void Empresa::set_Direccion(std::string Direccion){
     strcpy(_Direccion, Direccion.c_str());
-    return true;
 }
-
-bool Empresa::set_Activo(bool Activo){
+void Empresa::set_Activo(bool Activo){
     _Activo = Activo;
-    return true;
 }
 
 std::string Empresa::toCSV(){
