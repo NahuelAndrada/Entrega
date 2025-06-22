@@ -23,11 +23,20 @@ void TipoAutoparteManager::cargar() {
 void TipoAutoparteManager::listar() {
     ArchivoTipoAutoparte archivo;
     int total = archivo.contar();
+    bool hayActivos = false;
+
+    cout << "=== LISTADO DE TIPOS DE AUTOPARTE ACTIVOS ===\n";
+
     for (int i = 0; i < total; i++) {
         TipoAutoparte reg = archivo.leer(i);
         if (reg.getActivo()) {
-            cout << "Numero: " << reg.getNumero() << " - Nombre: " << reg.getNombre() << endl;
+            hayActivos = true;
+            cout << "ID: " << reg.getNumero() << " - Nombre: " << reg.getNombre() << endl;
         }
+    }
+
+    if (!hayActivos) {
+        cout << "No hay tipos de autoparte activos registrados." << endl;
     }
 }
 
