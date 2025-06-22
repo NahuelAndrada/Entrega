@@ -2,13 +2,13 @@
 #include <cstdio>
 #include <cstring>
 
-ArchivoAutopartes::ArchivoAutopartes(const char* nombre) {
-    strcpy(_nombreArchivo, nombre);
+ArchivoAutopartes::ArchivoAutopartes(std::string nombreArchivo) {
+    _nombreArchivo= nombreArchivo;
 }
 
 Autoparte ArchivoAutopartes::leer(int pos) {
     Autoparte reg;
-    FILE* p = fopen(_nombreArchivo, "rb");
+    FILE* p = fopen(_nombreArchivo.c_str(), "rb");
     if (p == nullptr) return reg;
     fseek(p, pos * sizeof(Autoparte), SEEK_SET);
     fread(&reg, sizeof(Autoparte), 1, p);
@@ -17,7 +17,7 @@ Autoparte ArchivoAutopartes::leer(int pos) {
 }
 
 bool ArchivoAutopartes::guardar(Autoparte reg) {
-    FILE* p = fopen(_nombreArchivo, "ab");
+    FILE* p = fopen(_nombreArchivo.c_str(), "ab");
     if (p == nullptr) return false;
     bool ok = fwrite(&reg, sizeof(Autoparte), 1, p);
     fclose(p);
@@ -25,7 +25,7 @@ bool ArchivoAutopartes::guardar(Autoparte reg) {
 }
 
 bool ArchivoAutopartes::modificar(int pos, Autoparte reg) {
-    FILE* p = fopen(_nombreArchivo, "rb+");
+    FILE* p = fopen(_nombreArchivo.c_str(), "rb+");
     if (p == nullptr) return false;
     fseek(p, pos * sizeof(Autoparte), SEEK_SET);
     bool ok = fwrite(&reg, sizeof(Autoparte), 1, p);
@@ -34,7 +34,7 @@ bool ArchivoAutopartes::modificar(int pos, Autoparte reg) {
 }
 
 int ArchivoAutopartes::contar() {
-    FILE* p = fopen(_nombreArchivo, "rb");
+    FILE* p = fopen(_nombreArchivo.c_str(), "rb");
     if (p == nullptr) return 0;
     fseek(p, 0, SEEK_END);
     int bytes = ftell(p);
@@ -44,7 +44,7 @@ int ArchivoAutopartes::contar() {
 
 int ArchivoAutopartes::buscarPorNumero(int numero) {
     Autoparte reg;
-    FILE* p = fopen(_nombreArchivo, "rb");
+    FILE* p = fopen(_nombreArchivo.c_str(), "rb");
     if (p == nullptr) return -1;
     int pos = 0;
     while (fread(&reg, sizeof(Autoparte), 1, p)) {
@@ -60,11 +60,11 @@ int ArchivoAutopartes::buscarPorNumero(int numero) {
 
 int ArchivoAutopartes::buscarPorNombre(const char* nombre) {
     Autoparte reg;
-    FILE* p = fopen(_nombreArchivo, "rb");
+    FILE* p = fopen(_nombreArchivo.c_str(), "rb");
     if (p == nullptr) return -1;
     int pos = 0;
     while (fread(&reg, sizeof(Autoparte), 1, p)) {
-        if (strcmp(reg.getNombre(), nombre) == 0) {
+        if (strcmp(reg.getNombre().c_str(), nombre) == 0) {
             fclose(p);
             return pos;
         }

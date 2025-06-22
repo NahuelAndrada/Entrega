@@ -1,19 +1,23 @@
+
 #include <iostream>
-#include "TipoAutoparte.h"
+#include "TipoAutoparteManager.h"
 #include "EmpresaManager.h"
 #include "AutopartesManager.h"
 #include "EntregaManager.h"
+#include "TipoAutoparte.h"
 
 using namespace std;
 
 void menuEmpresas(EmpresaManager& em);
 void menuAutopartes(AutopartesManager& am);
 void menuEntregas(EntregasManager& en);
+void menuTipos(TipoAutoparteManager&);
 
 int main() {
     EmpresaManager   empresas;
     AutopartesManager autopartes;
     EntregasManager  entregas;
+    TipoAutoparteManager tipoAutopartes;
 
     int opcion;
     do {
@@ -21,6 +25,7 @@ int main() {
         cout << "1. Gestion de Empresas\n";
         cout << "2. Gestion de Autopartes\n";
         cout << "3. Gestion de Entregas\n";
+        cout << "4. Gestion de Tipo autopartes\n";
         cout << "0. Salir\n";
         cout << "Seleccione opcion: ";
         cin  >> opcion;
@@ -29,6 +34,7 @@ int main() {
             case 1: menuEmpresas(empresas);  break;
             case 2: menuAutopartes(autopartes); break;
             case 3: menuEntregas(entregas);  break;
+            case 4: menuTipos(tipoAutopartes); break;
             case 0: cout << "Hasta luego!\n"; break;
             default: cout << "Opcion invalida.\n";
         }
@@ -59,16 +65,41 @@ void menuEmpresas(EmpresaManager& em) {
     int op;
     do {
         cout << "\n--- AUTOPARTES ---\n";
-        cout << "1. Alta\n2. Listar\n3. Buscar por numero\n4. Baja\n0. Volver\n";
+        cout << "1. Alta\n2. Modificar\n3. Buscar por ID\n4. Buscar por nombre\n5. Listar Activas\n6. ModificarStock \n7. Eliminar\n0. Volver\n";
         cin >> op;
         switch (op) {
-            case 1: am.CargarAutoparteNueva();             break;
-            case 2: am.ListarAutopartesActivas();             break;
-            case 3: {int n;cout<<"Numero:";cin>>n;am.BuscarAutopartePorNumero(n);} break;
-            case 4: {int n;cout<<"Numero:";cin>>n;am.DarDeBajaAutoparte(n);}        break;
-            case 0: break;
-            default: cout<<"Opcion invalida.\n";
+            case 1:
+                am.cargar();
+                break;
+            case 2:
+                am.modificar();
+                break;
+            case 3:
+                am.buscarPorNumero();
+                break;
+            case 4:
+                am.buscarPorNombre();
+                break;
+            case 5:
+                am.listar();
+                break;
+            case 6:
+                am.modificarStock();
+                break;
+            case 7:
+                am.eliminar();
+                break;
+            case 0:
+                cout << "Fin del programa." << endl;
+                break;
+            default:
+                cout<<"Opcion invalida.\n";
+                break;
         }
+        cout << endl;
+        system("pause");
+        system("cls");
+
     } while (op!=0);
 }
 
@@ -99,4 +130,36 @@ void menuEntregas(EntregasManager& en) {
             default: cout<<"Opcion invalida.\n";
         }
     } while (op!=0);
+}
+
+void menuTipos(TipoAutoparteManager& tm) {
+    int op;
+    do {
+        cout << "\n--- TIPOS DE AUTOPARTES ---\n";
+        cout << "1. Alta\n2. Modificar\n3. Buscar por ID\n4. Listar activos\n5. Eliminar\n0. Volver\n";
+        cin >> op;
+
+        switch (op) {
+            case 1: tm.cargar(); break;
+            case 2: tm.modificar(); break;
+            case 3: {
+                int id;
+                cout << "Ingrese ID del tipo: ";
+                cin >> id;
+                tm.buscarPorID();
+            } break;
+            case 4: tm.listar(); break;
+            case 5: {
+                int id;
+                cout << "ID a eliminar: ";
+                cin >> id;
+                tm.eliminar();
+            } break;
+            case 0: break;
+            default: cout << "Opción inválida.\n";
+        }
+
+        system("pause");
+        system("cls");
+    } while (op != 0);
 }

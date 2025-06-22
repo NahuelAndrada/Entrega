@@ -1,14 +1,13 @@
-#ifndef TIPOAUTOPARTEMANAGER_H
-#define TIPOAUTOPARTEMANAGER_H
+#ifndef TIPOAUTOPARTEMANAGER_H_INCLUDED
+#define TIPOAUTOPARTEMANAGER_H_INCLUDED
 
 class TipoAutoparteManager {
 public:
-    void Menu();
-    void Cargar();
-    void Eliminar(int numero);
-    void Modificar(int numero);
-    int BuscarPorNumero(int numero);
-    void Listar();
+    void cargar();
+    void listar();
+    void buscarPorID();
+    void modificar();
+    void eliminar();
 };
 
 #endif

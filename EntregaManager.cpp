@@ -35,7 +35,7 @@ void EntregasManager::cargar() {
     cout << "Numero de autoparte: ";
     cin >> numeroAutoparte;
     ArchivoAutopartes archivoAutoparte;
-    int posAutoparte = archivoAutoparte.BuscarPosicion(numeroAutoparte);
+    int posAutoparte = archivoAutoparte.buscarPorNumero(numeroAutoparte);
 
     if (posAutoparte < 0) {
     cout << "Error: la autoparte no existe." << endl;
@@ -67,7 +67,7 @@ void EntregasManager::cargar() {
 
     cout << "Cantidad de unidades: ";
     cin >> cantidad;
-    Autoparte autoParte = archivoAutoparte.LeerUna(posAutoparte);
+    Autoparte autoParte = archivoAutoparte.leer(posAutoparte);
 
 	if (cantidad <= 0) {
        cout << "Error: la cantidad debe ser mayor a 0." << endl;
@@ -82,7 +82,7 @@ void EntregasManager::cargar() {
 
 	int nuevoStock = autoParte.getStock() - cantidad;
 	autoParte.setStock(nuevoStock);
-	if (!archivoAutoparte.Modificar(autoParte, posAutoparte)) {
+	if (!archivoAutoparte.modificar(posAutoparte, autoParte)) {
     cout << "Error al actualizar el stock de la autoparte." << endl;
     return;
 }
@@ -334,6 +334,3 @@ void EntregasManager::MenuEntrega(){
 
     } while (opcion != 0);
 }
-
-
-

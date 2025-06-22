@@ -4,88 +4,103 @@
 #include <iostream>
 using namespace std;
 
-void TipoAutoparteManager::Cargar() {
-    TipoAutoparte reg;
+void TipoAutoparteManager::cargar() {
+    int numero;
+    string nombre;
+
+    cout << "Numero tipo autoparte: ";
+    cin >> numero;
+    cin.ignore();
+    cout << "Nombre tipo autoparte: ";
+    getline(cin, nombre);
+
+    TipoAutoparte reg(numero, nombre);
     ArchivoTipoAutoparte archivo;
-    archivo.guardar(reg);
-    cout << "Tipo de autoparte guardado correctamente." << endl;
+    if (archivo.guardar(reg)) cout << "Guardado con exito." << endl;
+    else cout << "Error al guardar." << endl;
 }
 
-void TipoAutoparteManager::Eliminar(int numero) {
+void TipoAutoparteManager::listar() {
     ArchivoTipoAutoparte archivo;
-    int total = archivo.cantidad();
+    int total = archivo.contar();
     for (int i = 0; i < total; i++) {
-        TipoAutoparte reg = archivo.leerUno(i);
-        if (reg.getIdTipo() == numero && reg.getActivo()) {
-            archivo.eliminar(i);
-            cout << "Tipo de autoparte eliminado." << endl;
+        TipoAutoparte reg = archivo.leer(i);
+        if (reg.getActivo()) {
+            cout << "Numero: " << reg.getNumero() << " - Nombre: " << reg.getNombre() << endl;
+        }
+    }
+}
+
+void TipoAutoparteManager::buscarPorID() {
+    ArchivoTipoAutoparte archivo;
+    int numero;
+    cout << "Ingrese el ID del tipo de autoparte a buscar: ";
+    cin >> numero;
+
+    int pos = archivo.buscarPorNumero(numero);
+    if (pos == -1) {
+        cout << "Tipo de autoparte no encontrado.\n";
+        return;
+    }
+
+    TipoAutoparte tipo = archivo.leer(pos);
+    tipo.mostrar();
+}
+
+void TipoAutoparteManager::modificar() {
+    ArchivoTipoAutoparte archivo;
+    int id;
+    cout << "Ingrese el ID del tipo de autoparte a modificar: ";
+    cin >> id;
+
+    int pos = archivo.buscarPorNumero(id);
+    if (pos == -1) {
+        cout << "Tipo de autoparte no encontrado.\n";
+        return;
+    }
+
+    TipoAutoparte tipo = archivo.leer(pos);
+
+    cin.ignore();
+    string nuevoNombre;
+    cout << "Nombre actual: " << tipo.getNombre() << "\n";
+    cout << "Ingrese el nuevo nombre: ";
+    getline(cin, nuevoNombre);
+    tipo.setNombre(nuevoNombre);
+
+    bool estado;
+    cout << "Estado actual (1 = activo, 0 = inactivo): " << tipo.getActivo() << "\n";
+    cout << "¿Desea modificar el estado? (1 = activo, 0 = inactivo): ";
+    cin >> estado;
+    tipo.setActivo(estado);
+
+    if (archivo.modificar(pos, tipo)) {
+        cout << "Tipo de autoparte modificado correctamente.\n";
+    } else {
+        cout << "Error al modificar tipo de autoparte.\n";
+    }
+}
+
+void TipoAutoparteManager::eliminar() {
+    int numero;
+    cout << "Numero de tipo de autoparte a eliminar: ";
+    cin >> numero;
+
+    ArchivoTipoAutoparte archivo;
+    int total = archivo.contar();
+
+    for (int i = 0; i < total; i++) {
+        TipoAutoparte reg = archivo.leer(i);
+        if (reg.getNumero() == numero && reg.getActivo()) {
+            reg.setActivo(false);
+            if (archivo.modificar(i, reg)) {
+                cout << "Tipo de autoparte dado de baja (inactivo)." << endl;
+            } else {
+                cout << "Error al modificar." << endl;
+            }
             return;
         }
     }
-    cout << "Tipo de autoparte no encontrado o ya eliminado." << endl;
-}
 
-
-
-int TipoAutoparteManager::BuscarPorNumero(int numero) {
-    ArchivoTipoAutoparte archivo;
-    int total = archivo.cantidad();
-    for (int i = 0; i < total; i++) {
-        TipoAutoparte reg = archivo.leerUno(i);
-        if (reg.getIdTipo() == numero && reg.getActivo()) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-void TipoAutoparteManager::Listar() {
-    ArchivoTipoAutoparte archivo;
-    archivo.listarActivos();
-}
-
-void TipoAutoparteManager::Menu() {
-    int opcion, numero;
-
-    do {
-        cout << "\n=== MENU TIPO DE AUTOPARTES ===" << endl;
-        cout << "1. Cargar nuevo tipo" << endl;
-        cout << "2. Eliminar tipo" << endl;
-        cout << "3. Modificar tipo" << endl;
-        cout << "4. Buscar tipo por número" << endl;
-        cout << "5. Listar tipos activos" << endl;
-        cout << "0. Volver al menú principal" << endl;
-        cout << "Seleccione una opción: ";
-        cin >> opcion;
-        cin.ignore();
-
-        switch (opcion) {
-            case 1:
-                Cargar();
-                break;
-            case 2:
-                cout << "Ingrese el número del tipo a eliminar: ";
-                cin >> numero;
-                Eliminar(numero);
-                break;
-            case 3:
-                break;
-            case 4:
-                cout << "Ingrese el número del tipo a buscar: ";
-                cin >> numero;
-                if (BuscarPorNumero(numero) >= 0)
-                    cout << "Tipo de autoparte encontrado y activo." << endl;
-                else
-                    cout << "Tipo de autoparte no encontrado o inactivo." << endl;
-                break;
-            case 5:
-                Listar();
-                break;
-            case 0:
-                cout << "Volviendo al menú principal..." << endl;
-                break;
-            default:
-                cout << "Opción inválida. Intente de nuevo." << endl;
-        }
-    } while (opcion != 0);
+    cout << "Tipo de autoparte no encontrado o ya inactivo." << endl;
 }

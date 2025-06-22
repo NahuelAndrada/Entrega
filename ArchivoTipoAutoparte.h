@@ -1,22 +1,21 @@
-#ifndef ARCHIVOTIPOAUTOPARTE_H
-#define ARCHIVOTIPOAUTOPARTE_H
-#include "TipoAutoparteManager.h"
+#ifndef ARCHIVOTIPOAUTOPARTE_H_INCLUDED
+#define ARCHIVOTIPOAUTOPARTE_H_INCLUDED
+
 #include "TipoAutoparte.h"
 #include <string>
+
 class ArchivoTipoAutoparte {
 private:
     std::string _nombreArchivo;
 
 public:
-    ArchivoTipoAutoparte();
-    ArchivoTipoAutoparte(std::string nombre);
+    ArchivoTipoAutoparte(std::string nombreArchivo = "tipoautoparte.dat");
 
-    TipoAutoparte leerUno(int pos);
+    TipoAutoparte leer(int pos);
     bool guardar(TipoAutoparte reg);
-    bool modificar(TipoAutoparte reg, int pos);
-    bool eliminar(int pos);
-    int cantidad();
-    void listarActivos();
+    bool modificar(int pos, TipoAutoparte reg);
+    int contar();
+    int buscarPorNumero(int numero);
 };
 
 #endif

@@ -2,13 +2,14 @@
 #define ARCHIVOAUTOPARTES_H_INCLUDED
 
 #include "Autoparte.h"
+#include <string>
 
 class ArchivoAutopartes {
 private:
-    char _nombreArchivo[100];
+    std::string _nombreArchivo;
 
 public:
-    ArchivoAutopartes(const char* nombre = "autopartes.dat");
+    ArchivoAutopartes(std::string nombreArchivo="autopartes.dat");
 
     Autoparte leer(int pos);
     bool guardar(Autoparte reg);
