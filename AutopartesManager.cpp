@@ -2,6 +2,7 @@
 #include "Autoparte.h"
 #include "TipoAutoparte.h"
 #include "ArchivoAutopartes.h"
+#include "ArchivoTipoAutoparte.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -12,8 +13,16 @@ void AutopartesManager::cargar() {
     std::string nombre;
     bool activo = true;
 
+    cout << "=== CARGAR NUEVA AUTOPARTE ===" << endl;
+
     cout << "Numero de autoparte: ";
     cin >> numero;
+
+    if (numero <= 0) {
+        cout << "Error: El numero de autoparte debe ser mayor que cero." << endl;
+        return;
+    }
+
     ArchivoAutopartes arch;
     if (arch.buscarPorNumero(numero) >= 0) {
         cout << "Ya existe una autoparte con ese numero." << endl;
@@ -22,10 +31,21 @@ void AutopartesManager::cargar() {
     cin.ignore();
     cout << "Nombre de autoparte: ";
     getline(cin, nombre);
+
     cout << "Tipo de autoparte: ";
     cin >> tipo;
-    cout << "Stock: ";
+    ArchivoTipoAutoparte archivoTipo;
+    if (archivoTipo.buscarPorNumero(tipo) < 0) {
+        cout << "Error: Tipo de autoparte no valido (no existe en el archivo)." << endl;
+        return;
+    }
+
+    cout << "Stock inicial: ";
     cin >> stock;
+    if (stock < 0) {
+        cout << "Error: El stock no puede ser negativo." << endl;
+        return;
+    }
 
     reg.setNumero(numero);
     reg.setNombre(nombre);
@@ -33,27 +53,56 @@ void AutopartesManager::cargar() {
     reg.setStock(stock);
     reg.setActivo(activo);
 
-    if (arch.guardar(reg)) cout << "Autoparte guardada con exito.\n";
-    else cout << "Error al guardar.\n";
+    if (arch.guardar(reg)){
+        cout << "Autoparte guardada con exito.\n";
+    }else{
+        cout << "Error al guardar.\n";
+    }
 }
 
 void AutopartesManager::listar() {
     ArchivoAutopartes arch;
     int total = arch.contar();
+    bool hayActivas = false;
+
+    cout << "=== LISTADO DE AUTOPARTES ACTIVAS ===\n";
+
     for (int i = 0; i < total; i++) {
         Autoparte reg = arch.leer(i);
-        if (reg.getActivo()) reg.mostrar();
+        if (reg.getActivo()){
+            hayActivas=true;
+            reg.mostrar();
+        }
+    }
+    if(!hayActivas){
+        cout << "No hay autopartes activas registradas." << endl;
     }
 }
 
 void AutopartesManager::buscarPorNumero() {
     int numero;
-    cout << "Ingrese numero: ";
+    cout << "Ingrese el numero de autoparte a buscar: ";
     cin >> numero;
-    ArchivoAutopartes arch;
+
+    if (numero <= 0) {
+        cout << "Error: El numero de autoparte debe ser mayor que cero." << endl;
+        return;
+    }
+
+     ArchivoAutopartes arch;
     int pos = arch.buscarPorNumero(numero);
-    if (pos >= 0) arch.leer(pos).mostrar();
-    else cout << "No encontrado.\n";
+
+    if (pos >= 0) {
+        Autoparte reg = arch.leer(pos);
+        if (reg.getActivo()) {
+            cout << "=== AUTOPARTE ENCONTRADA ===" << endl;
+            reg.mostrar();
+        } else {
+            cout << "La autoparte encontrada está dada de baja (inactiva)." << endl;
+        }
+    } else {
+        cout << "Autoparte no encontrada." << endl;
+    }
 }
 
 void AutopartesManager::buscarPorNombre() {
