@@ -32,9 +32,17 @@ void AutopartesManager::cargar() {
     cout << "Nombre de autoparte: ";
     getline(cin, nombre);
 
-    cout << "Tipo de autoparte: ";
-    cin >> tipo;
     ArchivoTipoAutoparte archivoTipo;
+    int totalTipos = archivoTipo.contar();
+    cout << "--- TIPOS DE AUTOPARTE DISPONIBLES ---" << endl;
+    for (int i = 0; i < totalTipos; i++) {
+        TipoAutoparte tipoAux = archivoTipo.leer(i);
+        if (tipoAux.getActivo()) {
+            tipoAux.mostrar();
+        }
+    }
+    cout << "Tipo de autoparte (ingrese el número correspondiente): ";
+    cin >> tipo;
     if (archivoTipo.buscarPorNumero(tipo) < 0) {
         cout << "Error: Tipo de autoparte no valido (no existe en el archivo)." << endl;
         return;
@@ -108,108 +116,166 @@ void AutopartesManager::buscarPorNumero() {
 void AutopartesManager::buscarPorNombre() {
     std::string nombre;
     cin.ignore();
-    cout << "Ingrese nombre: ";
+    cout << "Ingrese el nombre de la autoparte a buscar: ";
     getline(cin, nombre);
+
     ArchivoAutopartes arch;
-    int pos = arch.buscarPorNombre(nombre.c_str());
-    if (pos >= 0) arch.leer(pos).mostrar();
-    else cout << "No encontrado.\n";
+    int total = arch.contar();
+    bool encontrada = false;
+
+    for (int i = 0; i < total; i++) {
+        Autoparte reg = arch.leer(i);
+        if (reg.getActivo() && reg.getNombre() == nombre) {
+            cout << "=== AUTOPARTE ENCONTRADA ===" << endl;
+            reg.mostrar();
+            encontrada = true;
+            break;
+        }
+    }
+
+    if (!encontrada) {
+        cout << "Autoparte no encontrada." << endl;
+    }
 }
+
 
 void AutopartesManager::modificar() {
     int numero;
-    cout << "Ingrese numero a modificar: ";
+    cout << "Ingrese el numero de la autoparte a modificar: ";
     cin >> numero;
+
+    if (numero <= 0) {
+        cout << "Error: Numero invalido." << endl;
+        return;
+    }
+
     ArchivoAutopartes arch;
     int pos = arch.buscarPorNumero(numero);
     if (pos < 0) {
-        cout << "No encontrado.\n";
+        cout << "No existe una autoparte con ese numero." << endl;
         return;
     }
 
     Autoparte reg = arch.leer(pos);
-    std::string nuevoNombre;
-    int nuevoStock, nuevoTipo;
+    if (!reg.getActivo()) {
+        cout << "La autoparte está dada de baja." << endl;
+        return;
+    }
+
+    string nuevoNombre;
+    int nuevoTipo, nuevoStock;
 
     cin.ignore();
     cout << "Nuevo nombre: ";
     getline(cin, nuevoNombre);
-    cout << "Nuevo tipo: ";
+
+    ArchivoTipoAutoparte archivoTipo;
+    int totalTipos = archivoTipo.contar();
+    cout << "--- TIPOS DE AUTOPARTE DISPONIBLES ---" << endl;
+    for (int i = 0; i < totalTipos; i++) {
+        TipoAutoparte tipoAux = archivoTipo.leer(i);
+        if (tipoAux.getActivo()) {
+            tipoAux.mostrar();
+        }
+    }
+
+    cout << "Nuevo tipo (ingrese el número correspondiente): ";
     cin >> nuevoTipo;
+    if (archivoTipo.buscarPorNumero(nuevoTipo) < 0) {
+        cout << "Tipo no valido." << endl;
+        return;
+    }
+
     cout << "Nuevo stock: ";
     cin >> nuevoStock;
+    if (nuevoStock < 0) {
+        cout << "Stock invalido." << endl;
+        return;
+    }
 
     reg.setNombre(nuevoNombre);
     reg.setTipo(nuevoTipo);
     reg.setStock(nuevoStock);
 
-    if (arch.modificar(pos, reg)) {
-        cout << "Modificado.\n";
+    if (arch.modificar(pos,reg)) {
+        cout << "Autoparte modificada." << endl;
     } else {
-        cout << "Error al modificar.\n";
+        cout << "No se pudo modificar." << endl;
     }
 }
+
 
 void AutopartesManager::eliminar() {
     int numero;
-    cout << "Ingrese numero a eliminar: ";
+    cout << "Ingrese el numero de la autoparte a eliminar: ";
     cin >> numero;
+
+    if (numero <= 0) {
+        cout << "Numero invalido." << endl;
+        return;
+    }
+
     ArchivoAutopartes arch;
     int pos = arch.buscarPorNumero(numero);
     if (pos < 0) {
-        cout << "No encontrado.\n";
+        cout << "Autoparte no encontrada." << endl;
         return;
     }
+
     Autoparte reg = arch.leer(pos);
+    if (!reg.getActivo()) {
+        cout << "La autoparte ya estaba dada de baja." << endl;
+        return;
+    }
+
     reg.setActivo(false);
-    if (arch.modificar(pos, reg)) cout << "Eliminado logicamente.\n";
-    else cout << "Error.\n";
+    if (arch.modificar(pos,reg)) {
+        cout << "Autoparte dada de baja correctamente." << endl;
+    } else {
+        cout << "Error al dar de baja la autoparte." << endl;
+    }
 }
+
 
 void AutopartesManager::modificarStock() {
     int numero;
-    cout << "Ingrese numero de autoparte: ";
+    cout << "Ingrese el numero de la autoparte para modificar el stock: ";
     cin >> numero;
+
+    if (numero <= 0) {
+        cout << "Numero invalido." << endl;
+        return;
+    }
+
     ArchivoAutopartes arch;
     int pos = arch.buscarPorNumero(numero);
     if (pos < 0) {
-        cout << "No encontrado.\n";
+        cout << "Autoparte no encontrada." << endl;
         return;
     }
 
     Autoparte reg = arch.leer(pos);
-    cout << "Stock actual: " << reg.getStock() << endl;
-
-    char opcion;
-    cout << "Desea (S)umar o (R)estar stock? ";
-    cin >> opcion;
-
-    int cantidad;
-    cout << "Cantidad: ";
-    cin >> cantidad;
-
-    if (cantidad <= 0) {
-        cout << "La cantidad debe ser positiva.\n";
+    if (!reg.getActivo()) {
+        cout << "La autoparte está dada de baja." << endl;
         return;
     }
 
-    int nuevoStock = reg.getStock();
+    int diferencia;
+    cout << "Ingrese la cantidad a sumar o restar al stock actual (puede ser negativa): ";
+    cin >> diferencia;
 
-    if (opcion == 'S' || opcion == 's') {
-        nuevoStock += cantidad;
-    } else if (opcion == 'R' || opcion == 'r') {
-        if (cantidad > reg.getStock()) {
-            cout << "Error: no puede restar más de lo que hay en stock.\n";
-            return;
-        }
-        nuevoStock -= cantidad;
-    } else {
-        cout << "Opcion invalida. Debe ser S o R.\n";
+    int stockActual = reg.getStock();
+    int nuevoStock = stockActual + diferencia;
+
+    if (nuevoStock < 0) {
+        cout << "Error: El resultado del stock no puede ser negativo." << endl;
         return;
     }
 
     reg.setStock(nuevoStock);
-
-    if (arch.modificar(pos, reg)) cout << "Stock actualizado correctamente.\n";
-    else cout << "Error al actualizar el stock.\n";
+    if (arch.modificar(pos,reg)) {
+        cout << "Stock actualizado correctamente. Nuevo stock: " << nuevoStock << endl;
+    } else {
+        cout << "Error al actualizar el stock." << endl;
+    }
 }

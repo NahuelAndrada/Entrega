@@ -37,11 +37,12 @@
 	<iostream>
 	<cstring>
 
-1750552598 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.cpp
+1750641961 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.cpp
 	"AutopartesManager.h"
 	"Autoparte.h"
 	"TipoAutoparte.h"
 	"ArchivoAutopartes.h"
+	"ArchivoTipoAutoparte.h"
 	<iostream>
 	<string>
 
@@ -170,7 +171,7 @@
 	<string>
 	"Empresa.h"
 
-1749607062 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresa.h
+1750641961 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresa.h
 	<string>
 
 1750545227 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivotipoautoparte.cpp
@@ -183,12 +184,12 @@
 
 1750596370 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautopartemanager.h
 
-1749607062 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresa.cpp
+1750641961 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresa.cpp
 	"Empresa.h"
 	"string"
 	"cstring"
 
-1749607062 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.cpp
+1750641961 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.cpp
 	<iostream>
 	<string>
 	"Empresa.h"
