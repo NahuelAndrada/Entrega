@@ -5,6 +5,7 @@ class TipoAutoparteManager {
 public:
     void cargar();
     void listar();
+    void listarInactivos();
     void buscarPorID();
     void modificar();
     void eliminar();
