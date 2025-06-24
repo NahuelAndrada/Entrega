@@ -64,33 +64,33 @@ void menuEmpresas(EmpresaManager& em) {
     void menuAutopartes(AutopartesManager& am) {
     int op;
     do {
-        system("cls");
         cout << "\n--- AUTOPARTES ---\n";
-        cout << "1. Alta de autoparte\n2. Modificar autoparte\n3. Buscar autoparte por ID\n4. Buscar autoparte por nombre\n5. Listar autopartes activas\n6. Listar autopartes inactivas \n7. Eliminar autoparte\n0. Volver\n";
+        cout << "1. Alta\n2. Modificar\n3. Buscar por ID\n4. Buscar por nombre\n5. Listar Activas\n6. ModificarStock \n7. Eliminar\n0. Volver\n";
         cin >> op;
         switch (op) {
             case 1:
-                am.cargarAutoparte();
+                am.cargar();
                 break;
             case 2:
-                am.modificarAutoparte();
+                am.modificar();
                 break;
             case 3:
-                am.buscarAutopartePorNumero();
+                am.buscarPorNumero();
                 break;
             case 4:
-                am.buscarAutopartePorNombre();
+                am.buscarPorNombre();
                 break;
             case 5:
-                am.listarAutoparteActivas();
+                am.listar();
                 break;
             case 6:
-                am.listarAutoparteInactivas();
+                am.modificarStock();
                 break;
             case 7:
-                am.eliminarAutoparte();
+                am.eliminar();
                 break;
             case 0:
+                cout << "Fin del programa." << endl;
                 break;
             default:
                 cout<<"Opcion invalida.\n";
@@ -136,27 +136,24 @@ void menuTipos(TipoAutoparteManager& tm) {
     int op;
     do {
         cout << "\n--- TIPOS DE AUTOPARTES ---\n";
-        cout << "1. Alta\n2. Modificar\n3. Buscar por ID\n4. Listar activos\n5. Eliminar\n0. Volver\n";
+        cout << "1. Alta\n";
+        cout << "2. Modificar\n";
+        cout << "3. Buscar por ID\n";
+        cout << "4. Listar activos\n";
+        cout << "5. Listar inactivos\n";
+        cout << "6. Eliminar\n";
+        cout << "0. Volver\n";
         cin >> op;
 
         switch (op) {
             case 1: tm.cargar(); break;
             case 2: tm.modificar(); break;
-            case 3: {
-                int id;
-                cout << "Ingrese ID del tipo: ";
-                cin >> id;
-                tm.buscarPorID();
-            } break;
+            case 3: tm.buscarPorID(); break;
             case 4: tm.listar(); break;
-            case 5: {
-                int id;
-                cout << "ID a eliminar: ";
-                cin >> id;
-                tm.eliminar();
-            } break;
+            case 5: tm.listarInactivos(); break;
+            case 6: tm.eliminar(); break;
             case 0: break;
-            default: cout << "Opcion invalida.\n";
+            default: cout << "Opci¢n inv lida.\n";
         }
 
         system("pause");
