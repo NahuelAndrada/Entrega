@@ -64,33 +64,33 @@ void menuEmpresas(EmpresaManager& em) {
     void menuAutopartes(AutopartesManager& am) {
     int op;
     do {
+        system("cls");
         cout << "\n--- AUTOPARTES ---\n";
-        cout << "1. Alta\n2. Modificar\n3. Buscar por ID\n4. Buscar por nombre\n5. Listar Activas\n6. ModificarStock \n7. Eliminar\n0. Volver\n";
+        cout << "1. Alta de autoparte\n2. Modificar autoparte\n3. Buscar autoparte por ID\n4. Buscar autoparte por nombre\n5. Listar autopartes activas\n6. Listar autopartes inactivas \n7. Eliminar autoparte\n0. Volver\n";
         cin >> op;
         switch (op) {
             case 1:
-                am.cargar();
+                am.cargarAutoparte();
                 break;
             case 2:
-                am.modificar();
+                am.modificarAutoparte();
                 break;
             case 3:
-                am.buscarPorNumero();
+                am.buscarAutopartePorNumero();
                 break;
             case 4:
-                am.buscarPorNombre();
+                am.buscarAutopartePorNombre();
                 break;
             case 5:
-                am.listar();
+                am.listarAutoparteActivas();
                 break;
             case 6:
-                am.modificarStock();
+                am.listarAutoparteInactivas();
                 break;
             case 7:
-                am.eliminar();
+                am.eliminarAutoparte();
                 break;
             case 0:
-                cout << "Fin del programa." << endl;
                 break;
             default:
                 cout<<"Opcion invalida.\n";
@@ -156,7 +156,7 @@ void menuTipos(TipoAutoparteManager& tm) {
                 tm.eliminar();
             } break;
             case 0: break;
-            default: cout << "Opción inválida.\n";
+            default: cout << "Opcion invalida.\n";
         }
 
         system("pause");

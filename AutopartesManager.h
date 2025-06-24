@@ -3,13 +3,13 @@
 
 class AutopartesManager {
 public:
-    void cargar();
-    void listar();
-    void buscarPorNumero();
-    void buscarPorNombre();
-    void modificar();
-    void eliminar();
-    void modificarStock();
-};
+    void cargarAutoparte();
+    void listarAutoparteActivas();
+    void listarAutoparteInactivas();
+    void buscarAutopartePorNumero();
+    void buscarAutopartePorNombre();
+    void modificarAutoparte();
+    void eliminarAutoparte();
+}    ;
 
 #endif

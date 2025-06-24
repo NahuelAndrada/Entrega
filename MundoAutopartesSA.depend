@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1750555669 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\main.cpp
+1750726617 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\main.cpp
 	<iostream>
 	"TipoAutoparteManager.h"
 	"EmpresaManager.h"
@@ -7,7 +7,7 @@
 	"EntregaManager.h"
 	"TipoAutoparte.h"
 
-1750533435 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.h
+1750725701 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.h
 
 1750596180 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautoparte.cpp
 	"TipoAutoparte.h"
@@ -37,7 +37,7 @@
 	<iostream>
 	<cstring>
 
-1750641961 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.cpp
+1750727769 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.cpp
 	"AutopartesManager.h"
 	"Autoparte.h"
 	"TipoAutoparte.h"
