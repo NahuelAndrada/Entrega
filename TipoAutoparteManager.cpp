@@ -27,7 +27,7 @@ void TipoAutoparteManager::cargar() {
                     cin >> opcion;
                     opcion = toupper(opcion);
                     if (opcion != 'S' && opcion != 'N') {
-                        cout << "Opci¢n inv lida. Escriba 'S' para s¡ o 'N' para no." << endl;
+                        cout << "Opcion invalida. Escriba 'S' para si o 'N' para no." << endl;
                     }
                 } while (opcion != 'S' && opcion != 'N');
 
@@ -45,11 +45,11 @@ void TipoAutoparteManager::cargar() {
             }
 
             do {
-                cout << "¨Desea ingresar otro n£mero? (S/N): ";
+                cout << "Desea ingresar otro numero? (S/N): ";
                 cin >> opcion;
                 opcion = toupper(opcion);
                 if (opcion != 'S' && opcion != 'N') {
-                    cout << "Opci¢n inv lida. Escriba 'S' para s¡ o 'N' para no." << endl;
+                    cout << "Opcion invalida. Escriba 'S' para si o 'N' para no." << endl;
                 }
             } while (opcion != 'S' && opcion != 'N');
 
@@ -123,11 +123,11 @@ void TipoAutoparteManager::buscarPorID() {
             cout << "Tipo de autoparte no encontrado." << endl;
 
             do {
-                cout << "¨Desea intentar con otro ID? (S/N): ";
+                cout << "Desea intentar con otro ID? (S/N): ";
                 cin >> opcion;
                 opcion = toupper(opcion);
                 if (opcion != 'S' && opcion != 'N') {
-                    cout << "Opci¢n inv lida. Escriba 'S' para s¡ o 'N' para no." << endl;
+                    cout << "Opcion invalida. Escriba 'S' para si o 'N' para no." << endl;
                 }
             } while (opcion != 'S' && opcion != 'N');
 
@@ -163,7 +163,7 @@ void TipoAutoparteManager::modificar() {
 
     bool estado;
     cout << "Estado actual (1 = activo, 0 = inactivo): " << tipo.getActivo() << "\n";
-    cout << "¨Desea modificar el estado? (1 = activo, 0 = inactivo): ";
+    cout << "Desea modificar el estado? (1 = activo, 0 = inactivo): ";
     cin >> estado;
     tipo.setActivo(estado);
 

@@ -77,7 +77,7 @@ void AutopartesManager::cargarAutoparte() {
         cout << "Tipo de autoparte (ingrese el numero correspondiente): ";
         cin >> tipo;
         if (archivoTipo.buscarPorNumero(tipo) < 0) {
-            cout << "Error: Tipo de autoparte no válido." << endl;
+            cout << "Error: Tipo de autoparte no valido." << endl;
         } else {
             break;
         }
@@ -217,7 +217,7 @@ void AutopartesManager::modificarAutoparte() {
 
     Autoparte reg = arch.leer(pos);
     if (!reg.getActivo()) {
-        cout << "La autoparte está dada de baja. No se puede modificar." << endl;
+        cout << "La autoparte esta dada de baja. No se puede modificar." << endl;
         return;
     }
 
@@ -289,11 +289,11 @@ void AutopartesManager::modificarAutoparte() {
             case 4: {
                 char respuesta;
                 if (reg.getActivo()) {
-                    cout << "Actualmente la autoparte está ACTIVA." << endl;
+                    cout << "Actualmente la autoparte esta ACTIVA." << endl;
                 } else {
-                    cout << "Actualmente la autoparte está INACTIVA." << endl;
+                    cout << "Actualmente la autoparte esta INACTIVA." << endl;
                 }
-                cout << "¿Desea cambiar su estado? (s/n): ";
+                cout << "Desea cambiar su estado? (s/n): ";
                 cin >> respuesta;
                 if (respuesta == 's' || respuesta == 'S') {
                     reg.setActivo(!reg.getActivo());
