@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1750877134 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\main.cpp
+1750882544 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\main.cpp
 	<iostream>
 	"TipoAutoparteManager.h"
 	"EmpresaManager.h"
@@ -7,7 +7,7 @@
 	"EntregaManager.h"
 	"TipoAutoparte.h"
 
-1750877169 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.h
+1750877645 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.h
 
 1750596180 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautoparte.cpp
 	"TipoAutoparte.h"
@@ -37,7 +37,7 @@
 	<iostream>
 	<cstring>
 
-1750877134 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.cpp
+1750877645 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.cpp
 	"AutopartesManager.h"
 	"Autoparte.h"
 	"TipoAutoparte.h"
@@ -164,7 +164,7 @@
 	"TipoAutoparte.h"
 	<iostream>
 
-1749607062 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoempresa.cpp
+1750877645 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoempresa.cpp
 	"ArchivoEmpresa.h"
 
 1749607062 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoempresa.h
@@ -189,7 +189,7 @@
 	"string"
 	"cstring"
 
-1750641961 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.cpp
+1750877645 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.cpp
 	<iostream>
 	<string>
 	"Empresa.h"

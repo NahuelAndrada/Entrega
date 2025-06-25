@@ -8,9 +8,6 @@
 
 using namespace std;
 
-void menuEmpresas(EmpresaManager& em);
-//void menuAutopartes(AutopartesManager& am);
-void menuEntregas(EntregasManager& en);
 void menuTipos(TipoAutoparteManager&);
 void menuInformes();
 
@@ -34,9 +31,9 @@ int main() {
         cin  >> opcion;
 
         switch (opcion) {
-            case 1: menuEmpresas(empresas);  break;
+            case 1: empresas.menuEmpresas();  break;
             case 2: autopartes.menuAutopartes(); break;
-            case 3: menuEntregas(entregas);  break;
+            case 3: entregas.MenuEntrega();  break;
             case 4: menuTipos(tipoAutopartes); break;
             case 5: menuInformes(); break;
             case 0: cout << "Hasta luego!\n"; break;
@@ -45,53 +42,6 @@ int main() {
     } while (opcion != 0);
 
     return 0;
-}
-
-// ---------- SUBMENUS ----------
-void menuEmpresas(EmpresaManager& em) {
-    int op;
-    do {
-        cout << "\n--- EMPRESAS ---\n";
-        cout << "1. Alta\n2. Listar\n3. Buscar por CUIT\n4. Baja\n0. Volver\n";
-        cin  >> op;
-        switch (op) {
-            case 1: em.cargarEmpresa();           break;
-            case 2: em.listarEmpresasActivas();           break;
-            case 3: {string c; cout<<"CUIT:";cin>>c; em.buscarEmpresaPorCUIT(c);} break;
-            case 4: {string c; cout<<"CUIT:";cin>>c; em.dardebajarEmpresa(c);}      break;
-            case 0: break;
-            default: cout<<"Opcion invalida.\n";
-        }
-    } while (op!=0);
-}
-
-void menuEntregas(EntregasManager& en) {
-    int op;
-    do {
-        cout << "\n--- ENTREGAS ---\n";
-        cout << "1. Cargar\n2. Listar activas\n3. Buscar por ID\n";
-        cout << "4. Por empresa\n5. Por rango de fechas\n";
-        cout << "6. Eliminar por ID\n7. Modificar por ID\n0. Volver\n";
-        cin >> op;
-        switch (op) {
-            case 1: en.cargar();         break;
-            case 2: en.listar();         break;
-            case 3: {int id;cout<<"ID:";cin>>id;en.buscarPorId(id);}        break;
-            case 4: {string c;cout<<"CUIT:";cin>>c;en.entregasPorEmpresa(c);}break;
-            case 5: {
-                Fecha d,h; int dd,mm,aa;
-                cout<<"Desde (d m a): ";cin>>dd>>mm>>aa;
-                d.setDia(dd);d.setMes(mm);d.setAnio(aa);
-                cout<<"Hasta (d m a): ";cin>>dd>>mm>>aa;
-                h.setDia(dd);h.setMes(mm);h.setAnio(aa);
-                en.entregasPorFecha(d,h);
-            } break;
-            case 6: {int id;cout<<"ID:";cin>>id;en.eliminarPorId(id);} break;
-            //case 7: {int id;cout<<"ID:";cin>>id;en.|(id);} break;
-            case 0: break;
-            default: cout<<"Opcion invalida.\n";
-        }
-    } while (op!=0);
 }
 
 void menuTipos(TipoAutoparteManager& tm) {
