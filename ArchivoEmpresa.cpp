@@ -3,7 +3,6 @@
 ArchivoEmpresa::ArchivoEmpresa(){
     _nombreArchivo = "empresas.dat";
 }
-
 int ArchivoEmpresa::get_CantidadRegistros(){
 
     int tamRegistro, total, cantidad;
@@ -23,7 +22,6 @@ int ArchivoEmpresa::get_CantidadRegistros(){
 
     return cantidad;
 }
-
 bool ArchivoEmpresa::guardarEmpresa(Empresa registro){
 
     FILE *pFile;
@@ -40,7 +38,6 @@ bool ArchivoEmpresa::guardarEmpresa(Empresa registro){
     fclose(pFile);
     return status;
 }
-
 bool ArchivoEmpresa::guardarEmpresa(Empresa registro, int posicion){
 
     FILE *pFile;
@@ -59,7 +56,6 @@ bool ArchivoEmpresa::guardarEmpresa(Empresa registro, int posicion){
     return status;
 
 }
-
 Empresa ArchivoEmpresa::leerEmpresa(int posicion){
 
     FILE *pFile;
