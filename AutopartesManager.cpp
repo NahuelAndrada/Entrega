@@ -315,5 +315,52 @@ void AutopartesManager::eliminarAutoparte() {
     }
 }
 
+void AutopartesManager::menuAutopartes() {
+    int opcion;
+    do {
+        system("cls");
+        cout << "=== MENU AUTOPARTES ===\n\n";
+        cout << "1. Cargar autoparte\n";
+        cout << "2. Modificar autoparte\n";
+        cout << "3. Eliminar autoparte\n";
+        cout << "4. Buscar autoparte por numero\n";
+        cout << "5. Buscar autoparte por nombre\n";
+        cout << "6. Listar autopartes activas\n";
+        cout << "7. Listar autopartes inactivas\n";
+        cout << "0. Volver\n";
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                cargarAutoparte();
+                break;
+            case 2:
+                modificarAutoparte();
+                break;
+            case 3:
+                eliminarAutoparte();
+                break;
+            case 4:
+                buscarAutopartePorNumero();
+                break;
+            case 5:
+                buscarAutopartePorNombre();
+                break;
+            case 6:
+                listarAutoparteActivas();
+                break;
+            case 7:
+                listarAutoparteInactivas();
+                break;
+            case 0:
+                cout << "Volviendo al menu anterior...\n";
+                break;
+            default:
+                cout << "Opcion invalida.\n";
+        }
+        system("pause");
+    } while (opcion != 0);
+}
 
 

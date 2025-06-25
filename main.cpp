@@ -9,7 +9,7 @@
 using namespace std;
 
 void menuEmpresas(EmpresaManager& em);
-void menuAutopartes(AutopartesManager& am);
+//void menuAutopartes(AutopartesManager& am);
 void menuEntregas(EntregasManager& en);
 void menuTipos(TipoAutoparteManager&);
 void menuInformes();
@@ -35,7 +35,7 @@ int main() {
 
         switch (opcion) {
             case 1: menuEmpresas(empresas);  break;
-            case 2: menuAutopartes(autopartes); break;
+            case 2: autopartes.menuAutopartes(); break;
             case 3: menuEntregas(entregas);  break;
             case 4: menuTipos(tipoAutopartes); break;
             case 5: menuInformes(); break;
@@ -62,48 +62,6 @@ void menuEmpresas(EmpresaManager& em) {
             case 0: break;
             default: cout<<"Opcion invalida.\n";
         }
-    } while (op!=0);
-}
-
-    void menuAutopartes(AutopartesManager& am) {
-    int op;
-    do {
-        cout << "\n--- AUTOPARTES ---\n";
-        cout << "1. Alta\n2. Modificar autoparte\n3. Buscar autoparte por ID\n4. Buscar autoparte por nombre\n5. Listar autoparte activa\n6. Listar autoparte inactiva\n7. Eliminar autoparte\n0. Volver\n";
-        cin >> op;
-        switch (op) {
-            case 1:
-                am.cargarAutoparte();
-                break;
-            case 2:
-                am.modificarAutoparte();
-                break;
-            case 3:
-                am.buscarAutopartePorNumero();
-                break;
-            case 4:
-                am.buscarAutopartePorNombre();
-                break;
-            case 5:
-                am.listarAutoparteActivas();
-                break;
-            case 6:
-                am.listarAutoparteInactivas();
-                break;
-            case 7:
-                am.eliminarAutoparte();
-                break;
-            case 0:
-                cout << "Fin del programa." << endl;
-                break;
-            default:
-                cout<<"Opcion invalida.\n";
-                break;
-        }
-        cout << endl;
-        system("pause");
-        system("cls");
-
     } while (op!=0);
 }
 

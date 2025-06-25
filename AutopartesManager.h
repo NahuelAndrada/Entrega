@@ -10,6 +10,7 @@ public:
     void buscarAutopartePorNumero();
     void buscarAutopartePorNombre();
     void eliminarAutoparte();
+    void menuAutopartes();
 }    ;
 
 #endif
