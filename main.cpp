@@ -12,6 +12,7 @@ void menuEmpresas(EmpresaManager& em);
 void menuAutopartes(AutopartesManager& am);
 void menuEntregas(EntregasManager& en);
 void menuTipos(TipoAutoparteManager&);
+void menuInformes();
 
 int main() {
     EmpresaManager   empresas;
@@ -21,11 +22,13 @@ int main() {
 
     int opcion;
     do {
+        system("cls");
         cout << "\n========= MENU PRINCIPAL =========\n";
         cout << "1. Gestion de Empresas\n";
         cout << "2. Gestion de Autopartes\n";
         cout << "3. Gestion de Entregas\n";
         cout << "4. Gestion de Tipo autopartes\n";
+        cout << "5. Informes\n";
         cout << "0. Salir\n";
         cout << "Seleccione opcion: ";
         cin  >> opcion;
@@ -35,6 +38,7 @@ int main() {
             case 2: menuAutopartes(autopartes); break;
             case 3: menuEntregas(entregas);  break;
             case 4: menuTipos(tipoAutopartes); break;
+            case 5: menuInformes(); break;
             case 0: cout << "Hasta luego!\n"; break;
             default: cout << "Opcion invalida.\n";
         }
@@ -43,7 +47,7 @@ int main() {
     return 0;
 }
 
-// ---------- SUBâ€‘MENUS ----------
+// ---------- SUBMENUS ----------
 void menuEmpresas(EmpresaManager& em) {
     int op;
     do {
@@ -65,29 +69,29 @@ void menuEmpresas(EmpresaManager& em) {
     int op;
     do {
         cout << "\n--- AUTOPARTES ---\n";
-        cout << "1. Alta\n2. Modificar\n3. Buscar por ID\n4. Buscar por nombre\n5. Listar Activas\n6. ModificarStock \n7. Eliminar\n0. Volver\n";
+        cout << "1. Alta\n2. Modificar autoparte\n3. Buscar autoparte por ID\n4. Buscar autoparte por nombre\n5. Listar autoparte activa\n6. Listar autoparte inactiva\n7. Eliminar autoparte\n0. Volver\n";
         cin >> op;
         switch (op) {
             case 1:
-                am.cargar();
+                am.cargarAutoparte();
                 break;
             case 2:
-                am.modificar();
+                am.modificarAutoparte();
                 break;
             case 3:
-                am.buscarPorNumero();
+                am.buscarAutopartePorNumero();
                 break;
             case 4:
-                am.buscarPorNombre();
+                am.buscarAutopartePorNombre();
                 break;
             case 5:
-                am.listar();
+                am.listarAutoparteActivas();
                 break;
             case 6:
-                am.modificarStock();
+                am.listarAutoparteInactivas();
                 break;
             case 7:
-                am.eliminar();
+                am.eliminarAutoparte();
                 break;
             case 0:
                 cout << "Fin del programa." << endl;
@@ -159,4 +163,30 @@ void menuTipos(TipoAutoparteManager& tm) {
         system("pause");
         system("cls");
     } while (op != 0);
+}
+
+void menuInformes() {
+    int opcion;
+    do {
+        system("cls");
+        cout << "--- INFORMES ---\n";
+        cout << "1 - Ranking de autopartes mas entregadas\n";
+        cout << "0 - Volver al menu principal\n";
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1: {
+                EntregasManager em;
+                em.rankingAutopartes();
+                system("pause");
+                break;
+            }
+            case 0:
+                break;
+            default:
+                cout << "Opción invalida\n";
+                system("pause");
+        }
+    } while (opcion != 0);
 }

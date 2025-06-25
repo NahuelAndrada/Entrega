@@ -4,11 +4,11 @@
 class AutopartesManager {
 public:
     void cargarAutoparte();
+    void modificarAutoparte();
     void listarAutoparteActivas();
     void listarAutoparteInactivas();
     void buscarAutopartePorNumero();
     void buscarAutopartePorNombre();
-    void modificarAutoparte();
     void eliminarAutoparte();
 }    ;
 

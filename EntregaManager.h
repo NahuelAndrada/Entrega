@@ -1,6 +1,7 @@
 #ifndef ENTREGAMANAGER_H_INCLUDED
 #define ENTREGAMANAGER_H_INCLUDED
 #include "Entrega.h"
+#include "EntregaArchivo.h"
 #include <string>
 
 class EntregasManager {
@@ -12,6 +13,7 @@ public:
     void entregasPorFecha(Fecha desde, Fecha hasta);
     void eliminarPorId(int id);
     void MenuEntrega();
+    void rankingAutopartes();
 };
 
 
