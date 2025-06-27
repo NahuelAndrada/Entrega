@@ -22,4 +22,7 @@ class EmpresaManager{
         void dardebajarEmpresa();
         void dardebajarEmpresa(std::string in_CUIT);
         void dardealtaEmpresa(std::string in_CUIT);
+
+        void informeEmpresasConMasEntregas();
+        void informeEmpresasConMasImporte();
 };

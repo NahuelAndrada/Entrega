@@ -379,6 +379,7 @@ void EntregasManager::rankingAutopartes() {
     for (int i = 0; i < totalIDs - 1; i++) {
         for (int j = i + 1; j < totalIDs; j++) {
             if (cantidades[j] > cantidades[i]) {
+
                 int tempCant = cantidades[i];
                 cantidades[i] = cantidades[j];
                 cantidades[j] = tempCant;

@@ -78,7 +78,6 @@ void AutopartesManager::cargarAutoparte() {
         cout << "Error al guardar la autoparte.\n";
     }
 }
-
 void AutopartesManager::modificarAutoparte() {
     system("cls");
     cout << "=== MODIFICAR AUTOPARTE ===\n" << endl;
@@ -165,7 +164,6 @@ void AutopartesManager::modificarAutoparte() {
         cout << "Error al modificar la autoparte.\n";
     }
 }
-
 void AutopartesManager::listarAutoparteActivas() {
     system("cls");
     cout << "=== LISTADO DE AUTOPARTES ACTIVAS ===\n\n";
@@ -186,7 +184,6 @@ void AutopartesManager::listarAutoparteActivas() {
         cout << "No hay autopartes activas registradas.\n";
     }
 }
-
 void AutopartesManager::listarAutoparteInactivas() {
     system("cls");
     cout << "=== LISTADO DE AUTOPARTES INACTIVAS ===\n\n";
@@ -207,7 +204,6 @@ void AutopartesManager::listarAutoparteInactivas() {
         cout << "No hay autopartes inactivas registradas.\n";
     }
 }
-
 void AutopartesManager::buscarAutopartePorNumero() {
     system("cls");
     cout << "=== BUSCAR AUTOPARTE POR NUMERO ===\n\n";
@@ -242,7 +238,6 @@ void AutopartesManager::buscarAutopartePorNumero() {
         cout << "Autoparte no encontrada.\n";
     }
 }
-
 void AutopartesManager::buscarAutopartePorNombre() {
     system("cls");
     cout << "=== BUSCAR AUTOPARTE POR NOMBRE ===\n\n";
@@ -285,7 +280,6 @@ void AutopartesManager::buscarAutopartePorNombre() {
         cout << "Autoparte no encontrada.\n";
     }
 }
-
 void AutopartesManager::eliminarAutoparte() {
     system("cls");
     cout << "=== ELIMINAR AUTOPARTE ===\n\n";
@@ -314,7 +308,6 @@ void AutopartesManager::eliminarAutoparte() {
         cout << "Error al dar de baja la autoparte.\n";
     }
 }
-
 void AutopartesManager::menuAutopartes() {
     int opcion;
     do {

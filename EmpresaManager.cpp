@@ -5,6 +5,10 @@
 #include "ArchivoEmpresa.h"
 #include "EmpresaManager.h"
 
+//Los siguientes includes se usan para los informes
+#include "EntregaArchivo.h"
+#include "Entrega.h"
+
 void EmpresaManager::cargarEmpresa(){
 
     system("cls");
@@ -25,7 +29,6 @@ void EmpresaManager::cargarEmpresa(){
     ArchivoEmpresa archEmpresa;
 
     std::string in_CUIT, in_Nombre, in_Responsable, in_Telefono, in_Email, in_Direccion;
-    bool status;
 
     std::cout << "Ingrese CUIT (max 14 car.): ";
     getline(std::cin, in_CUIT);
@@ -48,12 +51,12 @@ void EmpresaManager::cargarEmpresa(){
             std::cout << std::endl;
             std::cout << ">> La empresa que intentaste cargar ya existe pero se encuentra inactiva, te gustaria reactivarla? (S/N): ";
             getline(std::cin,opcion);
-            while(opcion != "S" && opcion != "N"){
+            while(opcion != "S" && opcion != "N" && opcion != "s" && opcion != "n"){
                 std::cout << ">> Opcion equivocada, escriba S para SI o N para NO." << std::endl;
                 std::cout << ">> Te gustaria reactivar la empresa " << in_CUIT << "? (S/N): ";
                 getline(std::cin,opcion);
             }
-            if(opcion == "S"){
+            if(opcion == "S" || opcion == "s"){
                 dardealtaEmpresa(in_CUIT);
             }
             return;
@@ -578,4 +581,195 @@ void EmpresaManager::imprimirMenu(bool limpiar){
     std::cout << "6. Modificar los datos de una empresa." << std::endl;
     std::cout << "7. Buscar empresas." << std::endl;
     std::cout << std::endl;
+}
+void EmpresaManager::informeEmpresasConMasEntregas(){
+
+    system("cls");
+
+    std::cout << "#######################################" << std::endl;
+    std::cout << "Empresas con mayor cantidad de entregas" << std::endl;
+    std::cout << "#######################################" << std::endl;
+    std::cout << std::endl;
+
+    EntregaArchivo archEntrega;
+    ArchivoEmpresa archEmpresa;
+
+    Entrega regEntrega;
+    Empresa regEmpresa;
+
+    const int MAX_EMPRESAS = 999;
+
+    std::string EmpresaCUIT[MAX_EMPRESAS]; //Vec que guarda los CUITs de las empresas encontradas.
+    int EmpresaENTREGAS[MAX_EMPRESAS];     //Vec que guarda y acumula las entregas de las empresas encontradas.
+
+    std::string CUIT;
+
+    int totalCUITs = 0;
+
+    int cantidadEntregas = archEntrega.getCantidadRegistros();
+
+    for(int i = 0; i < cantidadEntregas; i++){
+
+        regEntrega = archEntrega.leer(i);
+        if(!regEntrega.getActivo()) continue; //En caso de que no este activa la entrega se saltea.
+
+        CUIT = regEntrega.getCuitEmpresa();
+        int pos = -1;
+
+        //Busco el CUIT en el vector de CUITs que cree mas arriba
+        for(int j = 0; j < totalCUITs; j++){
+            if(EmpresaCUIT[j]==CUIT){
+                pos = j;
+                break;
+            }
+        }
+
+        //Si lo encontro incremento el contador de entregas
+        //Si no lo encontro (else) guardo el CUIT y seteo su contador de entregas en 1.
+        if(pos>=0){
+            EmpresaENTREGAS[pos] += 1;
+        }else{
+            EmpresaCUIT[totalCUITs] = CUIT;
+            EmpresaENTREGAS[totalCUITs] = 1;
+            totalCUITs++;
+        }
+
+    }
+
+    std::string tempCUIT;
+    int tempEntregas;
+
+    //Ordeno resultados con el metodo de ordenamiento burbuja
+    for(int i = 0; i < totalCUITs; i++){
+        for(int j = i+1; j < totalCUITs; j++){
+            if(EmpresaENTREGAS[j]>EmpresaENTREGAS[i]){
+
+                tempCUIT = EmpresaCUIT[i];
+                tempEntregas = EmpresaENTREGAS[i];
+
+                EmpresaCUIT[i] = EmpresaCUIT[j];
+                EmpresaENTREGAS[i] = EmpresaENTREGAS[j];
+
+                EmpresaCUIT[j] = tempCUIT;
+                EmpresaENTREGAS[j] = tempEntregas;
+            }
+        }
+    }
+
+    std::string nombreEmpresa;
+    int posEmpresa;
+
+    //Imprimo los resultados
+    for(int i=0; i < totalCUITs; i++){
+
+        //Busco el nombre de la empresa en el archivo empresas.
+        posEmpresa = buscarEmpresaPorCUIT(EmpresaCUIT[i]);
+        if(posEmpresa>=0){
+            regEmpresa = archEmpresa.leerEmpresa(posEmpresa);
+            nombreEmpresa = regEmpresa.get_Nombre();
+        }else{
+            nombreEmpresa = "Nombre no encontrado en los registros de empresas.";
+        }
+
+        std::cout << i+1 << ") " << "Empresa " << EmpresaCUIT[i] << " (" << nombreEmpresa << ")" << std::endl;
+        std::cout << ">> Cantidad de entregas: " << EmpresaENTREGAS[i] << std::endl;
+        std::cout << std::endl;
+    }
+}
+void EmpresaManager::informeEmpresasConMasImporte(){
+
+    system("cls");
+
+    std::cout << "#######################################" << std::endl;
+    std::cout << "Empresas con mayor importe acumulado en sus entregas" << std::endl;
+    std::cout << "#######################################" << std::endl;
+    std::cout << std::endl;
+
+    EntregaArchivo archEntrega;
+    ArchivoEmpresa archEmpresa;
+
+    Entrega regEntrega;
+    Empresa regEmpresa;
+
+    const int MAX_EMPRESAS = 999;
+
+    std::string EmpresaCUIT[MAX_EMPRESAS]; //Vec que guarda los CUITs de las empresas encontradas.
+    int EmpresaIMPORTEACUM[MAX_EMPRESAS];  //Vec que guarda y acumula las entregas de las empresas encontradas.
+
+    std::string CUIT;
+    int Importe;
+
+    int totalCUITs = 0;
+
+    int cantidadEntregas = archEntrega.getCantidadRegistros();
+
+    for(int i = 0; i < cantidadEntregas; i++){
+
+        regEntrega = archEntrega.leer(i);
+        if(!regEntrega.getActivo()) continue; //En caso de que no este activa la entrega se saltea.
+
+        CUIT = regEntrega.getCuitEmpresa();
+        Importe = regEntrega.getImporte();
+
+        int pos = -1;
+
+        //Busco el CUIT en el vector de CUITs que cree mas arriba
+        for(int j = 0; j < totalCUITs; j++){
+            if(EmpresaCUIT[j]==CUIT){
+                pos = j;
+                break;
+            }
+        }
+
+        //Si lo encontro incremento el acumulador con su importe
+        //Si no lo encontro (else) guardo el CUIT y seteo acumulador con el importe
+        if(pos>=0){
+            EmpresaIMPORTEACUM[pos] += Importe;
+        }else{
+            EmpresaCUIT[totalCUITs] = CUIT;
+            EmpresaIMPORTEACUM[totalCUITs] = Importe;;
+            totalCUITs++;
+        }
+
+    }
+
+    std::string tempCUIT;
+    int tempImporteAcum;
+
+    //Ordeno resultados con el metodo de ordenamiento burbuja
+    for(int i = 0; i < totalCUITs; i++){
+        for(int j = i+1; j < totalCUITs; j++){
+            if(EmpresaIMPORTEACUM[j]>EmpresaIMPORTEACUM[i]){
+
+                tempCUIT = EmpresaCUIT[i];
+                tempImporteAcum = EmpresaIMPORTEACUM[i];
+
+                EmpresaCUIT[i] = EmpresaCUIT[j];
+                EmpresaIMPORTEACUM[i] = EmpresaIMPORTEACUM[j];
+
+                EmpresaCUIT[j] = tempCUIT;
+                EmpresaIMPORTEACUM[j] = tempImporteAcum;
+            }
+        }
+    }
+
+    std::string nombreEmpresa;
+    int posEmpresa;
+
+    //Imprimo los resultados
+    for(int i=0; i < totalCUITs; i++){
+
+        //Busco el nombre de la empresa en el archivo empresas.
+        posEmpresa = buscarEmpresaPorCUIT(EmpresaCUIT[i]);
+        if(posEmpresa>=0){
+            regEmpresa = archEmpresa.leerEmpresa(posEmpresa);
+            nombreEmpresa = regEmpresa.get_Nombre();
+        }else{
+            nombreEmpresa = "Nombre no encontrado en los registros de empresas.";
+        }
+
+        std::cout << i+1 << ") " << "Empresa " << EmpresaCUIT[i] << " (" << nombreEmpresa << ")" << std::endl;
+        std::cout << ">> Importe acumulado: $" << EmpresaIMPORTEACUM[i] << std::endl;
+        std::cout << std::endl;
+    }
 }
