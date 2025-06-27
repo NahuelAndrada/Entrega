@@ -25,4 +25,5 @@ class EmpresaManager{
 
         void informeEmpresasConMasEntregas();
         void informeEmpresasConMasImporte();
+        void informedeEntregasMensualesPorAnio();
 };

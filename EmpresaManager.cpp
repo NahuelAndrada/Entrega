@@ -8,6 +8,7 @@
 //Los siguientes includes se usan para los informes
 #include "EntregaArchivo.h"
 #include "Entrega.h"
+#include "Fecha.h"
 
 void EmpresaManager::cargarEmpresa(){
 
@@ -770,6 +771,98 @@ void EmpresaManager::informeEmpresasConMasImporte(){
 
         std::cout << i+1 << ") " << "Empresa " << EmpresaCUIT[i] << " (" << nombreEmpresa << ")" << std::endl;
         std::cout << ">> Importe acumulado: $" << EmpresaIMPORTEACUM[i] << std::endl;
+        std::cout << std::endl;
+    }
+}
+void EmpresaManager::informedeEntregasMensualesPorAnio(){
+
+    ArchivoEmpresa archEmpresa;
+    EntregaArchivo archEntrega;
+
+    Empresa regEmpresa;
+    Entrega regEntrega;
+    Fecha fecha;
+
+    const int meses = 12;
+    int entregasMensuales[meses]{0};
+    int cantidadEntregasAnualesTotales = 0;
+
+    system("cls");
+
+    std::cout << "#######################################" << std::endl;
+    std::cout << "Informe de entregas mensuales" << std::endl;
+    std::cout << "#######################################" << std::endl;
+    std::cout << std::endl;
+
+    std::string in_CUITEmpresa;
+    std::string str_NombreEmpresa;
+    int in_posEmpresa;
+    int in_anio;
+    int cantidadEntregasTotales;
+
+    cantidadEntregasTotales = archEntrega.getCantidadRegistros();
+
+    std::cout << "Ingrese el CUIT de la empresa que desea buscar: ";
+    getline(std::cin, in_CUITEmpresa);
+
+    in_posEmpresa = buscarEmpresaPorCUIT(in_CUITEmpresa);
+
+    if(cantidadEntregasTotales == 0){
+        std::cout << "No hay entregas registradas en este momento." << std::endl;
+        std::cout << std::endl;
+    }
+
+    if(in_posEmpresa>=0){
+
+        std::cout << "Ingrese el anio que desea controlar: ";
+        std::cin >> in_anio;
+        std::cin.ignore();
+
+        //Buscar y extraer el nombre de la empresa
+        regEmpresa = archEmpresa.leerEmpresa(in_posEmpresa);
+        str_NombreEmpresa = regEmpresa.get_Nombre();
+
+        //Recorro cada entrega
+        for(int i = 0; i < cantidadEntregasTotales; i++){
+            regEntrega = archEntrega.leer(i);
+
+            //Saltear las entregas inactivas
+            if(!regEntrega.getActivo()) continue;
+
+            //Controlo que el cuit sea el mismo
+            if(regEntrega.getCuitEmpresa() == in_CUITEmpresa){
+
+                //Extraigo fecha de la entrega
+                fecha = regEntrega.getFechaEntrega();
+                if(fecha.getAnio() == in_anio && (fecha.getMes() >= 1 && fecha.getMes() <= 12)){
+                    entregasMensuales[fecha.getMes()] += 1;
+                    cantidadEntregasAnualesTotales++;
+                }
+
+            }
+        }
+
+        system("cls");
+        std::cout << "#######################################" << std::endl;
+        std::cout << "Informe de entregas mensuales" << std::endl;
+        std::cout << "#######################################" << std::endl;
+        std::cout << std::endl;
+        std::cout << "> CUIT: " << in_CUITEmpresa << std::endl;
+        std::cout << "> Nombre empresa: " << str_NombreEmpresa << std::endl;
+        std::cout << "> Entregas totales en el anio: " << cantidadEntregasAnualesTotales << std::endl;
+        std::cout << std::endl;
+
+        for(int j = 0; j < 12; j++){
+            if(j <= 8){
+                std::cout << "Mes 0" << j+1 << " - ";
+            }else{
+                std::cout << "Mes " << j+1 << " - ";
+            }
+            std::cout << "Cantidad de entregas encontradas: " << entregasMensuales[j] << std::endl;
+        }
+        std::cout << std::endl;
+    }else{
+        std::cout << "No se encontro la empresa, revise que el CUIT sea el correcto." << std::endl;
         std::cout << std::endl;
     }
 }

@@ -37,7 +37,7 @@ int main() {
             case 4: menuTipos(tipoAutopartes); break;
             case 5: menuInformes(); break;
             case 0: cout << "Hasta luego!\n"; break;
-            default: cout << "Opcion invalida.\n";
+            default: cout << "Opcion invalida.\n"; system("pause");
         }
     } while (opcion != 0);
 
@@ -76,14 +76,18 @@ void menuInformes() {
     do {
         system("cls");
         cout << "--- INFORMES ---" << endl;
+
         cout << endl;
         cout << "1 - Ranking de autopartes con mayores entregas" << endl;
         cout << "2 - Ranking de empresas (mayor cantidad de entregas)" << endl;
         cout << "3 - Ranking de empresas (mayor importe acumulado en entregas)" << endl;
+        cout << "4 - Informe de entregas mensuales de una empresa" << endl;
         cout << "0 - Volver al menu principal" << endl;
         cout << endl;
+
         cout << "Seleccione una opcion: ";
         cin >> opcion;
+        cin.ignore();
 
         switch (opcion){
             case 1:{
@@ -101,6 +105,12 @@ void menuInformes() {
             case 3:{
                 EmpresaManager em;
                 em.informeEmpresasConMasImporte();
+                system("pause");
+                break;
+            }
+            case 4:{
+                EmpresaManager em;
+                em.informedeEntregasMensualesPorAnio();
                 system("pause");
                 break;
             }
