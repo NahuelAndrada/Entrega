@@ -69,6 +69,7 @@ void Autoparte::mostrar() {
     cout << "Numero: " << _numero << endl;
     cout << "Nombre: " << _nombre << endl;
     cout << "Tipo: " << _tipo << " (" << getDescripcionTipo() << ")" << endl;
+
     cout << "Stock: " << _stock << endl;
     if (getActivo()) {
         cout << "Activo: Si" << endl;

@@ -17,7 +17,7 @@
 1750595866 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautoparte.h
 	<string>
 
-1750531634 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoautopartes.cpp
+1750966399 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoautopartes.cpp
 	"ArchivoAutopartes.h"
 	<cstdio>
 	<cstring>
@@ -29,7 +29,7 @@
 1750528700 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autoparte.h
 	<string>
 
-1750595329 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autoparte.cpp
+1750898315 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autoparte.cpp
 	"Autoparte.h"
 	"TipoAutoparte.h"
 	"ArchivoAutopartes.h"
@@ -174,7 +174,7 @@
 1750641961 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresa.h
 	<string>
 
-1750545227 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivotipoautoparte.cpp
+1750900980 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivotipoautoparte.cpp
 	"ArchivoTipoAutoparte.h"
 	<cstdio>
 

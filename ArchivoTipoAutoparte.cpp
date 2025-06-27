@@ -38,7 +38,7 @@ int ArchivoTipoAutoparte::contar() {
     fseek(p, 0, SEEK_END);
     int bytes = ftell(p);
     fclose(p);
-    return bytes / sizeof(TipoAutoparte);
+    return bytes/sizeof(TipoAutoparte);
 }
 
 int ArchivoTipoAutoparte::buscarPorNumero(int numero) {

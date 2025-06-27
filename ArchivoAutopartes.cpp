@@ -9,7 +9,9 @@ ArchivoAutopartes::ArchivoAutopartes(std::string nombreArchivo) {
 Autoparte ArchivoAutopartes::leer(int pos) {
     Autoparte reg;
     FILE* p = fopen(_nombreArchivo.c_str(), "rb");
-    if (p == nullptr) return reg;
+    if (p == nullptr){
+        return reg;
+    }
     fseek(p, pos * sizeof(Autoparte), SEEK_SET);
     fread(&reg, sizeof(Autoparte), 1, p);
     fclose(p);
