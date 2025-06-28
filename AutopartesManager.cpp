@@ -3,6 +3,7 @@
 #include "TipoAutoparte.h"
 #include "ArchivoAutopartes.h"
 #include "ArchivoTipoAutoparte.h"
+#include "EntregaArchivo.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -356,4 +357,72 @@ void AutopartesManager::menuAutopartes() {
     } while (opcion != 0);
 }
 
+void AutopartesManager::rankingAutopartes() {
+    ArchivoAutopartes archAutoparte;
+    EntregaArchivo archEntrega;
 
+    int totalAutopartes = archAutoparte.contar();
+    int cantidades[totalAutopartes]{};
+    int indices[totalAutopartes]{};
+
+
+    for (int i = 0; i < totalAutopartes; i++) {
+        indices[i] = i;
+    }
+
+    int totalEntregas = archEntrega.getCantidadRegistros();
+    for (int i = 0; i < totalEntregas; i++) {
+        Entrega reg = archEntrega.leer(i);
+        if (reg.getActivo()) {
+            int pos = archAutoparte.buscarPorNumero(reg.getNumeroAutoparte());
+            if (pos >= 0) {
+                cantidades[pos] += reg.getCantidadUnidades();
+            }
+        }
+    }
+
+
+    for (int i = 0; i < totalAutopartes - 1; i++) {
+        for (int j = 0; j < totalAutopartes - i - 1; j++) {
+            if (cantidades[indices[j]] < cantidades[indices[j + 1]]) {
+                int temp = indices[j];
+                indices[j] = indices[j + 1];
+                indices[j + 1] = temp;
+            }
+        }
+    }
+
+    cout << "--- RANKING DE AUTOPARTES MAS ENTREGADAS ---\n";
+
+    for (int i = 0; i < totalAutopartes; i++) {
+        int idx = indices[i];
+        if (cantidades[idx] > 0) {
+            Autoparte autoReg = archAutoparte.leer(idx);
+            cout << i + 1 << ". " << autoReg.getNombre()
+                 << " (ID: " << autoReg.getNumero()
+                 << ") - Total entregado: " << cantidades[idx] << "\n";
+        }
+    }
+
+    system("pause");
+}
+
+
+void AutopartesManager::informeStockBajo() {
+    ArchivoAutopartes arch;
+    const int STOCK_MINIMO = 10;
+    int total = arch.contar();
+
+    cout << "--- AUTOPARTES CON STOCK BAJO ---\n";
+
+    for(int i = 0; i < total; i++) {
+        Autoparte reg = arch.leer(i);
+        if(reg.getActivo() && reg.getStock() < STOCK_MINIMO) {
+            cout << "ID: " << reg.getNumero()
+                 << " - Nombre: " << reg.getNombre()
+                 << " - Stock: " << reg.getStock() << "\n";
+        }
+    }
+
+    system("pause");
+}

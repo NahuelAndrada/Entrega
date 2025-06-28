@@ -11,6 +11,8 @@ public:
     void buscarAutopartePorNombre();
     void eliminarAutoparte();
     void menuAutopartes();
+    void rankingAutopartes();
+    void informeStockBajo();
 }    ;
 
 #endif

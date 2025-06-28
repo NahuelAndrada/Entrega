@@ -79,9 +79,10 @@ void menuInformes() {
 
         cout << endl;
         cout << "1 - Ranking de autopartes con mayores entregas" << endl;
-        cout << "2 - Ranking de empresas (mayor cantidad de entregas)" << endl;
-        cout << "3 - Ranking de empresas (mayor importe acumulado en entregas)" << endl;
-        cout << "4 - Informe de entregas mensuales de una empresa" << endl;
+        cout << "2 - Informe de autopartes con stock bajo" << endl;
+        cout << "3 - Ranking de empresas (mayor cantidad de entregas)" << endl;
+        cout << "4 - Ranking de empresas (mayor importe acumulado en entregas)" << endl;
+        cout << "5 - Informe de entregas mensuales de una empresa" << endl;
         cout << "0 - Volver al menu principal" << endl;
         cout << endl;
 
@@ -91,24 +92,30 @@ void menuInformes() {
 
         switch (opcion){
             case 1:{
-                EntregasManager em;
-                em.rankingAutopartes();
+                AutopartesManager am;
+                am.rankingAutopartes();
                 system("pause");
                 break;
             }
             case 2:{
-                EmpresaManager em;
-                em.informeEmpresasConMasEntregas();
+                AutopartesManager am;
+                am.informeStockBajo();
                 system("pause");
                 break;
             }
             case 3:{
                 EmpresaManager em;
-                em.informeEmpresasConMasImporte();
+                em.informeEmpresasConMasEntregas();
                 system("pause");
                 break;
             }
             case 4:{
+                EmpresaManager em;
+                em.informeEmpresasConMasImporte();
+                system("pause");
+                break;
+            }
+            case 5:{
                 EmpresaManager em;
                 em.informedeEntregasMensualesPorAnio();
                 system("pause");

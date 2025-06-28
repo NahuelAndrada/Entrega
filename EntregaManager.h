@@ -13,7 +13,7 @@ public:
     void entregasPorFecha(Fecha desde, Fecha hasta);
     void eliminarPorId(int id);
     void MenuEntrega();
-    void rankingAutopartes();
+    //void rankingAutopartes();
 };
 
 

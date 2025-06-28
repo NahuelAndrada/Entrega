@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1750882544 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\main.cpp
+1751142664 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\main.cpp
 	<iostream>
 	"TipoAutoparteManager.h"
 	"EmpresaManager.h"
@@ -7,7 +7,7 @@
 	"EntregaManager.h"
 	"TipoAutoparte.h"
 
-1750877645 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.h
+1751142664 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.h
 
 1750596180 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautoparte.cpp
 	"TipoAutoparte.h"
@@ -17,7 +17,7 @@
 1750595866 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautoparte.h
 	<string>
 
-1750966399 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoautopartes.cpp
+1751142664 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoautopartes.cpp
 	"ArchivoAutopartes.h"
 	<cstdio>
 	<cstring>
@@ -29,7 +29,7 @@
 1750528700 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autoparte.h
 	<string>
 
-1750898315 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autoparte.cpp
+1751142664 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autoparte.cpp
 	"Autoparte.h"
 	"TipoAutoparte.h"
 	"ArchivoAutopartes.h"
@@ -37,12 +37,13 @@
 	<iostream>
 	<cstring>
 
-1750877645 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.cpp
+1751142664 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.cpp
 	"AutopartesManager.h"
 	"Autoparte.h"
 	"TipoAutoparte.h"
 	"ArchivoAutopartes.h"
 	"ArchivoTipoAutoparte.h"
+	"EntregaArchivo.h"
 	<iostream>
 	<string>
 
@@ -174,7 +175,7 @@
 1750641961 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresa.h
 	<string>
 
-1750900980 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivotipoautoparte.cpp
+1751142664 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivotipoautoparte.cpp
 	"ArchivoTipoAutoparte.h"
 	<cstdio>
 
@@ -189,14 +190,17 @@
 	"string"
 	"cstring"
 
-1750877645 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.cpp
+1751052326 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.cpp
 	<iostream>
 	<string>
 	"Empresa.h"
 	"ArchivoEmpresa.h"
 	"EmpresaManager.h"
+	"EntregaArchivo.h"
+	"Entrega.h"
+	"Fecha.h"
 
-1749607062 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.h
+1751052326 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.h
 	<string>
 
 1749607062 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entrega.cpp
@@ -208,7 +212,7 @@
 	"Fecha.h"
 	<string>
 
-1749607062 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\fecha.h
+1751142663 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\fecha.h
 	<string>
 
 1749607062 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregaarchivo.cpp
@@ -218,19 +222,14 @@
 	<string>
 	"Entrega.h"
 
-1750816851 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.cpp
+1751137628 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.cpp
 	<iostream>
 	"EntregaManager.h"
 	"EntregaArchivo.h"
 	"ArchivoAutopartes.h"
 	"EmpresaManager.h"
-	<iostream>
-	<iomanip>
-	"EntregaManager.h"
-	"EntregaArchivo.h"
-	"ArchivoAutopartes.h"
 
-1750811357 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.h
+1751142664 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.h
 	"Entrega.h"
 	"EntregaArchivo.h"
 	<string>
