@@ -129,19 +129,23 @@ void EntregasManager::cargar() {
        cout << "Stock actual: " << autoParte.getStock() << endl;
      return;
 }
-
+    cout<<"el stock inicial era: "<<autoParte.getStock()<<endl;;
 	int nuevoStock = autoParte.getStock() - cantidad;
 	autoParte.setStock(nuevoStock);
-	if (!archivoAutoparte.modificar(posAutoparte, autoParte)) {
-    cout << "Error al actualizar el stock de la autoparte." << endl;
-    return;
-}
+    cout<<"el stock actual es: "<<nuevoStock<<endl;
+    reg.setCantidadUnidades(cantidad);
+
 
     cout << "Importe total: ";
     cin >> importe;
     reg.setImporte(importe);
 
     reg.setActivo(true);
+    if (!archivoAutoparte.modificar(posAutoparte, autoParte)) {
+    cout << "Error al actualizar el stock de la autoparte." << endl;
+    return;
+}
+
 
     // Guardar en archivo
     EntregaArchivo archi;
@@ -287,6 +291,9 @@ void EntregasManager::entregasPorFecha(Fecha desde, Fecha hasta) {
 }
 void EntregasManager::eliminarPorId(int id) {
     EntregaArchivo archivo;
+    ArchivoAutopartes archivoautoparte;
+    Autoparte autoparte;
+
     int pos = archivo.buscar(id);
 
     if (pos < 0) {
@@ -301,6 +308,21 @@ void EntregasManager::eliminarPorId(int id) {
         return;
     }
 
+    int numeroAutoparte = reg.getNumeroAutoparte();
+    int cantidadDevuelta = reg.getCantidadUnidades();
+
+    int posauto= archivoautoparte.buscarPorNumero(numeroAutoparte);
+    if(posauto<0){
+        cout<< "error: no se encontro la autoparte asociada para devolver stock. "<< endl;
+        return;
+    }
+    autoparte= archivoautoparte.leer(posauto);
+    cout<<"el stock inicial es de: "<<autoparte.getStock()<<endl;
+    cout<<"la cantidad de entrega de este id fue de: "<< reg.getCantidadUnidades()<<endl;
+    int nuevostock= autoparte.getStock()+cantidadDevuelta;
+    autoparte.setStock(nuevostock);
+    cout<<"stock actualizado es de: "<<nuevostock<<endl;
+
     reg.setActivo(false);
 
     if (archivo.guardar(reg, pos)) {
@@ -308,6 +330,12 @@ void EntregasManager::eliminarPorId(int id) {
     } else {
         cout << "Error al intentar eliminar la entrega." << endl;
     }
+
+    if (!archivoautoparte.modificar(posauto, autoparte)) {
+    cout << "Error al devolver el stock de la autoparte." << endl;
+    return;
+}
+
 }
 void EntregasManager::MenuEntrega(){
     EntregasManager manager;
@@ -384,3 +412,70 @@ void EntregasManager::MenuEntrega(){
 
     } while (opcion != 0);
 }
+
+
+
+void EntregasManager::rankingAutopartes() {
+    const int MAX_AUTOPARTES = 100;
+    int ids[MAX_AUTOPARTES];            // Almacena los ID de autopartes
+    int cantidades[MAX_AUTOPARTES];     // Acumula cantidad entregada por ID
+    int totalIDs = 0;
+
+    EntregaArchivo archEnt;
+    int cantidadReg = archEnt.getCantidadRegistros();  // Metodo correcto del archivo
+
+    for (int i = 0; i < cantidadReg; i++) {
+        Entrega reg = archEnt.leer(i);
+        if (!reg.getActivo()) continue;
+
+        int id = reg.getNumeroAutoparte();
+        int cant = reg.getCantidadUnidades();
+
+        // Buscar si ya esta ese ID en el vector
+        int pos = -1;
+        for (int j = 0; j < totalIDs; j++) {
+            if (ids[j] == id) {
+                pos = j;
+                break;
+            }
+        }
+
+        if (pos >= 0) {
+            cantidades[pos] += cant;
+        } else {
+            ids[totalIDs] = id;
+            cantidades[totalIDs] = cant;
+            totalIDs++;
+        }
+    }
+
+    // Ordenar por cantidad de mayor a menor (burbuja)
+    for (int i = 0; i < totalIDs - 1; i++) {
+        for (int j = i + 1; j < totalIDs; j++) {
+            if (cantidades[j] > cantidades[i]) {
+
+                int tempCant = cantidades[i];
+                cantidades[i] = cantidades[j];
+                cantidades[j] = tempCant;
+
+                int tempId = ids[i];
+                ids[i] = ids[j];
+                ids[j] = tempId;
+            }
+        }
+    }
+
+    // Mostrar resultados
+    ArchivoAutopartes archAuto;
+    cout << "\n--- RANKING DE AUTOPARTES MAS ENTREGADAS ---\n";
+    for (int i = 0; i < totalIDs; i++) {
+        int pos = archAuto.buscarPorNumero(ids[i]);
+        if (pos >= 0) {
+            Autoparte reg = archAuto.leer(pos);
+            cout << i + 1 << ". " << reg.getNombre() << " (ID: " << ids[i] << ") - Total entregado: " << cantidades[i] << endl;
+        } else {
+            cout << i + 1 << ". " << "ID desconocido (" << ids[i] << ") - Total entregado: " << cantidades[i] << endl;
+        }
+    }
+}
+
