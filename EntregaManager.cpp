@@ -56,13 +56,64 @@ void EntregasManager::cargar() {
 
     cout << "Fecha de entrega:" << endl;
     int dia, mes, anio;
+    int fin;
+    bool validar;
+    do{
+
     cout << "  Dia: "; cin >> dia;
+    validar= fecha.DiaValido(dia);
+        if(dia==0){
+        dia=-1;
+    }
+    while(validar==false){
+        cout<<"el dia no es valido, por favor vuelva a ingresar un dia o aprete 0 para volver al menu"<<endl;
+        cout << "  Dia: ";
+        cin>>dia;
+        validar= fecha.DiaValido(dia);
+        if(dia==0){
+        return;}
+    }
+
     cout << "  Mes: "; cin >> mes;
+    validar=fecha.MesValido(mes);
+    if (mes==0){
+        mes=-1;
+    }
+    while(validar==false){
+        cout<<"el mes no es valido, por favor vuelva a ingresar un mes o aprete 0 para volver al menu"<<endl;
+        cout << "  Mes: ";
+        cin>>mes;
+        validar= fecha.MesValido(mes);
+        if(mes==0){
+        return;}
+    }
+
     cout << "  Anio: "; cin >> anio;
+    validar=fecha.AnioValido(anio);
+    if (anio==0){
+        anio=-1;
+    }
+    while(validar==false){
+        cout<<"el anio no es valido, por favor vuelva a ingresar un anio o aprete 0 para volver al menu"<<endl;
+        cin>>anio;
+        validar= fecha.AnioValido(anio);
+        if(anio==0){
+        return;}
+    }
+
+    validar=fecha.Validarfecha(dia,mes,anio);
+    if (!validar){
+    cout << "La fecha completa no es válida (por ejemplo, 30/2). Apriete 0 para volver al menu o cualquier otro numero para volver a ingresar otra fecha"<<endl;
+    cin>>fin;
+    if(fin==0)return;
+}
+    }while(!validar);
+
     fecha.setDia(dia);
     fecha.setMes(mes);
     fecha.setAnio(anio);
     reg.setFechaEntrega(fecha);
+
 
     cout << "Cantidad de unidades: ";
     cin >> cantidad;
@@ -334,12 +385,7 @@ void EntregasManager::MenuEntrega(){
     } while (opcion != 0);
 }
 
-#include <iostream>
-#include <iomanip>
-#include "EntregaManager.h"
-#include "EntregaArchivo.h"
-#include "ArchivoAutopartes.h"
-using namespace std;
+
 
 void EntregasManager::rankingAutopartes() {
     const int MAX_AUTOPARTES = 100;

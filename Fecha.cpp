@@ -40,3 +40,29 @@ std::string Fecha::toString(){
     return std::to_string(_dia) + "/" + std::to_string(_mes) + "/" + std::to_string(_anio);
 }
 
+bool Fecha::DiaValido(int dia){
+        if(dia<1||dia>31){
+        return false;}
+        return true;
+}
+bool Fecha::MesValido(int mes){
+        if (mes < 1 || mes > 12) return false;
+        return true;
+}
+bool Fecha::AnioValido(int anio){
+    if (anio < 1900 || anio > 2026) return false;
+
+    return true;
+}
+bool Fecha::Validarfecha(int dia, int mes, int anio){
+
+    int diasPorMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+    if ((anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0)) {
+        diasPorMes[1] = 29;
+    }
+
+    if (dia>diasPorMes[mes-1])return false;
+
+    return true;
+}

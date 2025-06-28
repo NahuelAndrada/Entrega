@@ -17,4 +17,8 @@ class Fecha{
     void setMes(int mes);
     void setAnio(int anio);
     std::string toString();
+    bool DiaValido(int dia);
+    bool MesValido(int Mes);
+    bool AnioValido(int Anio);
+    bool Validarfecha(int dia, int mes, int anio);
 };
