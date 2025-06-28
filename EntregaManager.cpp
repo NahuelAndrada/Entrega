@@ -337,6 +337,61 @@ void EntregasManager::eliminarPorId(int id) {
 }
 
 }
+
+
+void EntregasManager::reactivarentrega(int id) {
+    EntregaArchivo archivo;
+    ArchivoAutopartes archivoautoparte;
+    Autoparte autoparte;
+    Entrega reg;
+
+    int pos = archivo.buscar(id);
+
+    if (pos < 0) {
+        cout << "Error: No se encontró una entrega con ese ID." << endl;
+        return;
+    }
+
+     reg = archivo.leer(pos);
+
+    if (reg.getActivo()) {
+        cout << "La entrega no esta dada de baja." << endl;
+        return;
+    }
+
+    int numeroAutoparte = reg.getNumeroAutoparte();
+    int cantidadDevuelta = reg.getCantidadUnidades();
+
+    int posauto= archivoautoparte.buscarPorNumero(numeroAutoparte);
+    if(posauto<0){
+        cout<< "error: no se encontro la autoparte asociada"<< endl;
+        return;
+    }
+    autoparte= archivoautoparte.leer(posauto);
+    cout<<"el stock inicial es de: "<<autoparte.getStock()<<endl;
+    cout<<"la cantidad de entrega de este id fue de: "<< reg.getCantidadUnidades()<<endl;
+    int nuevostock= autoparte.getStock()-cantidadDevuelta;
+        if(nuevostock<0){
+            cout<<"no se puede reactivar la entrega porque no hay stock necesario"<<endl;
+            return;
+    }
+    autoparte.setStock(nuevostock);
+    cout<<"stock actualizado es de: "<<nuevostock<<endl;
+
+    reg.setActivo(true);
+
+    if (archivo.guardar(reg, pos)) {
+        cout << "Entrega reactivada correctamente (dada de alta)." << endl;
+    } else {
+        cout << "Error al intentar reactivar la entrega." << endl;
+    }
+
+    if (!archivoautoparte.modificar(posauto, autoparte)) {
+    cout << "Error al devolver el stock de la autoparte." << endl;
+    return;
+}
+
+}
 void EntregasManager::MenuEntrega(){
     EntregasManager manager;
     int opcion;
@@ -349,6 +404,7 @@ void EntregasManager::MenuEntrega(){
         cout << "4. Mostrar entregas por empresa" << endl;
         cout << "5. Mostrar entregas por rango de fechas" << endl;
         cout << "6. Eliminar entrega por ID" << endl;
+        cout << "7. reactivar entrega por ID" << endl;
         cout << "0. Salir" << endl;
         cout << "Seleccione una opción: ";
         cin >> opcion;
@@ -401,6 +457,13 @@ void EntregasManager::MenuEntrega(){
             cout << "Ingrese ID de entrega a eliminar: ";
             cin >> id;
             manager.eliminarPorId(id);
+            break;
+        }
+        case 7: {
+            int id;
+            cout << "Ingrese ID de entrega a reactivar: ";
+            cin >> id;
+            manager.reactivarentrega(id);
             break;
         }
         case 0:

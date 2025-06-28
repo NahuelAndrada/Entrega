@@ -12,8 +12,9 @@ public:
     void entregasPorEmpresa(std::string cuit);
     void entregasPorFecha(Fecha desde, Fecha hasta);
     void eliminarPorId(int id);
+    void reactivarentrega(int id);
     void MenuEntrega();
-    //void rankingAutopartes();
+    void rankingAutopartes();
 };
 
 
