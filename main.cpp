@@ -7,7 +7,6 @@
 
 using namespace std;
 
-void menuTipos(TipoAutoparteManager&);
 void menuInformes();
 void menuPrincipal();
 void presentacion();
@@ -34,7 +33,7 @@ int main() {
             case 1: empresas.menuEmpresas();  break;
             case 2: autopartes.menuAutopartes(); break;
             case 3: entregas.MenuEntrega();  break;
-            case 4: menuTipos(tipoAutopartes); break;
+            case 4: tipoAutopartes.menuTipoAutopartes(); break;
             case 5: menuInformes(); break;
             case 0: cout << "Hasta luego!\n"; break;
             default: cout << "Opcion invalida.\n"; system("pause");
@@ -43,34 +42,7 @@ int main() {
 
     return 0;
 }
-void menuTipos(TipoAutoparteManager& tm) {
-    int op;
-    do {
-        cout << "\n--- TIPOS DE AUTOPARTES ---\n";
-        cout << "1. Alta\n";
-        cout << "2. Modificar\n";
-        cout << "3. Buscar por ID\n";
-        cout << "4. Listar activos\n";
-        cout << "5. Listar inactivos\n";
-        cout << "6. Eliminar\n";
-        cout << "0. Volver\n";
-        cin >> op;
 
-        switch (op) {
-            case 1: tm.cargar(); break;
-            case 2: tm.modificar(); break;
-            case 3: tm.buscarPorID(); break;
-            case 4: tm.listar(); break;
-            case 5: tm.listarInactivos(); break;
-            case 6: tm.eliminar(); break;
-            case 0: break;
-            default: cout << "Opci¢n inv lida.\n";
-        }
-
-        system("pause");
-        system("cls");
-    } while (op != 0);
-}
 void menuInformes() {
     int opcion;
     do {
@@ -83,6 +55,7 @@ void menuInformes() {
         cout << "3 - Ranking de empresas (mayor cantidad de entregas)" << endl;
         cout << "4 - Ranking de empresas (mayor importe acumulado en entregas)" << endl;
         cout << "5 - Informe de entregas mensuales de una empresa" << endl;
+        cout << "6 - Informe de tipo de autopartes activas utilizadas en las autopartes activas" << endl;
         cout << "0 - Volver al menu principal" << endl;
         cout << endl;
 
@@ -121,6 +94,12 @@ void menuInformes() {
                 system("pause");
                 break;
             }
+            case 6:{
+                TipoAutoparteManager tipoMa;
+                tipoMa.InformeCantidadDeTiposAutopartesUtilizadas();
+                system("pause");
+                break;
+            }
             case 0:
                 break;
             default:
@@ -142,8 +121,8 @@ void presentacion(){
     cout << "> Profesor: Daniel Kloster" << endl;
     cout << endl;
     cout << "Alumnos: " << endl;
-    cout << "- Alumno1" << endl;
-    cout << "- Alumno2" << endl;
+    cout << "- Nicolas Strozzi" << endl;
+    cout << "- Gabriel Fernandez Alcaraz" << endl;
     cout << "- Alumno3" << endl;
     cout << "- Alumno4" << endl;
     cout << endl;

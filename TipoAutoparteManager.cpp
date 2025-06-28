@@ -4,6 +4,10 @@
 #include <iostream>
 using namespace std;
 
+//Includes utilizados para los informes
+#include "ArchivoAutopartes.h"
+#include "Autoparte.h"
+
 void TipoAutoparteManager::cargar() {
     int numero;
     string nombre;
@@ -68,13 +72,16 @@ void TipoAutoparteManager::cargar() {
     if (archivo.guardar(reg)) cout << "Guardado con exito." << endl;
     else cout << "Error al guardar." << endl;
 }
-
 void TipoAutoparteManager::listar() {
+
+    system("cls");
+
     ArchivoTipoAutoparte archivo;
     int total = archivo.contar();
     bool hayActivos = false;
 
-    cout << "=== LISTADO DE TIPOS DE AUTOPARTE ACTIVOS ===\n";
+    cout << "=== LISTADO DE TIPOS DE AUTOPARTE ACTIVOS ===" << endl;
+    cout << endl;
 
     for (int i = 0; i < total; i++) {
         TipoAutoparte reg = archivo.leer(i);
@@ -87,8 +94,9 @@ void TipoAutoparteManager::listar() {
     if (!hayActivos) {
         cout << "No hay tipos de autoparte activos registrados." << endl;
     }
-}
 
+    cout << endl;
+}
 void TipoAutoparteManager::listarInactivos() {
     ArchivoTipoAutoparte archivo;
     int total = archivo.contar();
@@ -108,7 +116,6 @@ void TipoAutoparteManager::listarInactivos() {
         cout << "No hay tipos de autoparte inactivos registrados." << endl;
     }
 }
-
 void TipoAutoparteManager::buscarPorID() {
     ArchivoTipoAutoparte archivo;
     int numero;
@@ -139,7 +146,6 @@ void TipoAutoparteManager::buscarPorID() {
         }
     }
 }
-
 void TipoAutoparteManager::modificar() {
     ArchivoTipoAutoparte archivo;
     int id;
@@ -173,7 +179,6 @@ void TipoAutoparteManager::modificar() {
         cout << "Error al modificar tipo de autoparte.\n";
     }
 }
-
 void TipoAutoparteManager::eliminar() {
     int numero;
     cout << "Numero de tipo de autoparte a eliminar: ";
@@ -196,4 +201,110 @@ void TipoAutoparteManager::eliminar() {
     }
 
     cout << "Tipo de autoparte no encontrado o ya inactivo." << endl;
+}
+void TipoAutoparteManager::menuTipoAutopartes(){
+    int op;
+    do {
+
+        cout << "#######################################" << endl;
+        cout << "          MENU TIPO AUTOPARTES" << endl;
+        cout << "#######################################" << endl;
+        cout << endl;
+        cout << "1. Dar de alta un tipo de autoparte" << endl;
+        cout << "2. Modificar un tipo de autoparte" << endl;
+        cout << "3. Buscar un tipo de autoparte por ID" << endl;
+        cout << "4. Listar tipos de autopartes dadas de ALTA" << endl;
+        cout << "5. Listar tipos de autopartes dadas de BAJA" << endl;
+        cout << "6. Eliminar un tipo de autoparte" << endl;
+        cout << "0. Volver al menu anterior" << endl;
+        cout << endl;
+
+        cout << "Seleccione una opcion: ";
+        cin >> op;
+
+        switch (op) {
+            case 1: cargar(); break;
+            case 2: modificar(); break;
+            case 3: buscarPorID(); break;
+            case 4: listar(); break;
+            case 5: listarInactivos(); break;
+            case 6: eliminar(); break;
+            case 0: break;
+            default: cout << "Opcion invalida.\n";
+        }
+
+        system("pause");
+        system("cls");
+
+    } while (op != 0);
+}
+void TipoAutoparteManager::InformeCantidadDeTiposAutopartesUtilizadas(){
+
+    system("cls");
+
+    std::cout << "#######################################" << std::endl;
+    std::cout << "Informe de cantidad de tipo de autopartes utilizadas en las autopartes activas" << std::endl;
+    std::cout << "#######################################" << std::endl;
+    std::cout << std::endl;
+
+    //Variables Autopartes
+    ArchivoAutopartes archAutopartes;
+    Autoparte regAutoparte;
+
+    //Variables TipoAutopartes
+    ArchivoTipoAutoparte archTipoAutopartes;
+    TipoAutoparte regTipoAutoparte;
+
+    int int_AcumuladorTipoAutopartes;
+
+    int int_CantidadRegistros_Autopartes;
+    int int_CantidadRegistros_TipoAutopartes;
+
+    int_CantidadRegistros_Autopartes = archAutopartes.contar();
+    int_CantidadRegistros_TipoAutopartes = archTipoAutopartes.contar();
+
+    //Error en caso de que no haya autopartes.
+    if(int_CantidadRegistros_Autopartes < 0){
+        cout << "No se encontraron autopartes registradas de momento." << endl;
+        cout << endl;
+        return;
+    }
+
+    //Error en caso de que no haya tipo de autopartes
+    if(int_CantidadRegistros_TipoAutopartes < 0){
+        cout << "No see encontraron tipos de autopartes registradas de momento" << endl;
+        cout << endl;
+        return;
+    }
+
+    //Recorro cada tipo de autoparte
+    for(int i = 0; i < int_CantidadRegistros_TipoAutopartes; i++){
+
+        int_AcumuladorTipoAutopartes = 0;
+        regTipoAutoparte = archTipoAutopartes.leer(i);
+
+        //Proceso unicamente los tipos de autopartes activos
+        if(regTipoAutoparte.getActivo()){
+
+            //Recorro cada autoparte
+            for(int j = 0; j < int_CantidadRegistros_Autopartes; j++){
+
+                regAutoparte = archAutopartes.leer(j);
+
+                //Proceso unicamente las autopartes activas y mismo numero de tipoautoparte
+                if(regAutoparte.getActivo() && regAutoparte.getTipo() == regTipoAutoparte.getNumero()){
+                    int_AcumuladorTipoAutopartes++;
+                }
+            }
+
+            cout << "> Tipo Autoparte: " << regTipoAutoparte.getNombre();
+            cout << " (ID " << regTipoAutoparte.getNumero() << ")" << endl;
+            if(int_AcumuladorTipoAutopartes==1){
+                cout << "- Utilizado " << int_AcumuladorTipoAutopartes << " vez." << endl;
+            }else{
+                cout  <<"- Utilizado " << int_AcumuladorTipoAutopartes << " veces." << endl;
+            }
+            cout << endl;
+        }
+    }
 }

@@ -9,6 +9,8 @@ public:
     void buscarPorID();
     void modificar();
     void eliminar();
+    void menuTipoAutopartes();
+    void InformeCantidadDeTiposAutopartesUtilizadas();
 };
 
 #endif
