@@ -109,6 +109,21 @@ void menuInformes() {
 }
 void presentacion(){
 
+
+    cout << endl;
+    cout << "   |                     ##     ##  #    #  ##    # ####     ####                            |   " << endl;
+    cout << "   |                     # #   # #  #    #  # #   # #   #   #    #                           |   " << endl;
+    cout << "   |                     #  ###  #  #    #  #  #  # #    # #      #                          |   " << endl;
+    cout << "   |                     #   #   #  #    #  #   # # #   #   #    #                           |   " << endl;
+    cout << "   |                     #       #   ####   #    ## ####     ####                            |   " << endl;
+    cout << "   |                                                                                         |   " << endl;
+    cout << "   |      ###     #    #  #########   ####    ####    ###    ####  ######### ####  ######    |   " << endl;
+    cout << "   |    ##   ##   #    #      #      #    #   #   # ##   ##  #   #     #     #    #          |   " << endl;
+    cout << "   |    #######   #    #      #     #      #  ####  #######  ####      #     #### #######    |   " << endl;
+    cout << "   |    #     #   #    #      #      #    #   #     #     #  #  #      #     #          #    |   " << endl;
+    cout << "   |    #     #    ####       #       ####    #     #     #  #   #     #     #### #######    |   " << endl;
+    cout << endl;
+
     cout << endl;
     cout << "####################################" << endl;
     cout << "  Universidad Tecnologica Nacional" << endl;
@@ -120,7 +135,7 @@ void presentacion(){
     cout << "> Materia: Programacion 2" << endl;
     cout << "> Profesor: Daniel Kloster" << endl;
     cout << endl;
-    cout << "Alumnos: " << endl;
+    cout << "Alumnos:" << endl;
     cout << "- Franco Dario Fioravanti" << endl;
     cout << "- Gabriel Agustin Fernandez Alcaraz" << endl;
     cout << "- Nicolas Ezequiel Strozzi" << endl;
