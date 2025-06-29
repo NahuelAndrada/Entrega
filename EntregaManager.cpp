@@ -338,8 +338,6 @@ void EntregasManager::eliminarPorId(int id) {
 }
 
 }
-
-
 void EntregasManager::reactivarentrega(int id) {
     EntregaArchivo archivo;
     ArchivoAutopartes archivoautoparte;
@@ -393,7 +391,6 @@ void EntregasManager::reactivarentrega(int id) {
 }
 
 }
-
 void EntregasManager::modificareentregaporid(){
 
     system("cls");
@@ -615,10 +612,6 @@ void EntregasManager::modificareentregaporid(){
         }
     }
 }
-
-
-
-
 void EntregasManager::MenuEntrega(){
     EntregasManager manager;
     int opcion;
@@ -701,71 +694,5 @@ void EntregasManager::MenuEntrega(){
         }
 
     } while (opcion != 0);
-}
-
-
-
-void EntregasManager::rankingAutopartes() {
-    const int MAX_AUTOPARTES = 100;
-    int ids[MAX_AUTOPARTES];            // Almacena los ID de autopartes
-    int cantidades[MAX_AUTOPARTES];     // Acumula cantidad entregada por ID
-    int totalIDs = 0;
-
-    EntregaArchivo archEnt;
-    int cantidadReg = archEnt.getCantidadRegistros();  // Metodo correcto del archivo
-
-    for (int i = 0; i < cantidadReg; i++) {
-        Entrega reg = archEnt.leer(i);
-        if (!reg.getActivo()) continue;
-
-        int id = reg.getNumeroAutoparte();
-        int cant = reg.getCantidadUnidades();
-
-        // Buscar si ya esta ese ID en el vector
-        int pos = -1;
-        for (int j = 0; j < totalIDs; j++) {
-            if (ids[j] == id) {
-                pos = j;
-                break;
-            }
-        }
-
-        if (pos >= 0) {
-            cantidades[pos] += cant;
-        } else {
-            ids[totalIDs] = id;
-            cantidades[totalIDs] = cant;
-            totalIDs++;
-        }
-    }
-
-    // Ordenar por cantidad de mayor a menor (burbuja)
-    for (int i = 0; i < totalIDs - 1; i++) {
-        for (int j = i + 1; j < totalIDs; j++) {
-            if (cantidades[j] > cantidades[i]) {
-
-                int tempCant = cantidades[i];
-                cantidades[i] = cantidades[j];
-                cantidades[j] = tempCant;
-
-                int tempId = ids[i];
-                ids[i] = ids[j];
-                ids[j] = tempId;
-            }
-        }
-    }
-
-    // Mostrar resultados
-    ArchivoAutopartes archAuto;
-    cout << "\n--- RANKING DE AUTOPARTES MAS ENTREGADAS ---\n";
-    for (int i = 0; i < totalIDs; i++) {
-        int pos = archAuto.buscarPorNumero(ids[i]);
-        if (pos >= 0) {
-            Autoparte reg = archAuto.leer(pos);
-            cout << i + 1 << ". " << reg.getNombre() << " (ID: " << ids[i] << ") - Total entregado: " << cantidades[i] << endl;
-        } else {
-            cout << i + 1 << ". " << "ID desconocido (" << ids[i] << ") - Total entregado: " << cantidades[i] << endl;
-        }
-    }
 }
 

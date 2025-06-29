@@ -356,76 +356,119 @@ void AutopartesManager::menuAutopartes() {
         system("pause");
     } while (opcion != 0);
 }
-
 void AutopartesManager::rankingAutopartes() {
+
+    system("cls");
+    cout << "--- RANKING DE AUTOPARTES MAS ENTREGADAS ---" << endl;
+    cout << endl;
+
     ArchivoAutopartes archAutoparte;
     EntregaArchivo archEntrega;
 
-    int totalAutopartes = archAutoparte.contar();
-    int* cantidades = new int[totalAutopartes]{}; //Vectores de memoria dinamica
-    int* indices = new int[totalAutopartes]; //Vectores de memoria dinamica
+    Autoparte regAutoparte;
+    Entrega regEntrega;
 
+    int int_CantidadAutopartesTotales = archAutoparte.contar();
+    int int_CantidadEntregasTotales = archEntrega.getCantidadRegistros();
 
-    for (int i = 0; i < totalAutopartes; i++) {
-        indices[i] = i;
+    if(int_CantidadAutopartesTotales == 0){
+        cout << "No se encontraron autopartes" << endl;
+        return;
     }
 
-    int totalEntregas = archEntrega.getCantidadRegistros();
-    for (int i = 0; i < totalEntregas; i++) {
-        Entrega reg = archEntrega.leer(i);
-        if (reg.getActivo()) {
-            int pos = archAutoparte.buscarPorNumero(reg.getNumeroAutoparte());
-            if (pos >= 0) {
-                cantidades[pos] += reg.getCantidadUnidades();
+    int* vectorAutopartes = new int[int_CantidadAutopartesTotales]{};
+    int* vectorEntregasAu = new int[int_CantidadAutopartesTotales]{};
+    //cout << endl;
+
+    for(int i = 0; i < int_CantidadAutopartesTotales; i++){
+        regAutoparte = archAutoparte.leer(i);
+        if(regAutoparte.getActivo()){
+            //cout << "Autoparte numero " << regAutoparte.getNumero() << " asignado al indice " << i << endl;
+            vectorAutopartes[i] = regAutoparte.getNumero();
+        }
+    }
+
+    //cout << endl;
+    //AHORA RECORRO CADA ENTREGA Y VOY GUARDANDO
+    for(int k = 0; k < int_CantidadEntregasTotales; k++){
+        regEntrega = archEntrega.leer(k);
+        if(regEntrega.getActivo()){
+            //Busco en el vector de entregas los que coincidan con su numero de autoparte
+            for(int l = 0; l < int_CantidadAutopartesTotales; l++){
+                if(regEntrega.getNumeroAutoparte() == vectorAutopartes[l]){
+                    //cout << "Se encontro la autoparte " << regEntrega.getNumeroAutoparte() << " en 'vectorAutopartes' en el indice " << l << "." << endl;
+                    //cout << "Esta entrega tiene " << regEntrega.getCantidadUnidades() << " unidades entregadas." << endl;
+                    vectorEntregasAu[l] += regEntrega.getCantidadUnidades();
+                }
             }
         }
     }
 
+    //cout << endl;
 
-    for (int i = 0; i < totalAutopartes - 1; i++) {
-        for (int j = 0; j < totalAutopartes - i - 1; j++) {
-            if (cantidades[indices[j]] < cantidades[indices[j + 1]]) {
-                int temp = indices[j];
-                indices[j] = indices[j + 1];
-                indices[j + 1] = temp;
+    /*for(int m = 0; m < int_CantidadAutopartesTotales; m++){
+        cout << "Autoparte: " << vectorAutopartes[m] << " | " << " Cantidad entregas: " << vectorEntregasAu[m] << endl;
+    }*/
+
+    //cout << endl;
+    //cout << "Ordenando..." << endl;
+    //cout << endl;
+
+    int tempAutoparteNum;
+    int tempAutoparteCan;
+
+    //Ordeno resultados con el metodo de ordenamiento burbuja
+    for(int i = 0; i < int_CantidadAutopartesTotales; i++){
+        for(int j = i+1; j < int_CantidadAutopartesTotales; j++){
+
+            if(vectorEntregasAu[j]>vectorEntregasAu[i]){
+
+                tempAutoparteNum = vectorAutopartes[i];
+                tempAutoparteCan = vectorEntregasAu[i];
+
+                vectorAutopartes[i] = vectorAutopartes[j];
+                vectorEntregasAu[i] = vectorEntregasAu[j];
+
+                vectorAutopartes[j] = tempAutoparteNum;
+                vectorEntregasAu[j] = tempAutoparteCan;
             }
         }
     }
 
-    cout << "--- RANKING DE AUTOPARTES MAS ENTREGADAS ---\n";
-
-    for (int i = 0; i < totalAutopartes; i++) {
-        int idx = indices[i];
-        if (cantidades[idx] > 0) {
-            Autoparte autoReg = archAutoparte.leer(idx);
-            cout << i + 1 << ". " << autoReg.getNombre()
-                 << " (ID: " << autoReg.getNumero()
-                 << ") - Total entregado: " << cantidades[idx] << "\n";
+    for(int m = 0; m < int_CantidadAutopartesTotales; m++){
+        if(vectorAutopartes[m]>0){
+            cout << "Autoparte: " << vectorAutopartes[m] << " | " << " Cantidad entregas: " << vectorEntregasAu[m] << endl;
         }
     }
 
-    delete[] cantidades; //Limpiar memoria usada por vectores dinamicos
-    delete[] indices;    //Limpiar memoria usada por vectores dinamicos
+    delete[] vectorAutopartes;
+    delete[] vectorEntregasAu;
+    cout << endl;
 
-    system("pause");
 }
-
-
 void AutopartesManager::informeStockBajo() {
+
     ArchivoAutopartes arch;
-    const int STOCK_MINIMO = 10;
+    int CantidadMaxima;
+
+    system("cls");
+    cout << "--- AUTOPARTES CON STOCK BAJO ---" << endl;
+    cout << endl;
+    cout << "Ingrese la cantidad maxima de stock a buscar: ";
+
+    cin >> CantidadMaxima;
+    cin.ignore();
+
     int total = arch.contar();
 
-    cout << "--- AUTOPARTES CON STOCK BAJO ---\n";
+
 
     for(int i = 0; i < total; i++) {
         Autoparte reg = arch.leer(i);
-        if(reg.getActivo() && reg.getStock() < STOCK_MINIMO) {
+        if(reg.getActivo() && reg.getStock() <= CantidadMaxima) {
             cout << "ID: " << reg.getNumero()
                  << " - Nombre: " << reg.getNombre()
                  << " - Stock: " << reg.getStock() << "\n";
         }
     }
-
-    system("pause");
 }

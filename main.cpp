@@ -42,7 +42,6 @@ int main() {
 
     return 0;
 }
-
 void menuInformes() {
     int opcion;
     do {
@@ -109,6 +108,7 @@ void menuInformes() {
     } while (opcion != 0);
 }
 void presentacion(){
+
     cout << endl;
     cout << "####################################" << endl;
     cout << "  Universidad Tecnologica Nacional" << endl;
@@ -121,10 +121,10 @@ void presentacion(){
     cout << "> Profesor: Daniel Kloster" << endl;
     cout << endl;
     cout << "Alumnos: " << endl;
-    cout << "- Nicolas Strozzi" << endl;
-    cout << "- Gabriel Fernandez Alcaraz" << endl;
-    cout << "- Alumno3" << endl;
-    cout << "- Alumno4" << endl;
+    cout << "- Franco Dario Fioravanti" << endl;
+    cout << "- Gabriel Agustin Fernandez Alcaraz" << endl;
+    cout << "- Nicolas Ezequiel Strozzi" << endl;
+    cout << "- Nahuel Emiliano Andrada" << endl;
     cout << endl;
 }
 void menuPrincipal(){

@@ -14,7 +14,7 @@ public:
     void eliminarPorId(int id);
     void reactivarentrega(int id);
     void MenuEntrega();
-    void rankingAutopartes();
+    //void rankingAutopartes();
     void modificareentregaporid();
 };
 
