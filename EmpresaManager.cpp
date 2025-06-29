@@ -598,16 +598,15 @@ void EmpresaManager::informeEmpresasConMasEntregas(){
     Entrega regEntrega;
     Empresa regEmpresa;
 
-    const int MAX_EMPRESAS = 999;
-
-    std::string EmpresaCUIT[MAX_EMPRESAS]; //Vec que guarda los CUITs de las empresas encontradas.
-    int EmpresaENTREGAS[MAX_EMPRESAS];     //Vec que guarda y acumula las entregas de las empresas encontradas.
-
     std::string CUIT;
-
     int totalCUITs = 0;
 
     int cantidadEntregas = archEntrega.getCantidadRegistros();
+
+    //Vec que guarda los CUITs de las empresas encontradas.
+    std::string* EmpresaCUIT = new std::string[cantidadEntregas];
+    //Vec que guarda y acumula las entregas de las empresas encontradas.
+    int* EmpresaENTREGAS = new int[cantidadEntregas]{};
 
     for(int i = 0; i < cantidadEntregas; i++){
 
@@ -676,6 +675,10 @@ void EmpresaManager::informeEmpresasConMasEntregas(){
         std::cout << ">> Cantidad de entregas: " << EmpresaENTREGAS[i] << std::endl;
         std::cout << std::endl;
     }
+
+    delete[] EmpresaCUIT;
+    delete[] EmpresaENTREGAS;
+
 }
 void EmpresaManager::informeEmpresasConMasImporte(){
 
@@ -692,17 +695,17 @@ void EmpresaManager::informeEmpresasConMasImporte(){
     Entrega regEntrega;
     Empresa regEmpresa;
 
-    const int MAX_EMPRESAS = 999;
-
-    std::string EmpresaCUIT[MAX_EMPRESAS]; //Vec que guarda los CUITs de las empresas encontradas.
-    int EmpresaIMPORTEACUM[MAX_EMPRESAS];  //Vec que guarda y acumula las entregas de las empresas encontradas.
-
     std::string CUIT;
-    int Importe;
+    float Importe;
 
     int totalCUITs = 0;
 
     int cantidadEntregas = archEntrega.getCantidadRegistros();
+
+    //Vec que guarda los CUITs de las empresas encontradas.
+    std::string* EmpresaCUIT = new std::string[cantidadEntregas];
+    //Vec que guarda y acumula las entregas de las empresas encontradas.
+    float* EmpresaIMPORTEACUM = new float[cantidadEntregas]{};
 
     for(int i = 0; i < cantidadEntregas; i++){
 
@@ -728,14 +731,14 @@ void EmpresaManager::informeEmpresasConMasImporte(){
             EmpresaIMPORTEACUM[pos] += Importe;
         }else{
             EmpresaCUIT[totalCUITs] = CUIT;
-            EmpresaIMPORTEACUM[totalCUITs] = Importe;;
+            EmpresaIMPORTEACUM[totalCUITs] = Importe;
             totalCUITs++;
         }
 
     }
 
     std::string tempCUIT;
-    int tempImporteAcum;
+    float tempImporteAcum;
 
     //Ordeno resultados con el metodo de ordenamiento burbuja
     for(int i = 0; i < totalCUITs; i++){
@@ -773,6 +776,10 @@ void EmpresaManager::informeEmpresasConMasImporte(){
         std::cout << ">> Importe acumulado: $" << EmpresaIMPORTEACUM[i] << std::endl;
         std::cout << std::endl;
     }
+
+    delete[] EmpresaCUIT;
+    delete[] EmpresaIMPORTEACUM;
+
 }
 void EmpresaManager::informedeEntregasMensualesPorAnio(){
 

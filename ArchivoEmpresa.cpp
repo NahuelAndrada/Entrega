@@ -5,7 +5,7 @@ ArchivoEmpresa::ArchivoEmpresa(){
 }
 int ArchivoEmpresa::get_CantidadRegistros(){
 
-    int tamRegistro, total, cantidad;
+    int total, cantidad;
     FILE* pFile;
 
     pFile = fopen(_nombreArchivo.c_str(), "rb");

@@ -3,11 +3,9 @@
 EntregaArchivo::EntregaArchivo(){
   _nombreArchivo = "Entregas.dat";
 }
-
 EntregaArchivo::EntregaArchivo(std::string nombreArchivo){
   _nombreArchivo = nombreArchivo;
 }
-
 bool EntregaArchivo::guardar(Entrega registro){
   FILE *pFile;
   bool result;
@@ -24,7 +22,6 @@ bool EntregaArchivo::guardar(Entrega registro){
 
   return result;
 }
-
 bool EntregaArchivo::guardar(Entrega registro, int posicion){
 
    FILE *pFile;
@@ -44,9 +41,8 @@ bool EntregaArchivo::guardar(Entrega registro, int posicion){
    return result;
 
 }
-
 int EntregaArchivo::getCantidadRegistros(){
-  int tamRegistro, total, cantidad;
+  int total, cantidad;
   FILE* pFile;
 
   pFile = fopen(_nombreArchivo.c_str(), "rb");
@@ -65,8 +61,6 @@ int EntregaArchivo::getCantidadRegistros(){
 
   return cantidad;
 }
-
-
 Entrega EntregaArchivo::leer(int pos){
   FILE *pFile;
   Entrega reg;
@@ -85,7 +79,6 @@ Entrega EntregaArchivo::leer(int pos){
 
   return reg;
 }
-
 int EntregaArchivo::buscar(int idEntrega){
    FILE *pFile;
    Entrega reg;
