@@ -362,8 +362,8 @@ void AutopartesManager::rankingAutopartes() {
     EntregaArchivo archEntrega;
 
     int totalAutopartes = archAutoparte.contar();
-    int cantidades[totalAutopartes]{};
-    int indices[totalAutopartes]{};
+    int* cantidades = new int[totalAutopartes]{}; //Vectores de memoria dinamica
+    int* indices = new int[totalAutopartes]; //Vectores de memoria dinamica
 
 
     for (int i = 0; i < totalAutopartes; i++) {
@@ -403,6 +403,9 @@ void AutopartesManager::rankingAutopartes() {
                  << ") - Total entregado: " << cantidades[idx] << "\n";
         }
     }
+
+    delete[] cantidades; //Limpiar memoria usada por vectores dinamicos
+    delete[] indices;    //Limpiar memoria usada por vectores dinamicos
 
     system("pause");
 }
