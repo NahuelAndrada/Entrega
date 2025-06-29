@@ -56,6 +56,8 @@ bool Fecha::AnioValido(int anio){
 }
 bool Fecha::Validarfecha(int dia, int mes, int anio){
 
+    if (anio < 1900 || mes < 1 || mes > 12 || dia < 1) return false;
+
     int diasPorMes[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
     if ((anio % 4 == 0 && anio % 100 != 0) || (anio % 400 == 0)) {

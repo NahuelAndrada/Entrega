@@ -3,6 +3,7 @@
 #include "EntregaArchivo.h"
 #include "ArchivoAutopartes.h"
 #include "EmpresaManager.h"
+#include "ArchivoEmpresa.h"
 
 using namespace std;
 
@@ -392,6 +393,232 @@ void EntregasManager::reactivarentrega(int id) {
 }
 
 }
+
+void EntregasManager::modificareentregaporid(){
+
+    system("cls");
+    EntregaArchivo Archientrega;
+    Entrega RegEntrega;
+    ArchivoAutopartes archAutoparte;
+    EmpresaManager Empresa;
+        cout << "#######################################" << endl;
+        cout << "         MODIFICAR EMPRESAS     " <<endl;
+        cout << "#######################################" << endl;
+        cout <<endl;
+
+        int id;
+        cout << "Ingrese el ID de la entrega: ";
+        cin >> id;
+
+    int pos = Archientrega.buscar(id);
+
+    if (pos == -1) {
+        cout << "No se encontró ninguna entrega con ese ID." << std::endl;
+        return;
+    }
+    else{
+        RegEntrega=Archientrega.leer(pos);
+        cout << endl;
+        cout << ">> Entrega encontrada ID (" <<RegEntrega.getIdEntrega() << "): " <<endl;
+        cout << "Que dato te gustaria modificar?" << std::endl;
+        cout << endl;
+        cout << "1) NumeroAutoparte:     " <<RegEntrega.getNumeroAutoparte()<< endl;
+        cout << "2) Cuit Cliente:      " <<RegEntrega.getCuitEmpresa()<< endl;
+        Fecha f = RegEntrega.getFechaEntrega();
+        cout << "3) Fecha:      " << f.getDia() << "/" << f.getMes() << "/" << f.getAnio() << endl;
+        cout << "4) Cantidad Unidades:    " <<RegEntrega.getCantidadUnidades()<< endl;
+        cout << "5) Importe:     " <<RegEntrega.getImporte()<< endl;
+        cout << endl;
+
+        int opcion= -1;
+        while(opcion != 0){
+
+            cout << "\nIngrese la opción deseada (0 para cancelar): ";
+            cin >> opcion;
+
+
+        switch(opcion){
+            case 1:{
+                int nuevoNumero;
+                cout << "Ingrese el nuevo número de autoparte: ";
+                cin >> nuevoNumero;
+
+
+                int PosAutoParte = archAutoparte.buscarPorNumero(nuevoNumero);
+
+                        if (PosAutoParte == -1) {
+                            cout << ">> No existe una autoparte con ese número." << endl;
+                            break;
+                        }
+
+                int numeroAnterior = RegEntrega.getNumeroAutoparte();
+                int unidadesEntregadas = RegEntrega.getCantidadUnidades();
+
+                    if (numeroAnterior == nuevoNumero) {
+                        cout << ">> El número ingresado es el mismo que el actual." << endl;
+                        break;
+                        }
+
+                int posAnterior = archAutoparte.buscarPorNumero(numeroAnterior);
+                Autoparte autoParteAnterior = archAutoparte.leer(posAnterior);
+                Autoparte autoParteNueva = archAutoparte.leer(PosAutoParte);
+                int StockAutAnt= autoParteAnterior.getStock()+unidadesEntregadas;
+                int StockAutNuev= autoParteNueva.getStock()-unidadesEntregadas;
+
+
+                autoParteAnterior.setStock(StockAutAnt);
+                autoParteNueva.setStock(StockAutNuev);
+
+
+                if (StockAutNuev < 0) {
+                    cout << ">> No hay suficiente stock en la nueva autoparte para realizar el cambio." << endl;
+                    cout << ">>Stock de autoparte a modificar: " <<autoParteNueva.getStock()<< endl;
+                    cout << ">>cantidad de esta entrega: " <<unidadesEntregadas<< endl;
+
+                        break;
+                        }
+
+
+                    if (!archAutoparte.modificar(posAnterior,autoParteAnterior) || !archAutoparte.modificar(PosAutoParte,autoParteNueva)) {
+                    cout << ">> ERROR al actualizar el stock de autopartes." << endl;
+                    break;
+                        }
+
+
+                    RegEntrega.setNumeroAutoparte(nuevoNumero);
+                    if (Archientrega.guardar(RegEntrega, pos)) {
+                    cout << ">> Entrega actualizada correctamente en el archivo." << endl;
+                    }
+                    else {
+                    cout << ">> Error al guardar la entrega modificada." << endl;
+                    }
+                    break;
+            }
+                    case 2: {
+                        char nuevoCuit[20];
+                        cout << "Ingrese el nuevo CUIT de la empresa: ";
+                        cin.ignore();
+                        cin.getline(nuevoCuit, 20);
+
+                        int posEmpresa = Empresa.buscarEmpresaPorCUIT(nuevoCuit);
+                        if (posEmpresa == -1) {
+                            cout << ">> No existe una empresa con ese CUIT." << endl;
+                            break;
+                        }
+
+                        RegEntrega.setCuitEmpresa(nuevoCuit);
+
+                        if (Archientrega.guardar(RegEntrega, pos)) {
+                            cout << ">> CUIT de empresa actualizado correctamente en la entrega." << endl;
+                        } else {
+                            cout << ">> Error al guardar la entrega modificada." << endl;
+                        }
+
+                        break;
+                    }
+                    case 3: {
+                        int dia, mes, anio;
+
+                        cout << "Ingrese el nuevo día de entrega: ";
+                        cin >> dia;
+
+                        cout << "Ingrese el nuevo mes de entrega: ";
+                        cin >> mes;
+
+                        cout << "Ingrese el nuevo año de entrega: ";
+                        cin >> anio;
+
+                        Fecha nuevaFecha;
+                        if (!nuevaFecha.Validarfecha(dia, mes, anio)) {
+                        cout << ">> Fecha inválida. Asegurate de ingresar un día, mes y anio correctos." << endl;
+                        break;
+                        }
+
+
+                        nuevaFecha.setDia(dia);
+                        nuevaFecha.setMes(mes);
+                        nuevaFecha.setAnio(anio);
+
+                        RegEntrega.setFechaEntrega(nuevaFecha);
+
+                        if (Archientrega.guardar(RegEntrega, pos)) {
+                            cout << ">> Fecha de entrega actualizada correctamente." << endl;
+                        } else {
+                            cout << ">> Error al guardar la entrega modificada." << endl;
+                        }
+
+                        break;
+                    }
+
+                    case 4: {
+                        int nuevaCantidad;
+                        cout << "Ingrese la nueva cantidad de unidades entregadas: ";
+                        cin >> nuevaCantidad;
+
+                        if (nuevaCantidad <= 0) {
+                            cout << ">> La cantidad debe ser mayor que cero." << endl;
+                            break;
+                        }
+                        int NumeroAutoparte=RegEntrega.getNumeroAutoparte();
+                        int cantidadAnterior = RegEntrega.getCantidadUnidades();
+                        int diferencia = nuevaCantidad - cantidadAnterior;
+                        int posAutoparte = archAutoparte.buscarPorNumero(NumeroAutoparte);
+
+                        Autoparte Regautoparte = archAutoparte.leer(posAutoparte);
+                        int stockActual = Regautoparte.getStock();
+
+                        if (diferencia > 0 && stockActual < diferencia) {
+                            cout << ">> No hay suficiente stock para aumentar la cantidad entregada." << endl;
+                            cout << ">> Stock actual: " << stockActual << " | Necesario: " << diferencia << endl;
+                            break;
+                        }
+
+
+                        Regautoparte.setStock(stockActual - diferencia);
+                        if (!archAutoparte.modificar(posAutoparte, Regautoparte)) {
+                            cout << ">> Error al actualizar el stock de la autoparte." << endl;
+                            break;
+                        }
+
+
+                        RegEntrega.setCantidadUnidades(nuevaCantidad);
+
+                        if (Archientrega.guardar(RegEntrega, pos)) {
+                            cout << ">> Cantidad de unidades actualizada correctamente." << endl;
+                        } else {
+                            cout << ">> Error al guardar la entrega modificada." << endl;
+                        }
+
+                        break;
+                    }
+                    case 5: {
+                        float nuevoImporte;
+                        cout << "Ingrese el nuevo importe de la entrega: $";
+                        cin >> nuevoImporte;
+
+                        if (nuevoImporte <= 0) {
+                            cout << ">> El importe debe ser mayor a cero." << endl;
+                            break;
+                        }
+
+                        RegEntrega.setImporte(nuevoImporte);
+
+                        if (Archientrega.guardar(RegEntrega, pos)) {
+                            cout << ">> Importe actualizado correctamente." << endl;
+                        } else {
+                            cout << ">> Error al guardar la entrega modificada." << endl;
+                        }
+
+                        break;
+                    }
+            }
+        }
+    }
+}
+
+
+
+
 void EntregasManager::MenuEntrega(){
     EntregasManager manager;
     int opcion;
