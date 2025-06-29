@@ -32,8 +32,8 @@ void Autoparte::setTipo(int tipo){
     _tipo = tipo;
 }
 void Autoparte::setStock(int stock){
-     if (stock >= 0) _stock = stock;
-    else cout << "Stock inválido (debe ser >= 0)\n";;
+    _stock = stock;
+
 }
 void Autoparte::setActivo(bool activo){
     _activo = activo;

@@ -136,7 +136,6 @@ void EntregasManager::cargar() {
     cout<<"el stock actual es: "<<nuevoStock<<endl;
     reg.setCantidadUnidades(cantidad);
 
-
     cout << "Importe total: ";
     cin >> importe;
     reg.setImporte(importe);
@@ -391,7 +390,7 @@ void EntregasManager::reactivarentrega(int id) {
 }
 
 }
-void EntregasManager::modificareentregaporid(){
+void EntregasManager::modificareentregaporid(int id){
 
     system("cls");
     EntregaArchivo Archientrega;
@@ -403,9 +402,6 @@ void EntregasManager::modificareentregaporid(){
         cout << "#######################################" << endl;
         cout <<endl;
 
-        int id;
-        cout << "Ingrese el ID de la entrega: ";
-        cin >> id;
 
     int pos = Archientrega.buscar(id);
 
@@ -419,12 +415,12 @@ void EntregasManager::modificareentregaporid(){
         cout << ">> Entrega encontrada ID (" <<RegEntrega.getIdEntrega() << "): " <<endl;
         cout << "Que dato te gustaria modificar?" << std::endl;
         cout << endl;
-        cout << "1) NumeroAutoparte:     " <<RegEntrega.getNumeroAutoparte()<< endl;
-        cout << "2) Cuit Cliente:      " <<RegEntrega.getCuitEmpresa()<< endl;
+        cout << "1) NumeroAutoparte: " <<RegEntrega.getNumeroAutoparte()<< endl;
+        cout << "2) Cuit Cliente: " <<RegEntrega.getCuitEmpresa()<< endl;
         Fecha f = RegEntrega.getFechaEntrega();
-        cout << "3) Fecha:      " << f.getDia() << "/" << f.getMes() << "/" << f.getAnio() << endl;
-        cout << "4) Cantidad Unidades:    " <<RegEntrega.getCantidadUnidades()<< endl;
-        cout << "5) Importe:     " <<RegEntrega.getImporte()<< endl;
+        cout << "3) Fecha: " << f.getDia() << "/" << f.getMes() << "/" << f.getAnio() << endl;
+        cout << "4) Cantidad Unidades: " <<RegEntrega.getCantidadUnidades()<< endl;
+        cout << "5) Importe: "<<RegEntrega.getImporte()<< endl;
         cout << endl;
 
         int opcion= -1;
@@ -444,7 +440,7 @@ void EntregasManager::modificareentregaporid(){
                 int PosAutoParte = archAutoparte.buscarPorNumero(nuevoNumero);
 
                         if (PosAutoParte == -1) {
-                            cout << ">> No existe una autoparte con ese número." << endl;
+                            cout << ">> No existe una autoparte con ese numero." << endl;
                             break;
                         }
 
@@ -625,6 +621,7 @@ void EntregasManager::MenuEntrega(){
         cout << "5. Mostrar entregas por rango de fechas" << endl;
         cout << "6. Eliminar entrega por ID" << endl;
         cout << "7. reactivar entrega por ID" << endl;
+        cout << "8. modificar entrega por ID" << endl;
         cout << "0. Salir" << endl;
         cout << "Seleccione una opción: ";
         cin >> opcion;
@@ -684,6 +681,13 @@ void EntregasManager::MenuEntrega(){
             cout << "Ingrese ID de entrega a reactivar: ";
             cin >> id;
             manager.reactivarentrega(id);
+            break;
+        }
+        case 8:{
+            int id;
+            cout << "Ingrese ID de entrega a Modificar: ";
+            cin >> id;
+            manager.modificareentregaporid(id);
             break;
         }
         case 0:
