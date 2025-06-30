@@ -867,7 +867,7 @@ void EmpresaManager::informedeEntregasMensualesPorAnio(){
                 //Extraigo fecha de la entrega
                 fecha = regEntrega.getFechaEntrega();
                 if(fecha.getAnio() == in_anio && (fecha.getMes() >= 1 && fecha.getMes() <= 12)){
-                    entregasMensuales[fecha.getMes()] += 1;
+                    entregasMensuales[fecha.getMes()-1] += 1;
                     cantidadEntregasAnualesTotales++;
                 }
 
