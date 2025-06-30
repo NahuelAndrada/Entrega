@@ -266,8 +266,8 @@ void EmpresaManager::buscarPorParametroEspecifico(){
 
         if(cantidadRegistro == 0){
             std::cout << std::endl;
-            std::cout << "No se encontraron registros." << std::endl;
-            std::cout << std::endl;
+            std::cout << "No se encontraron empresas registradas." << std::endl;
+            return;
         }else{
             std::cout << std::endl;
             std::cout << "RESULTADOS: " << std::endl;
@@ -451,15 +451,21 @@ void EmpresaManager::dardebajarEmpresa(){
 
     int posicionEmpresa = buscarEmpresaPorCUIT(in_CUIT);
     if(posicionEmpresa == -1){
-        std::cout << "No se encontro ninguna empresa con ese CUIT.";
+        std::cout << std::endl;
+        std::cout << ">> No se encontro ninguna empresa con ese CUIT.";
+        std::cout << std::endl;
     }else{
         Empresa registro = archEmpresa.leerEmpresa(posicionEmpresa);
         if(registro.get_Activo()){
             registro.set_Activo(false);
             archEmpresa.guardarEmpresa(registro,posicionEmpresa);
-            std::cout << "Empresa dada de baja con exito." << std::endl;
+            std::cout << std::endl;
+            std::cout << ">> Empresa dada de baja con exito." << std::endl;
+            std::cout << std::endl;
         }else{
-            std::cout << "La empresa ya se encuentra dada de baja." << std::endl;
+            std::cout << std::endl;
+            std::cout << ">> La empresa ya se encuentra dada de baja." << std::endl;
+            std::cout << std::endl;
         }
     }
 }
@@ -603,6 +609,12 @@ void EmpresaManager::informeEmpresasConMasEntregas(){
 
     int cantidadEntregas = archEntrega.getCantidadRegistros();
 
+    if(cantidadEntregas==0){
+        std::cout << ">> No se encontraron entregas registradas en este momento." << std::endl;
+        std::cout << std::endl;
+        return;
+    }
+
     //Vec que guarda los CUITs de las empresas encontradas.
     std::string* EmpresaCUIT = new std::string[cantidadEntregas];
     //Vec que guarda y acumula las entregas de las empresas encontradas.
@@ -701,6 +713,12 @@ void EmpresaManager::informeEmpresasConMasImporte(){
     int totalCUITs = 0;
 
     int cantidadEntregas = archEntrega.getCantidadRegistros();
+
+    if(cantidadEntregas==0){
+        std::cout << ">> No se encontraron entregas registradas en este momento." << std::endl;
+        std::cout << std::endl;
+        return;
+    }
 
     //Vec que guarda los CUITs de las empresas encontradas.
     std::string* EmpresaCUIT = new std::string[cantidadEntregas];
@@ -801,6 +819,12 @@ void EmpresaManager::informedeEntregasMensualesPorAnio(){
     std::cout << "#######################################" << std::endl;
     std::cout << std::endl;
 
+    if(archEmpresa.get_CantidadRegistros() == 0){
+        std::cout << "No se encontraron empresas registradas." << std::endl;
+        std::cout << std::endl;
+        return;
+    };
+
     std::string in_CUITEmpresa;
     std::string str_NombreEmpresa;
     int in_posEmpresa;
@@ -817,6 +841,7 @@ void EmpresaManager::informedeEntregasMensualesPorAnio(){
     if(cantidadEntregasTotales == 0){
         std::cout << "No hay entregas registradas en este momento." << std::endl;
         std::cout << std::endl;
+        return;
     }
 
     if(in_posEmpresa>=0){

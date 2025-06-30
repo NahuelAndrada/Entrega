@@ -8,6 +8,9 @@
 using namespace std;
 
 void EntregasManager::cargar() {
+
+    system("cls");
+
     Entrega reg;
     EntregaArchivo archivo;
     int id, numeroAutoparte, cantidad;
@@ -156,6 +159,9 @@ void EntregasManager::cargar() {
     }
 }
 void EntregasManager::listar() {
+
+    system("cls");
+
     EntregaArchivo archivo;
     int total = archivo.getCantidadRegistros();
     bool hayActivos = false;
@@ -214,6 +220,9 @@ void EntregasManager::buscarPorId(int id) {
     cout << "Importe: $" << reg.getImporte() << endl;
 }
 void EntregasManager::entregasPorEmpresa(std::string cuit) {
+
+    system("cls");
+
     EntregaArchivo archivo;
     int total = archivo.getCantidadRegistros();
     bool hayCoincidencias = false;
@@ -243,12 +252,17 @@ void EntregasManager::entregasPorEmpresa(std::string cuit) {
 
     if (!hayCoincidencias) {
         cout << "No se encontraron entregas activas para esa empresa." << endl;
+        cout << endl;
     }
     else{
         cout<<"El CUIT: "<<cuit<< " se le facturo por un total de: $ "<<TotalEmpresa<<endl;
+        cout<<endl;
     }
 }
 void EntregasManager::entregasPorFecha(Fecha desde, Fecha hasta) {
+
+    system("cls");
+
     EntregaArchivo archivo;
     int total = archivo.getCantidadRegistros();
     bool hayCoincidencias = false;
@@ -285,8 +299,10 @@ void EntregasManager::entregasPorFecha(Fecha desde, Fecha hasta) {
 
     if (!hayCoincidencias) {
         cout << "No se encontraron entregas en ese rango de fechas." << endl;
+        cout << endl;
     } else {
         cout << "TOTAL FACTURADO EN EL RANGO: $" << sumaImporte << endl;
+        cout << endl;
     }
 }
 void EntregasManager::eliminarPorId(int id) {
@@ -393,6 +409,7 @@ void EntregasManager::reactivarentrega(int id) {
 void EntregasManager::modificareentregaporid(int id){
 
     system("cls");
+
     EntregaArchivo Archientrega;
     Entrega RegEntrega;
     ArchivoAutopartes archAutoparte;
@@ -426,7 +443,8 @@ void EntregasManager::modificareentregaporid(int id){
         int opcion= -1;
         while(opcion != 0){
 
-            cout << "\nIngrese la opción deseada (0 para cancelar): ";
+            cout << endl;
+            cout << "Ingrese la opción deseada (0 para cancelar): ";
             cin >> opcion;
 
 
@@ -450,7 +468,7 @@ void EntregasManager::modificareentregaporid(int id){
                     if (numeroAnterior == nuevoNumero) {
                         cout << ">> El número ingresado es el mismo que el actual." << endl;
                         break;
-                        }
+                    }
 
                 int posAnterior = archAutoparte.buscarPorNumero(numeroAnterior);
                 Autoparte autoParteAnterior = archAutoparte.leer(posAnterior);
@@ -465,8 +483,8 @@ void EntregasManager::modificareentregaporid(int id){
 
                 if (StockAutNuev < 0) {
                     cout << ">> No hay suficiente stock en la nueva autoparte para realizar el cambio." << endl;
-                    cout << ">>Stock de autoparte a modificar: " <<autoParteNueva.getStock()<< endl;
-                    cout << ">>cantidad de esta entrega: " <<unidadesEntregadas<< endl;
+                    cout << ">> Stock de autoparte a modificar: " << StockAutNuev + unidadesEntregadas << "." << endl;
+                    cout << ">> Cantidad de esta entrega: " << unidadesEntregadas << "." << endl;
 
                         break;
                         }
@@ -503,8 +521,10 @@ void EntregasManager::modificareentregaporid(int id){
 
                         if (Archientrega.guardar(RegEntrega, pos)) {
                             cout << ">> CUIT de empresa actualizado correctamente en la entrega." << endl;
+                            cout << endl;
                         } else {
                             cout << ">> Error al guardar la entrega modificada." << endl;
+                            cout << endl;
                         }
 
                         break;
@@ -570,6 +590,7 @@ void EntregasManager::modificareentregaporid(int id){
                         Regautoparte.setStock(stockActual - diferencia);
                         if (!archAutoparte.modificar(posAutoparte, Regautoparte)) {
                             cout << ">> Error al actualizar el stock de la autoparte." << endl;
+                            cout << endl;
                             break;
                         }
 
@@ -578,8 +599,10 @@ void EntregasManager::modificareentregaporid(int id){
 
                         if (Archientrega.guardar(RegEntrega, pos)) {
                             cout << ">> Cantidad de unidades actualizada correctamente." << endl;
+                            cout << endl;
                         } else {
                             cout << ">> Error al guardar la entrega modificada." << endl;
+                            cout << endl;
                         }
 
                         break;
@@ -591,6 +614,7 @@ void EntregasManager::modificareentregaporid(int id){
 
                         if (nuevoImporte <= 0) {
                             cout << ">> El importe debe ser mayor a cero." << endl;
+                            cout << endl;
                             break;
                         }
 
@@ -598,14 +622,19 @@ void EntregasManager::modificareentregaporid(int id){
 
                         if (Archientrega.guardar(RegEntrega, pos)) {
                             cout << ">> Importe actualizado correctamente." << endl;
+                            cout << endl;
                         } else {
                             cout << ">> Error al guardar la entrega modificada." << endl;
+                            cout << endl;
                         }
 
                         break;
                     }
+                    default:
+                        system("cls");
+                        break;
             }
-        }
+        } //Cierre while
     }
 }
 void EntregasManager::MenuEntrega(){

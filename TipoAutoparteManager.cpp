@@ -14,6 +14,11 @@ void TipoAutoparteManager::cargar() {
     char opcion;
     ArchivoTipoAutoparte archivo;
 
+    ArchivoAutopartes archAutopartes;
+    Autoparte regAutoparte;
+
+    int cantidadAutopartes = archAutopartes.contar();
+
     while (true) {
         cout << "Numero tipo autoparte: ";
         cin >> numero;
@@ -39,6 +44,13 @@ void TipoAutoparteManager::cargar() {
                     existente.setActivo(true);
                     if (archivo.modificar(pos, existente)) {
                         cout << "Tipo de autoparte reactivado correctamente." << endl;
+                        for(int i = 0; i < cantidadAutopartes; i++){
+                            regAutoparte = archAutopartes.leer(i);
+                            if(!regAutoparte.getActivo() && regAutoparte.getTipo() == numero){
+                                regAutoparte.setActivo(true);
+                                archAutopartes.modificar(i,regAutoparte);
+                            }
+                        }
                     } else {
                         cout << "Error al reactivar tipo de autoparte." << endl;
                     }
@@ -98,6 +110,9 @@ void TipoAutoparteManager::listar() {
     cout << endl;
 }
 void TipoAutoparteManager::listarInactivos() {
+
+    system("cls");
+
     ArchivoTipoAutoparte archivo;
     int total = archivo.contar();
     bool hayInactivos = false;
@@ -113,7 +128,9 @@ void TipoAutoparteManager::listarInactivos() {
     }
 
     if (!hayInactivos) {
+        cout << endl;
         cout << "No hay tipos de autoparte inactivos registrados." << endl;
+        cout << endl;
     }
 }
 void TipoAutoparteManager::buscarPorID() {
@@ -187,14 +204,27 @@ void TipoAutoparteManager::eliminar() {
     ArchivoTipoAutoparte archivo;
     int total = archivo.contar();
 
+    //Variables utilizadas para dar de baja las autopartes
+    ArchivoAutopartes archAutopartes;
+    Autoparte regAutoparte;
+
+    int totalAutopartes = archAutopartes.contar();
+
     for (int i = 0; i < total; i++) {
         TipoAutoparte reg = archivo.leer(i);
         if (reg.getNumero() == numero && reg.getActivo()) {
             reg.setActivo(false);
             if (archivo.modificar(i, reg)) {
-                cout << "Tipo de autoparte dado de baja (inactivo)." << endl;
+                cout << "Tipo de autoparte (" << reg.getNombre() << ") dado de baja (inactivo)." << endl;
+                for(int j = 0; j < totalAutopartes; j++){
+                    regAutoparte = archAutopartes.leer(j);
+                    if(regAutoparte.getActivo() && regAutoparte.getTipo() == numero){
+                        regAutoparte.setActivo(false);
+                        archAutopartes.modificar(j,regAutoparte);
+                    }
+                }
             } else {
-                cout << "Error al modificar." << endl;
+                cout << "Error al dar de baja el registro." << endl;
             }
             return;
         }
@@ -210,12 +240,12 @@ void TipoAutoparteManager::menuTipoAutopartes(){
         cout << "          MENU TIPO AUTOPARTES" << endl;
         cout << "#######################################" << endl;
         cout << endl;
-        cout << "1. Dar de alta un tipo de autoparte" << endl;
+        cout << "1. Cargar/dar de alta un tipo de autoparte" << endl;
         cout << "2. Modificar un tipo de autoparte" << endl;
         cout << "3. Buscar un tipo de autoparte por ID" << endl;
         cout << "4. Listar tipos de autopartes dadas de ALTA" << endl;
         cout << "5. Listar tipos de autopartes dadas de BAJA" << endl;
-        cout << "6. Eliminar un tipo de autoparte" << endl;
+        cout << "6. Dar de baja un tipo de autoparte" << endl;
         cout << "0. Volver al menu anterior" << endl;
         cout << endl;
 
@@ -264,14 +294,14 @@ void TipoAutoparteManager::InformeCantidadDeTiposAutopartesUtilizadas(){
     int_CantidadRegistros_TipoAutopartes = archTipoAutopartes.contar();
 
     //Error en caso de que no haya autopartes.
-    if(int_CantidadRegistros_Autopartes < 0){
+    if(int_CantidadRegistros_Autopartes == 0){
         cout << "No se encontraron autopartes registradas de momento." << endl;
         cout << endl;
         return;
     }
 
     //Error en caso de que no haya tipo de autopartes
-    if(int_CantidadRegistros_TipoAutopartes < 0){
+    if(int_CantidadRegistros_TipoAutopartes == 0){
         cout << "No see encontraron tipos de autopartes registradas de momento" << endl;
         cout << endl;
         return;

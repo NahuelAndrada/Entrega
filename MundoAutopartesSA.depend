@@ -243,3 +243,133 @@
 	"TipoAutoparte.h"
 	<iostream>
 
+1751240052 source:c:\users\pc\downloads\entrega-main\entrega-main\archivoautopartes.cpp
+	"ArchivoAutopartes.h"
+	<cstdio>
+	<cstring>
+
+1751240052 c:\users\pc\downloads\entrega-main\entrega-main\archivoautopartes.h
+	"Autoparte.h"
+	<string>
+
+1751240052 c:\users\pc\downloads\entrega-main\entrega-main\autoparte.h
+	<string>
+
+1751240052 source:c:\users\pc\downloads\entrega-main\entrega-main\archivoempresa.cpp
+	"ArchivoEmpresa.h"
+
+1751240052 c:\users\pc\downloads\entrega-main\entrega-main\archivoempresa.h
+	<string>
+	"Empresa.h"
+
+1751240052 c:\users\pc\downloads\entrega-main\entrega-main\empresa.h
+	<string>
+
+1751240052 source:c:\users\pc\downloads\entrega-main\entrega-main\archivotipoautoparte.cpp
+	"ArchivoTipoAutoparte.h"
+	<cstdio>
+
+1751240052 c:\users\pc\downloads\entrega-main\entrega-main\archivotipoautoparte.h
+	"TipoAutoparte.h"
+	<string>
+
+1751240052 c:\users\pc\downloads\entrega-main\entrega-main\tipoautoparte.h
+	<string>
+
+1751240052 source:c:\users\pc\downloads\entrega-main\entrega-main\autoparte.cpp
+	"Autoparte.h"
+	"TipoAutoparte.h"
+	"ArchivoAutopartes.h"
+	"ArchivoTipoAutoparte.h"
+	<iostream>
+	<cstring>
+
+1751242280 source:c:\users\pc\downloads\entrega-main\entrega-main\autopartesmanager.cpp
+	<iostream>
+	<string>
+	"AutopartesManager.h"
+	"TipoAutoparteManager.h"
+	"Autoparte.h"
+	"TipoAutoparte.h"
+	"ArchivoAutopartes.h"
+	"ArchivoTipoAutoparte.h"
+	"EntregaArchivo.h"
+
+1751240052 c:\users\pc\downloads\entrega-main\entrega-main\autopartesmanager.h
+
+1751240052 c:\users\pc\downloads\entrega-main\entrega-main\entregaarchivo.h
+	<string>
+	"Entrega.h"
+
+1751240052 c:\users\pc\downloads\entrega-main\entrega-main\entrega.h
+	"Fecha.h"
+	<string>
+
+1751240052 c:\users\pc\downloads\entrega-main\entrega-main\fecha.h
+	<string>
+
+1751240052 source:c:\users\pc\downloads\entrega-main\entrega-main\empresa.cpp
+	"Empresa.h"
+	"string"
+	"cstring"
+
+1751243034 source:c:\users\pc\downloads\entrega-main\entrega-main\empresamanager.cpp
+	<iostream>
+	<string>
+	"Empresa.h"
+	"ArchivoEmpresa.h"
+	"EmpresaManager.h"
+	"EntregaArchivo.h"
+	"Entrega.h"
+	"Fecha.h"
+
+1751240052 c:\users\pc\downloads\entrega-main\entrega-main\empresamanager.h
+	<string>
+
+1751240052 source:c:\users\pc\downloads\entrega-main\entrega-main\entrega.cpp
+	"Entrega.h"
+	<iostream>
+	<cstring>
+
+1751240052 source:c:\users\pc\downloads\entrega-main\entrega-main\entregaarchivo.cpp
+	"EntregaArchivo.h"
+
+1751245944 source:c:\users\pc\downloads\entrega-main\entrega-main\entregamanager.cpp
+	<iostream>
+	"EntregaManager.h"
+	"EntregaArchivo.h"
+	"ArchivoAutopartes.h"
+	"EmpresaManager.h"
+	"ArchivoEmpresa.h"
+
+1751240052 c:\users\pc\downloads\entrega-main\entrega-main\entregamanager.h
+	"Entrega.h"
+	"EntregaArchivo.h"
+	<string>
+
+1751240052 source:c:\users\pc\downloads\entrega-main\entrega-main\fecha.cpp
+	"Fecha.h"
+
+1751240052 source:c:\users\pc\downloads\entrega-main\entrega-main\main.cpp
+	<iostream>
+	"TipoAutoparteManager.h"
+	"EmpresaManager.h"
+	"AutopartesManager.h"
+	"EntregaManager.h"
+	"TipoAutoparte.h"
+
+1751240052 c:\users\pc\downloads\entrega-main\entrega-main\tipoautopartemanager.h
+
+1751240052 source:c:\users\pc\downloads\entrega-main\entrega-main\tipoautoparte.cpp
+	"TipoAutoparte.h"
+	<iostream>
+	<cstring>
+
+1751243677 source:c:\users\pc\downloads\entrega-main\entrega-main\tipoautopartemanager.cpp
+	"TipoAutoparteManager.h"
+	"ArchivoTipoAutoparte.h"
+	"TipoAutoparte.h"
+	<iostream>
+	"ArchivoAutopartes.h"
+	"Autoparte.h"
+

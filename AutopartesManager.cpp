@@ -1,11 +1,17 @@
+#include <iostream>
+#include <string>
+
 #include "AutopartesManager.h"
+#include "TipoAutoparteManager.h"
+
 #include "Autoparte.h"
 #include "TipoAutoparte.h"
+
 #include "ArchivoAutopartes.h"
 #include "ArchivoTipoAutoparte.h"
 #include "EntregaArchivo.h"
-#include <iostream>
-#include <string>
+
+
 using namespace std;
 
 void AutopartesManager::cargarAutoparte() {
@@ -50,16 +56,22 @@ void AutopartesManager::cargarAutoparte() {
     getline(cin, nombre);
 
     if (nombre.length() >= 50) {
-        cout << "Nombre demasiado largo.\n";
+        cout << "Nombre demasiado largo." << endl;
         return;
     }
 
     ArchivoTipoAutoparte archTipo;
+    TipoAutoparteManager managerTipo;
+
     int tipo;
+
+    managerTipo.listar();
+
     cout << "Ingrese numero de tipo de autoparte: ";
     cin >> tipo;
     if (archTipo.buscarPorNumero(tipo) < 0) {
-        cout << "Tipo invalido.\n";
+        cout << "Tipo invalido, revise la existencia de ese tipo de autoparte." << endl;
+        cout << endl;
         return;
     }
 
@@ -67,7 +79,7 @@ void AutopartesManager::cargarAutoparte() {
     cout << "Ingrese stock inicial: ";
     cin >> stock;
     if (stock < 0) {
-        cout << "Stock invalido.\n";
+        cout << "Stock invalido." << endl;;
         return;
     }
 
@@ -372,7 +384,8 @@ void AutopartesManager::rankingAutopartes() {
     int int_CantidadEntregasTotales = archEntrega.getCantidadRegistros();
 
     if(int_CantidadAutopartesTotales == 0){
-        cout << "No se encontraron autopartes" << endl;
+        cout << "No se encontraron autopartes registradas." << endl;
+        cout << endl;
         return;
     }
 
@@ -454,14 +467,20 @@ void AutopartesManager::informeStockBajo() {
     system("cls");
     cout << "--- AUTOPARTES CON STOCK BAJO ---" << endl;
     cout << endl;
+
+    int total = arch.contar();
+
+    if(total==0){
+        cout << "No se encontraron autopartes registradas." << endl;
+        cout << endl;
+        return;
+    }
+
+
     cout << "Ingrese la cantidad maxima de stock a buscar: ";
 
     cin >> CantidadMaxima;
     cin.ignore();
-
-    int total = arch.contar();
-
-
 
     for(int i = 0; i < total; i++) {
         Autoparte reg = arch.leer(i);
