@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="MundoAutopartesSA" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/MundoAutopartesSA" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/MundoAutopartesSA" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="ArchivoAutopartes.cpp" />
+		<Unit filename="ArchivoAutopartes.h" />
+		<Unit filename="ArchivoEmpresa.cpp" />
+		<Unit filename="ArchivoEmpresa.h" />
+		<Unit filename="ArchivoTipoAutoparte.cpp" />
+		<Unit filename="ArchivoTipoAutoparte.h" />
+		<Unit filename="Autoparte.cpp" />
+		<Unit filename="Autoparte.h" />
+		<Unit filename="AutopartesManager.cpp" />
+		<Unit filename="AutopartesManager.h" />
+		<Unit filename="Backup.cpp" />
+		<Unit filename="Backup.h" />
+		<Unit filename="Empresa.cpp" />
+		<Unit filename="Empresa.h" />
+		<Unit filename="EmpresaManager.cpp" />
+		<Unit filename="EmpresaManager.h" />
+		<Unit filename="Entrega.cpp" />
+		<Unit filename="Entrega.h" />
+		<Unit filename="EntregaArchivo.cpp" />
+		<Unit filename="EntregaArchivo.h" />
+		<Unit filename="EntregaManager.cpp" />
+		<Unit filename="EntregaManager.h" />
+		<Unit filename="Fecha.cpp" />
+		<Unit filename="Fecha.h" />
+		<Unit filename="TipoAutoparte.cpp" />
+		<Unit filename="TipoAutoparte.h" />
+		<Unit filename="TipoAutoparteManager.cpp" />
+		<Unit filename="TipoAutoparteManager.h" />
+		<Unit filename="Usuario.cpp" />
+		<Unit filename="Usuario.h" />
+		<Unit filename="creditos.cpp" />
+		<Unit filename="creditos.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="presentacion.cpp" />
+		<Unit filename="presentacion.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

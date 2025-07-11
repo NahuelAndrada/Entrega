@@ -1,0 +1,6 @@
+#ifndef PRESENTACION_H_INCLUDED
+#define PRESENTACION_H_INCLUDED
+
+void presentacion();
+
+#endif // PRESENTACION_H_INCLUDED
