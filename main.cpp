@@ -17,9 +17,19 @@ void mostrarMenuPrincipal();
 int main() {
 
     Usuario usuario;
-
-    if (!usuario.login()) {
-        cout << "Saliendo del sistema." << endl;
+    int intentos=0;
+    bool loginExitoso=false;
+    while(intentos<3&&!loginExitoso){
+        if (usuario.login()){
+                loginExitoso=true;
+        }else{
+            cout << "\nUsuario o contraseña incorrectos. Intentos restantes: "<<(2-intentos) << endl;
+            system("pause");
+            intentos++;
+        }
+    }
+    if(!loginExitoso){
+        cout<<"\nAcceso denegado. Demasiados intentos incorrectos."<<endl;
         return 0;
     }
 

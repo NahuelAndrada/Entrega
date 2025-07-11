@@ -1,35 +1,39 @@
 # depslib dependency file v1.0
-1751246790 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\main.cpp
+1752190905 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\main.cpp
 	<iostream>
 	"TipoAutoparteManager.h"
 	"EmpresaManager.h"
 	"AutopartesManager.h"
 	"EntregaManager.h"
 	"TipoAutoparte.h"
+	"presentacion.h"
+	"creditos.h"
+	"Backup.h"
+	"Usuario.h"
 
-1751246790 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.h
+1752196778 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.h
 
-1751246790 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautoparte.cpp
+1751327170 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautoparte.cpp
 	"TipoAutoparte.h"
 	<iostream>
 	<cstring>
 
-1751246790 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautoparte.h
+1751327170 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautoparte.h
 	<string>
 
-1751246790 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoautopartes.cpp
+1751327170 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoautopartes.cpp
 	"ArchivoAutopartes.h"
 	<cstdio>
 	<cstring>
 
-1751246790 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoautopartes.h
+1751327170 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoautopartes.h
 	"Autoparte.h"
 	<string>
 
-1751246790 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autoparte.h
+1751327170 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autoparte.h
 	<string>
 
-1751310973 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autoparte.cpp
+1751327170 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autoparte.cpp
 	"Autoparte.h"
 	"TipoAutoparte.h"
 	"ArchivoAutopartes.h"
@@ -37,7 +41,7 @@
 	<iostream>
 	<cstring>
 
-1751312592 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.cpp
+1752196613 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.cpp
 	<iostream>
 	<string>
 	"AutopartesManager.h"
@@ -47,6 +51,7 @@
 	"ArchivoAutopartes.h"
 	"ArchivoTipoAutoparte.h"
 	"EntregaArchivo.h"
+	"Usuario.h"
 
 1750103366 source:c:\users\nahue\downloads\entrega-main (1)\entrega-main\archivoautopartes.cpp
 	"ArchivoAutopartes.h"
@@ -166,32 +171,33 @@
 	"TipoAutoparte.h"
 	<iostream>
 
-1751246790 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoempresa.cpp
+1751327170 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoempresa.cpp
 	"ArchivoEmpresa.h"
 
-1751246790 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoempresa.h
+1751327170 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivoempresa.h
 	<string>
 	"Empresa.h"
 
-1751246790 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresa.h
+1751327170 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresa.h
 	<string>
 
-1751246790 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivotipoautoparte.cpp
+1751327170 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivotipoautoparte.cpp
 	"ArchivoTipoAutoparte.h"
 	<cstdio>
 
-1751246790 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivotipoautoparte.h
+1751327170 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\archivotipoautoparte.h
 	"TipoAutoparte.h"
 	<string>
 
-1751246790 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautopartemanager.h
+1752197520 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautopartemanager.h
+	<string>
 
-1751246790 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresa.cpp
+1752180208 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresa.cpp
 	"Empresa.h"
 	"string"
 	"cstring"
 
-1751246790 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.cpp
+1752198553 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.cpp
 	<iostream>
 	<string>
 	"Empresa.h"
@@ -201,29 +207,29 @@
 	"Entrega.h"
 	"Fecha.h"
 
-1751246790 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.h
+1752198366 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.h
 	<string>
 
-1751246790 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entrega.cpp
+1751755426 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entrega.cpp
 	"Entrega.h"
 	<iostream>
 	<cstring>
 
-1751246790 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entrega.h
+1751755345 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entrega.h
 	"Fecha.h"
 	<string>
 
-1751246790 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\fecha.h
+1751327170 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\fecha.h
 	<string>
 
-1751246790 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregaarchivo.cpp
+1751327170 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregaarchivo.cpp
 	"EntregaArchivo.h"
 
-1751246790 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregaarchivo.h
+1751327170 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregaarchivo.h
 	<string>
 	"Entrega.h"
 
-1751246790 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.cpp
+1752196113 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.cpp
 	<iostream>
 	"EntregaManager.h"
 	"EntregaArchivo.h"
@@ -231,15 +237,15 @@
 	"EmpresaManager.h"
 	"ArchivoEmpresa.h"
 
-1751246790 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.h
+1752195999 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.h
 	"Entrega.h"
 	"EntregaArchivo.h"
 	<string>
 
-1751246790 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\fecha.cpp
+1751327170 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\fecha.cpp
 	"Fecha.h"
 
-1751246790 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautopartemanager.cpp
+1752197358 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\tipoautopartemanager.cpp
 	"TipoAutoparteManager.h"
 	"ArchivoTipoAutoparte.h"
 	"TipoAutoparte.h"
@@ -672,6 +678,39 @@
 	<string>
 
 1752189778 source:d:\carrera programacion\programacion 2\proyecto final\entrega-main\usuario.cpp
+	<iostream>
+	<string>
+	"Usuario.h"
+
+1752189743 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\usuario.h
+	<string>
+
+1752177968 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\backup.cpp
+	<iostream>
+	<cstdio>
+	<cstring>
+	"Backup.h"
+
+1752112800 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\backup.h
+	<string>
+
+1751327170 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\creditos.cpp
+	"creditos.h"
+	<iostream>
+
+1751327170 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\creditos.h
+
+1751327170 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\presentacion.h
+
+1752112873 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\presentacion.cpp
+	<iostream>
+	"TipoAutoparteManager.h"
+	"EmpresaManager.h"
+	"AutopartesManager.h"
+	"EntregaManager.h"
+	"TipoAutoparte.h"
+
+1752263750 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\usuario.cpp
 	<iostream>
 	<string>
 	"Usuario.h"
