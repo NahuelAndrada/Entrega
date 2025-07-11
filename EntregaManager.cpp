@@ -229,8 +229,10 @@ void EntregasManager::listar() {
     if (!hayActivos) {
         cout << "No hay entregas activas registradas." << endl;
     }
+    system("pause");
 }
 void EntregasManager::buscarPorId() {
+    system("cls");
     cout << "BUSCAR ENTREGA POR ID" << endl;
     int id;
     cout << "Ingrese ID de entrega: ";
@@ -260,6 +262,7 @@ void EntregasManager::buscarPorId() {
 
     cout << "Cantidad de unidades: " << reg.getCantidadUnidades() << endl;
     cout << "Importe: $" << reg.getImporte() << endl;
+    system("pause");
 }
 void EntregasManager::entregasPorEmpresa() {
 
@@ -391,14 +394,16 @@ void EntregasManager::eliminarPorId(std::string rol) {
     int pos = archivo.buscar(id);
 
     if (pos < 0) {
-        cout << "Error: No se encontró una entrega con ese ID." << endl;
+        cout << "Error: No se encontro una entrega con ese ID." << endl;
+        system("pause");
         return;
     }
 
     Entrega reg = archivo.leer(pos);
 
     if (!reg.getActivo()) {
-        cout << "La entrega ya está dada de baja." << endl;
+        cout << "La entrega ya esta dada de baja." << endl;
+        system("pause");
         return;
     }
 
@@ -408,6 +413,7 @@ void EntregasManager::eliminarPorId(std::string rol) {
     int posauto= archivoautoparte.buscarPorNumero(numeroAutoparte);
     if(posauto<0){
         cout<< "error: no se encontro la autoparte asociada para devolver stock. "<< endl;
+        system("pause");
         return;
     }
     autoparte= archivoautoparte.leer(posauto);
@@ -421,15 +427,17 @@ void EntregasManager::eliminarPorId(std::string rol) {
 
     if (archivo.guardar(reg, pos)) {
         cout << "Entrega eliminada correctamente (dada de baja)." << endl;
+        system("pause");
     } else {
         cout << "Error al intentar eliminar la entrega." << endl;
+        system("pause");
     }
 
     if (!archivoautoparte.modificar(posauto, autoparte)) {
     cout << "Error al devolver el stock de la autoparte." << endl;
+    system("pause");
     return;
-}
-
+    }
 }
 void EntregasManager::reactivarentrega(std::string rol) {
     if (rol != "admin") {
@@ -493,7 +501,8 @@ void EntregasManager::reactivarentrega(std::string rol) {
     if (!archivoautoparte.modificar(posauto, autoparte)) {
     cout << "Error al devolver el stock de la autoparte." << endl;
     return;
-}
+    }
+    system("pause");
 
 }
 void EntregasManager::modificarentregaporid(std::string rol){
@@ -741,6 +750,7 @@ void EntregasManager::MenuEntrega(std::string rol){
     int opcion;
 
     do {
+        system("cls");
         cout << "=== MENU DE GESTION DE ENTREGAS ===" << endl;
         cout << "1. Cargar nueva entrega" << endl;
         cout << "2. Listar entregas activas" << endl;

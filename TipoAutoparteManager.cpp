@@ -195,17 +195,46 @@ void TipoAutoparteManager::modificar(string rol) {
     TipoAutoparte tipo = archivo.leer(pos);
 
     cin.ignore();
-    string nuevoNombre;
-    cout << "Nombre actual: " << tipo.getNombre() << "\n";
-    cout << "Ingrese el nuevo nombre: ";
-    getline(cin, nuevoNombre);
-    tipo.setNombre(nuevoNombre);
+    int opcion;
+    do {
+        system("cls");
+        cout << "=== MODIFICAR TIPO DE AUTOPARTE ===" << endl;
+        cout << "1. Modificar nombre" << endl;
+        cout << "2. Cambiar estado (activo/inactivo)" << endl;
+        cout << "0. Volver y guardar cambios" << endl;
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
 
-    bool estado;
-    cout << "Estado actual (1 = activo, 0 = inactivo): " << tipo.getActivo() << "\n";
-    cout << "Desea modificar el estado? (1 = activo, 0 = inactivo): ";
-    cin >> estado;
-    tipo.setActivo(estado);
+        switch (opcion) {
+            case 1: {
+                string nuevoNombre;
+                cout << "Nombre actual: " << tipo.getNombre() << "\n";
+                cout << "Ingrese el nuevo nombre: ";
+                cin.ignore();
+                getline(cin, nuevoNombre);
+                tipo.setNombre(nuevoNombre.c_str());
+                break;
+            }
+            case 2: {
+                cout << "Estado actual: ";
+                if (tipo.getActivo()) {
+                    cout << "Activo\n";
+                } else {
+                    cout << "Inactivo\n";
+                }
+                bool estado;
+                cout << "Desea modificar el estado? (1 = activo, 0 = inactivo): ";
+                cin >> estado;
+                tipo.setActivo(estado);
+                break;
+            }
+            case 0:
+                break;
+            default:
+                cout << "Opcion invalida." << endl;
+                system("pause");
+        }
+    } while (opcion != 0);
 
     if (archivo.modificar(pos, tipo)) {
         cout << "Tipo de autoparte modificado correctamente.\n";
