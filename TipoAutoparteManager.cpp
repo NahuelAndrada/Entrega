@@ -212,6 +212,10 @@ void TipoAutoparteManager::modificar(string rol) {
                 cout << "Ingrese el nuevo nombre: ";
                 cin.ignore();
                 getline(cin, nuevoNombre);
+                if(nuevoNombre==""){
+                    cout << "El nombre no puede estar vacio." << endl;
+                    return;
+                }
                 tipo.setNombre(nuevoNombre.c_str());
                 break;
             }

@@ -10,7 +10,7 @@ using namespace std;
 void EntregasManager::cargar(std::string rol) {
 
     if (rol != "admin") {
-    cout << "No tiene permisos para realizar esta acción." << endl;
+    cout << "No tiene permisos para realizar esta accion." << endl;
     system("pause");
     return;
     }
@@ -531,7 +531,7 @@ void EntregasManager::modificarentregaporid(std::string rol){
     int pos = Archientrega.buscar(id);
 
     if (pos == -1) {
-        cout << "No se encontró ninguna entrega con ese ID." << std::endl;
+        cout << "No se encontro ninguna entrega con ese ID." << std::endl;
         return;
     }
     else{
@@ -552,14 +552,14 @@ void EntregasManager::modificarentregaporid(std::string rol){
         while(opcion != 0){
 
             cout << endl;
-            cout << "Ingrese la opción deseada (0 para cancelar): ";
+            cout << "Ingrese la opcion deseada (0 para cancelar): ";
             cin >> opcion;
 
 
         switch(opcion){
             case 1:{
                 int nuevoNumero;
-                cout << "Ingrese el nuevo número de autoparte: ";
+                cout << "Ingrese el nuevo numero de autoparte: ";
                 cin >> nuevoNumero;
 
 
@@ -741,9 +741,18 @@ void EntregasManager::modificarentregaporid(std::string rol){
                     default:
                         system("cls");
                         break;
+
+            }
+            char continuar;
+            cin.ignore();
+            cout << "Desea modificar otro campo? (s/n): ";
+            cin >> continuar;
+            if (continuar != 's' && continuar != 'S') {
+                break;
             }
         } //Cierre while
     }
+    system("pause");
 }
 void EntregasManager::MenuEntrega(std::string rol){
     EntregasManager manager;

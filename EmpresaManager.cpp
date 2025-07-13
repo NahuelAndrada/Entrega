@@ -13,7 +13,11 @@
 using namespace std;
 
 void EmpresaManager::cargarEmpresa(std::string rol){
-
+    if (rol != "admin") {
+    cout << "No tiene permisos para realizar esta accion." << endl;
+    system("pause");
+    return;
+    }
     system("cls");
 
     std::cout << "#######################################" << std::endl;
@@ -35,6 +39,11 @@ void EmpresaManager::cargarEmpresa(std::string rol){
 
     std::cout << "Ingrese CUIT (max 14 car.): ";
     getline(std::cin, in_CUIT);
+
+    if (in_CUIT.length() == 0) {
+    std::cout << "Error: el CUIT no puede estar vacio." << std::endl;
+    return;
+    }
 
     if(in_CUIT.length() >= 15){
         std::cout << "Error: el CUIT es demasiado largo, recuerde que puede tener hasta 14 caracteres." << std::endl;
@@ -350,7 +359,11 @@ void EmpresaManager::buscarPorParametroEspecifico(){
     system("pause");
 }
 void EmpresaManager::modificarEmpresaPorCUIT(std::string rol){
-
+    if (rol != "admin") {
+    cout << "No tiene permisos para realizar esta accion." << endl;
+    system("pause");
+    return;
+    }
     system("cls");
 
     std::cout << "#######################################" << std::endl;
@@ -472,7 +485,11 @@ void EmpresaManager::modificarEmpresaPorCUIT(std::string rol){
     system("cls");
 }
 void EmpresaManager::dardebajarEmpresa(std::string rol){
-
+    if (rol != "admin") {
+    cout << "No tiene permisos para realizar esta accion." << endl;
+    system("pause");
+    return;
+    }
     system("cls");
 
     std::cout << "#######################################" << std::endl;
@@ -527,8 +544,23 @@ void EmpresaManager::dardebajarEmpresa(std::string rol){
         }
     }
 }*/
-void EmpresaManager::dardealtaEmpresa(std::string in_CUIT){
+void EmpresaManager::dardealtaEmpresa(std::string rol){
+    if (rol != "admin") {
+    cout << "No tiene permisos para realizar esta accion." << endl;
+    system("pause");
+    return;
+    }
+    system("cls");
 
+    std::cout << "#######################################" << std::endl;
+    std::cout << "        MENU DE ALTA DE EMPRESA" << std::endl;
+    std::cout << "#######################################" << std::endl;
+    std::cout << std::endl;
+
+    std::string in_CUIT;
+
+    std::cout << "Ingresar el CUIT de la empresa: ";
+    getline(std::cin,in_CUIT);
     ArchivoEmpresa archEmpresa;
 
     int posicionEmpresa = buscarEmpresaPorCUIT(in_CUIT);
@@ -544,6 +576,7 @@ void EmpresaManager::dardealtaEmpresa(std::string in_CUIT){
             std::cout << ">> La empresa ya se encontraba dada de alta." << std::endl;
         }
     }
+    system("pause");
 }
 void EmpresaManager::menuEmpresas(std::string rol){
 
@@ -592,11 +625,17 @@ void EmpresaManager::menuEmpresas(std::string rol){
                     break;
                  case 6:
                     std::cout << std::endl;
-                    modificarEmpresaPorCUIT(rol);
+                    dardealtaEmpresa(rol);
                     std::cout << std::endl;
                     imprimirMenu(false);
                     break;
                  case 7:
+                    std::cout << std::endl;
+                    modificarEmpresaPorCUIT(rol);
+                    std::cout << std::endl;
+                    imprimirMenu(false);
+                    break;
+                 case 8:
                     std::cout << std::endl;
                     buscarPorParametroEspecifico();
                     std::cout << std::endl;
@@ -623,8 +662,9 @@ void EmpresaManager::imprimirMenu(bool limpiar){
     std::cout << "3. Listar empresas dadas de BAJA." << std::endl;
     std::cout << "4. Consultar cantidad de empresas totales." << std::endl;
     std::cout << "5. Dar de BAJA una empresa cargada por CUIT." << std::endl;
-    std::cout << "6. Modificar los datos de una empresa." << std::endl;
-    std::cout << "7. Buscar empresas." << std::endl;
+    std::cout << "6. Dar de ALTA una empresa cargada por CUIT." << std::endl;
+    std::cout << "7. Modificar los datos de una empresa." << std::endl;
+    std::cout << "8. Buscar empresas." << std::endl;
     std::cout << std::endl;
 }
 void EmpresaManager::informeEmpresasConMasEntregas(){

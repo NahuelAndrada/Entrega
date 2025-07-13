@@ -19,7 +19,6 @@ using namespace std;
 void AutopartesManager::cargarAutoparte(string rol) {
     if (rol != "admin") {
         cout << "No tiene permisos para cargar autopartes." << endl;
-        system("pause");
         return;
     }
     system("cls");
@@ -62,6 +61,10 @@ void AutopartesManager::cargarAutoparte(string rol) {
     cout << "Ingrese nombre: ";
     getline(cin, nombre);
 
+    if (nombre.length() == 0) {
+    cout << "El nombre no puede estar vacio." << endl;
+    return;
+    }
     if (nombre.length() >= 30) {
         cout << "Nombre demasiado largo." << endl;
         return;
@@ -102,7 +105,6 @@ void AutopartesManager::cargarAutoparte(string rol) {
 void AutopartesManager::modificarAutoparte(string rol) {
     if (rol != "admin") {
         cout << "No tiene permisos para modificar autopartes." << endl;
-        system("pause");
         return;
     }
     system("cls");
@@ -139,7 +141,11 @@ void AutopartesManager::modificarAutoparte(string rol) {
                 string nuevoNombre;
                 cout << "Nuevo nombre: ";
                 getline(cin, nuevoNombre);
-                if (nuevoNombre.length() >= 50) {
+                if (nuevoNombre.length() == 0) {
+                    cout << "El nombre no puede estar vacío." << endl;
+                    return;
+                }
+                if (nuevoNombre.length() >= 30) {
                     cout << "Nombre demasiado largo.\n";
                 } else {
                     reg.setNombre(nuevoNombre);
@@ -163,7 +169,7 @@ void AutopartesManager::modificarAutoparte(string rol) {
                 cout << "Nuevo stock: ";
                 cin >> nuevoStock;
                 if (nuevoStock < 0) {
-                    cout << "Stock invalido.\n";
+                    cout << "Stock invalido. No puede ser negativo.\n";
                 } else {
                     reg.setStock(nuevoStock);
                 }
@@ -334,7 +340,6 @@ void AutopartesManager::buscarAutopartePorNombre() {
 void AutopartesManager::eliminarAutoparte(string rol) {
     if (rol != "admin") {
         cout << "No tiene permisos para eliminar autopartes." << endl;
-        system("pause");
         return;
     }
     system("cls");
