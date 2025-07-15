@@ -140,6 +140,7 @@ void EmpresaManager::mostrarCantidadEmpresas(){
 
     int cantidadRegistros = archEmpresa.get_CantidadRegistros();
     std::cout << ">> Cantidad de empresas (activas e inactivas): " << cantidadRegistros << "." << std::endl;
+    system("pause");
 }
 
 void EmpresaManager::listarEmpresasActivas(){
