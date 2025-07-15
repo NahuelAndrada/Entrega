@@ -21,7 +21,7 @@ class EmpresaManager{
         void modificarEmpresaPorCUIT(std::string rol);
         void dardebajarEmpresa(std::string rol);
         //void dardebajarEmpresa(std::string in_CUIT);
-        void dardealtaEmpresa(std::string in_CUIT);
+        void dardealtaEmpresa(std::string rol);
 
         void informeEmpresasConMasEntregas();
         void informeEmpresasConMasImporte();

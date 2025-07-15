@@ -41,7 +41,7 @@
 	<iostream>
 	<cstring>
 
-1752275664 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.cpp
+1752363201 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\autopartesmanager.cpp
 	<iostream>
 	<string>
 	"AutopartesManager.h"
@@ -197,7 +197,7 @@
 	"string"
 	"cstring"
 
-1752361417 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.cpp
+1752583611 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.cpp
 	<iostream>
 	<string>
 	"Empresa.h"
@@ -207,7 +207,7 @@
 	"Entrega.h"
 	"Fecha.h"
 
-1752198366 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.h
+1752587701 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.h
 	<string>
 
 1751755426 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entrega.cpp
@@ -229,7 +229,7 @@
 	<string>
 	"Entrega.h"
 
-1752282041 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.cpp
+1752582618 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.cpp
 	<iostream>
 	"EntregaManager.h"
 	"EntregaArchivo.h"

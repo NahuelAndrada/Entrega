@@ -70,8 +70,7 @@ void EmpresaManager::cargarEmpresa(std::string rol){
                 getline(std::cin,opcion);
             }
             if(opcion == "S" || opcion == "s"){
-                dardealtaEmpresa(in_CUIT);
-                system("pause");
+                dardealtaEmpresa(rol);
             }
             return;
         }

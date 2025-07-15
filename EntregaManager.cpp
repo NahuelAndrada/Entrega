@@ -460,7 +460,8 @@ void EntregasManager::reactivarentrega(std::string rol) {
     int pos = archivo.buscar(id);
 
     if (pos < 0) {
-        cout << "Error: No se encontró una entrega con ese ID." << endl;
+        cout << "Error: No se encontro una entrega con ese ID." << endl;
+        system("pause");
         return;
     }
 
@@ -468,6 +469,7 @@ void EntregasManager::reactivarentrega(std::string rol) {
 
     if (reg.getActivo()) {
         cout << "La entrega no esta dada de baja." << endl;
+        system("pause");
         return;
     }
 
@@ -477,6 +479,7 @@ void EntregasManager::reactivarentrega(std::string rol) {
     int posauto= archivoautoparte.buscarPorNumero(numeroAutoparte);
     if(posauto<0){
         cout<< "error: no se encontro la autoparte asociada"<< endl;
+        system("pause");
         return;
     }
     autoparte= archivoautoparte.leer(posauto);
@@ -485,6 +488,7 @@ void EntregasManager::reactivarentrega(std::string rol) {
     int nuevostock= autoparte.getStock()-cantidadDevuelta;
         if(nuevostock<0){
             cout<<"no se puede reactivar la entrega porque no hay stock necesario"<<endl;
+            system("pause");
             return;
     }
     autoparte.setStock(nuevostock);
@@ -500,6 +504,7 @@ void EntregasManager::reactivarentrega(std::string rol) {
 
     if (!archivoautoparte.modificar(posauto, autoparte)) {
     cout << "Error al devolver el stock de la autoparte." << endl;
+    system("pause");
     return;
     }
     system("pause");
