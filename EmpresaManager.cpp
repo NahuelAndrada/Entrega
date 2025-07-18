@@ -1063,5 +1063,5 @@ void EmpresaManager::empresasQueRecibieronEntregasEnFecha(){
     }
     if (!encontrado) {
     cout << "No se encontraron entregas en esa fecha." << endl;
+    }
 }
- }

@@ -975,3 +975,33 @@ void EntregasManager::cantidadEntregasPorNombreAutoparte(){
     }
     cout<<"La cantidad de entregas realizadas con esa autoparte es: "<<contador<<endl;
 }
+
+void EntregasManager::prueba(){
+
+    string nombre,cuit;
+    int cont=0;
+
+    cout<<"Ingrese nombre de la empresa: "<<endl;
+    getline(cin,nombre);
+
+    ArchivoEmpresa archEmp;
+    Empresa regEmp;
+    EntregaArchivo archEnt;
+    Entrega regEnt;
+
+    int cantEmpresas=archEmp.get_CantidadRegistros();
+    for(int i=0;i<cantEmpresas;i++){
+        regEmp=archEmp.leerEmpresa(i);
+        if(regEmp.get_Nombre()==nombre){
+            cuit=regEmp.get_CUIT();
+        }
+    }
+    int cantEntregas=archEnt.getCantidadRegistros();
+    for(int i=0;i<cantEntregas;i++){
+        regEnt=archEnt.leer(i);
+        if(regEnt.getCuitEmpresa()==cuit){
+            cont++;
+        }
+    }
+    cout<<"La cantidad de entregas que se hicieron a esta empresa fueron: "<<cont<<endl;
+}

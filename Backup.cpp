@@ -52,7 +52,7 @@ void Backup::hacerBackupIndividual() {
         realizarBackup("entregas.dat", "backup_entregas.bkp");
     }
     else if (opcion == 4) {
-        realizarBackup("tipo_autopartes.dat", "backup_tipo_autopartes.bkp");
+        realizarBackup("tipoautoparte.dat", "backup_tipo_autopartes.bkp");
     }
     else {
         cout << "Opcion invalida." << endl;

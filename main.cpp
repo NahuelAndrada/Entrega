@@ -168,8 +168,7 @@ void menuInformes() {
                 break;
             }
             case 13:{
-                EmpresaManager em;
-                em.empresasQueRecibieronEntregasEnFecha();
+                manager.prueba();
                 system("pause");
                 break;
             }

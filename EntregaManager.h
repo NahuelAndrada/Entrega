@@ -19,6 +19,7 @@ public:
     void entregasPorNombreAutoparte();
     void cantidadEntregasPorNombreEmpresa();
     void cantidadEntregasPorNombreAutoparte();
+    void prueba();
 };
 
 

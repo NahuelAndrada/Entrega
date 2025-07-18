@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1752280401 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\main.cpp
+1752591038 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\main.cpp
 	<iostream>
 	"TipoAutoparteManager.h"
 	"EmpresaManager.h"
@@ -197,7 +197,7 @@
 	"string"
 	"cstring"
 
-1752583611 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.cpp
+1752590666 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.cpp
 	<iostream>
 	<string>
 	"Empresa.h"
@@ -207,7 +207,7 @@
 	"Entrega.h"
 	"Fecha.h"
 
-1752587701 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.h
+1752590827 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\empresamanager.h
 	<string>
 
 1751755426 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entrega.cpp
@@ -229,7 +229,7 @@
 	<string>
 	"Entrega.h"
 
-1752582618 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.cpp
+1752847964 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.cpp
 	<iostream>
 	"EntregaManager.h"
 	"EntregaArchivo.h"
@@ -237,7 +237,7 @@
 	"EmpresaManager.h"
 	"ArchivoEmpresa.h"
 
-1752195999 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.h
+1752590827 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\entregamanager.h
 	"Entrega.h"
 	"EntregaArchivo.h"
 	<string>
@@ -685,7 +685,7 @@
 1752189743 d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\usuario.h
 	<string>
 
-1752177968 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\backup.cpp
+1752848735 source:d:\carrera programacion\programacion 2\proyecto final\mundoautopartessa\backup.cpp
 	<iostream>
 	<cstdio>
 	<cstring>
